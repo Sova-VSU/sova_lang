@@ -1,0 +1,433 @@
+openapi: 3.0.3
+info:
+  title: Сова
+  version: 1.0.0
+
+tags:
+  - name: Auth
+    description: Аутентификация и регистрация
+  - name: Scenarios
+    description: Работа со сценариями
+  - name: Subscriptions
+    description: Управление подпиской
+  - name: Users
+    description: Управление текущим пользователем
+
+security:
+  - BearerAuth: []
+
+paths:
+  /users/login:
+    post:
+      tags:
+        - Auth
+      security: []
+      summary: Залогиниться
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/register:
+    post:
+      tags:
+        - Auth
+      security: []
+      summary: Зарегистрироваться
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /scenarios:
+    get:
+      tags:
+        - Scenarios
+      summary: Получить имена всех сценариев. В зависимости от уровня пользователя вернет либо только платные сценарии, либо бесплатные.
+      operationId: listScenarioNames
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 1
+          description: Номер страницы
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 20
+          description: Количество сценариев на странице
+        - name: free
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Фильтр по типу сценария. `true` для бесплатных, `false` для платных. Если пользователь без подписки попытается получить платный контент, то выкинет ошибку.
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedScenarioList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /scenarios/{scenarioName}:
+    get:
+      tags:
+        - Scenarios
+      summary: Получить сценарий по имени
+      operationId: getScenarioByName
+      parameters:
+        - name: scenarioName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Имя сценария
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /subscription/start:
+    post:
+      tags:
+        - Subscriptions
+      summary: Начать подписку
+      operationId: startSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartSubscriptionRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /subscription/cancel:
+    post:
+      tags:
+        - Subscriptions
+      summary: Завершить подписку
+      operationId: cancelSubscription
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me:
+    delete:
+      tags:
+        - Users
+      summary: Удалить текущего пользователя
+      operationId: deleteCurrentUser
+      responses:
+        '204':
+          description: Пользователь успешно удалён
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me/name:
+    patch:
+      tags:
+        - Users
+      summary: Изменить имя текущего пользователя
+      operationId: updateCurrentUserName
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserNameRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me/password:
+    patch:
+      tags:
+        - Users
+      summary: Изменить пароль текущего пользователя
+      operationId: updateCurrentUserPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPasswordRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Требуется JWT-токен
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+
+
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Недостаточно прав для доступа к платному контенту
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Внутренняя ошибка сервиса
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Некорректный запрос
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          example: "12345678"
+
+    RegisterRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ФИО
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          example: "12345678"
+
+    UpdateUserNameRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Новое ФИО
+
+    UpdateUserPasswordRequest:
+      type: object
+      properties:
+        password:
+          type: string
+          example: "87654321"
+
+    StartSubscriptionRequest:
+      type: object
+      properties:
+        durationInDays:
+          type: integer
+          example: 30
+
+    AuthUser:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ФИО
+        email:
+          type: string
+          format: email
+          example: mail@mail.com
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: jwt токен пользователя
+        user:
+          $ref: '#/components/schemas/AuthUser'
+
+    ScenarioListItem:
+      type: object
+      properties:
+        name:
+          type: string
+          example: quiz1
+
+    PaginatedScenarioList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScenarioListItem'
+
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ФИО
+        email:
+          type: string
+          format: email
+          example: mail@mail.com
+        subscriptionId:
+          type: integer
+          example: 1
+
+    Subscription:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ACTIVE или ENDED
+        started_at:
+          type: string
+          format: date-time
+          example: 2024-01-01T12:00:00Z
+        end_at:
+          type: string
+          format: date-time
+          example: 2024-01-01T12:00:00Z
+
+    ScenarioPart:
+      type: object
+      properties:
+        name:
+          type: string
+          example: quiz1
+        type:
+          type: string
+          description: Тип части. Может это вопрос с выбором одного/нескольких ответов, вопрос, где надо самому что-то написать, или что-то иное вообще.
+        content:
+          type: object
+          description: |
+            TODO: Надо вообще придумать какие у нас будут разные типы и для них структуру.
+
+    Scenario:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Название сценария
+        free:
+          type: boolean
+          example: true
+        description:
+          type: string
+          description: Описание сценария
+        scenarioParts:
+          type: array
+          description: Сценарий состоит из разных частей с разными заданиями
+          items:
+            $ref: '#/components/schemas/ScenarioPart'
