@@ -2,6 +2,7 @@ openapi: 3.0.3
 info:
   title: Сова
   version: 1.0.0
+  description: API образовательной платформы со сценариями
 
 tags:
   - name: Auth
@@ -17,13 +18,12 @@ security:
   - BearerAuth: []
 
 paths:
-  /users/login:
+  /auth/login:
     post:
-      tags:
-        - Auth
+      tags: [Auth]
       security: []
       summary: Залогиниться
-      operationId: login
+      operationId: loginUser
       requestBody:
         required: true
         content:
@@ -32,23 +32,24 @@ paths:
               $ref: '#/components/schemas/LoginRequest'
       responses:
         '200':
-          description: Успешный ответ
+          description: Успешный вход
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /users/register:
+  /auth/register:
     post:
-      tags:
-        - Auth
+      tags: [Auth]
       security: []
       summary: Зарегистрироваться
-      operationId: register
+      operationId: registerUser
       requestBody:
         required: true
         content:
@@ -56,45 +57,77 @@ paths:
             schema:
               $ref: '#/components/schemas/RegisterRequest'
       responses:
-        '200':
-          description: Успешный ответ
+        '201':
+          description: Пользователь создан
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Email уже занят
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Обновить access-токен по refresh-токену
+      operationId: refreshToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Новая пара токенов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPair'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
   /scenarios:
     get:
-      tags:
-        - Scenarios
-      summary: Получить имена всех сценариев. В зависимости от уровня пользователя вернет либо только платные сценарии, либо бесплатные.
-      operationId: listScenarioNames
+      tags: [Scenarios]
+      summary: Получить список сценариев
+      description: |
+        Возвращает постраничный список всех сценариев (и платных, и бесплатных)
+        с флагом `free` у каждого. Доступ к самому контенту платного сценария
+        ограничивается на `GET /scenarios/{id}`.
+      operationId: listScenarios
       parameters:
         - name: page
           in: query
-          required: false
           schema:
             type: integer
-            example: 1
-          description: Номер страницы
+            minimum: 1
+            default: 1
         - name: pageSize
           in: query
-          required: false
           schema:
             type: integer
-            example: 20
-          description: Количество сценариев на странице
+            minimum: 1
+            maximum: 100
+            default: 20
         - name: free
           in: query
-          required: false
+          description: Опциональный фильтр по типу. Если не указан — возвращаются все.
           schema:
             type: boolean
-            example: true
-          description: Фильтр по типу сценария. `true` для бесплатных, `false` для платных. Если пользователь без подписки попытается получить платный контент, то выкинет ошибку.
       responses:
         '200':
           description: Успешный ответ
@@ -105,25 +138,22 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          description: Требуется JWT-токен
-        '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /scenarios/{scenarioName}:
+  /scenarios/{scenarioId}:
     get:
-      tags:
-        - Scenarios
-      summary: Получить сценарий по имени
-      operationId: getScenarioByName
+      tags: [Scenarios]
+      summary: Получить сценарий по id
+      operationId: getScenarioById
       parameters:
-        - name: scenarioName
+        - name: scenarioId
           in: path
           required: true
           schema:
-            type: string
-          description: Имя сценария
+            type: integer
+            format: int64
       responses:
         '200':
           description: Успешный ответ
@@ -131,30 +161,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Scenario'
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '401':
-          description: Требуется JWT-токен
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /subscription/start:
+  /subscriptions:
     post:
-      tags:
-        - Subscriptions
-      summary: Начать подписку
-      operationId: startSubscription
+      tags: [Subscriptions]
+      summary: Оформить подписку
+      operationId: createSubscription
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StartSubscriptionRequest'
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
       responses:
-        '200':
-          description: Успешный ответ
+        '201':
+          description: Подписка оформлена
           content:
             application/json:
               schema:
@@ -162,16 +191,21 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          description: Требуется JWT-токен
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: У пользователя уже есть активная подписка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /subscription/cancel:
-    post:
-      tags:
-        - Subscriptions
-      summary: Завершить подписку
-      operationId: cancelSubscription
+  /subscriptions/current:
+    get:
+      tags: [Subscriptions]
+      summary: Получить текущую подписку пользователя
+      operationId: getCurrentSubscription
       responses:
         '200':
           description: Успешный ответ
@@ -179,33 +213,63 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Subscription'
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '401':
-          description: Требуется JWT-токен
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags: [Subscriptions]
+      summary: Отменить текущую подписку
+      operationId: cancelCurrentSubscription
+      responses:
+        '200':
+          description: Подписка отменена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
   /users/me:
+    get:
+      tags: [Users]
+      summary: Получить профиль текущего пользователя
+      operationId: getCurrentUser
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
     delete:
-      tags:
-        - Users
+      tags: [Users]
       summary: Удалить текущего пользователя
       operationId: deleteCurrentUser
       responses:
         '204':
-          description: Пользователь успешно удалён
-        '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Пользователь удалён
         '401':
-          description: Требуется JWT-токен
+          $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
   /users/me/name:
     patch:
-      tags:
-        - Users
+      tags: [Users]
       summary: Изменить имя текущего пользователя
       operationId: updateCurrentUserName
       requestBody:
@@ -220,18 +284,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthUser'
+                $ref: '#/components/schemas/User'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          description: Требуется JWT-токен
+          $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
   /users/me/password:
     patch:
-      tags:
-        - Users
+      tags: [Users]
       summary: Изменить пароль текущего пользователя
       operationId: updateCurrentUserPassword
       requestBody:
@@ -241,21 +304,14 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateUserPasswordRequest'
       responses:
-        '200':
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthUser'
+        '204':
+          description: Пароль обновлён
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
-          description: Требуется JWT-токен
+          $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
-
-
-
 
 components:
   securitySchemes:
@@ -263,6 +319,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+
   responses:
     BadRequest:
       description: Некорректный запрос
@@ -270,8 +327,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Отсутствует или невалидный JWT-токен
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
-      description: Недостаточно прав для доступа к платному контенту
+      description: Недостаточно прав
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Ресурс не найден
       content:
         application/json:
           schema:
@@ -282,152 +351,299 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+
   schemas:
     ErrorResponse:
       type: object
+      required: [message]
       properties:
         message:
           type: string
           example: Некорректный запрос
+        code:
+          type: string
+          description: Машиночитаемый код ошибки
+          example: VALIDATION_ERROR
 
     LoginRequest:
       type: object
+      required: [email, password]
       properties:
         email:
           type: string
           format: email
         password:
           type: string
-          example: "12345678"
+          minLength: 8
+          format: password
 
     RegisterRequest:
       type: object
+      required: [name, email, password]
       properties:
         name:
           type: string
-          example: ФИО
+          minLength: 1
+          maxLength: 100
+          example: Иванов Иван
         email:
           type: string
           format: email
         password:
           type: string
-          example: "12345678"
+          minLength: 8
+          format: password
+
+    RefreshTokenRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
 
     UpdateUserNameRequest:
       type: object
+      required: [name]
       properties:
         name:
           type: string
-          example: Новое ФИО
+          minLength: 1
+          maxLength: 100
 
     UpdateUserPasswordRequest:
       type: object
+      required: [currentPassword, newPassword]
       properties:
-        password:
+        currentPassword:
           type: string
-          example: "87654321"
+          format: password
+        newPassword:
+          type: string
+          minLength: 8
+          format: password
 
-    StartSubscriptionRequest:
+    CreateSubscriptionRequest:
       type: object
+      required: [durationInDays]
       properties:
         durationInDays:
           type: integer
+          minimum: 1
           example: 30
 
-    AuthUser:
+    TokenPair:
       type: object
+      required: [accessToken, refreshToken, expiresIn]
       properties:
+        accessToken:
+          type: string
+          description: JWT access-токен
+        refreshToken:
+          type: string
+          description: Refresh-токен для обновления access-токена
+        expiresIn:
+          type: integer
+          description: Время жизни access-токена в секундах
+          example: 900
+
+    AuthResponse:
+      type: object
+      required: [tokens, user]
+      properties:
+        tokens:
+          $ref: '#/components/schemas/TokenPair'
+        user:
+          $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      required: [id, name, email]
+      properties:
+        id:
+          type: integer
+          format: int64
         name:
           type: string
           description: ФИО
         email:
           type: string
           format: email
-          example: mail@mail.com
         subscription:
-          $ref: '#/components/schemas/Subscription'
+          allOf:
+            - $ref: '#/components/schemas/Subscription'
+          nullable: true
+          description: Активная подписка пользователя. null, если подписки нет.
 
-    AuthResponse:
+    Subscription:
       type: object
+      required: [id, status, startedAt, endsAt]
       properties:
-        token:
+        id:
+          type: integer
+          format: int64
+        status:
           type: string
-          example: jwt токен пользователя
-        user:
-          $ref: '#/components/schemas/AuthUser'
+          enum: [ACTIVE, ENDED, CANCELLED]
+        startedAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
 
     ScenarioListItem:
       type: object
+      required: [id, name, free]
       properties:
+        id:
+          type: integer
+          format: int64
         name:
           type: string
-          example: quiz1
+          example: Знакомство в кафе
+        description:
+          type: string
+          example: Базовый диалог для уровня A1
+        free:
+          type: boolean
+
+    PaginationMeta:
+      type: object
+      required: [page, pageSize, totalItems, totalPages]
+      properties:
+        page:
+          type: integer
+          example: 1
+        pageSize:
+          type: integer
+          example: 20
+        totalItems:
+          type: integer
+          example: 137
+        totalPages:
+          type: integer
+          example: 7
 
     PaginatedScenarioList:
       type: object
+      required: [items, meta]
       properties:
         items:
           type: array
           items:
             $ref: '#/components/schemas/ScenarioListItem'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
 
-    User:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ФИО
-        email:
-          type: string
-          format: email
-          example: mail@mail.com
-        subscriptionId:
-          type: integer
-          example: 1
-
-    Subscription:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ACTIVE или ENDED
-        started_at:
-          type: string
-          format: date-time
-          example: 2024-01-01T12:00:00Z
-        end_at:
-          type: string
-          format: date-time
-          example: 2024-01-01T12:00:00Z
+    ScenarioPartType:
+      type: string
+      enum:
+        - SINGLE_CHOICE
+        - MULTI_CHOICE
+        - TEXT_INPUT
 
     ScenarioPart:
       type: object
+      required: [id, name, type, content]
       properties:
+        id:
+          type: integer
+          format: int64
         name:
           type: string
-          example: quiz1
+        type:
+          $ref: '#/components/schemas/ScenarioPartType'
+        content:
+          oneOf:
+            - $ref: '#/components/schemas/SingleChoiceContent'
+            - $ref: '#/components/schemas/MultiChoiceContent'
+            - $ref: '#/components/schemas/TextInputContent'
+          discriminator:
+            propertyName: type
+            mapping:
+              SINGLE_CHOICE: '#/components/schemas/SingleChoiceContent'
+              MULTI_CHOICE: '#/components/schemas/MultiChoiceContent'
+              TEXT_INPUT: '#/components/schemas/TextInputContent'
+
+    ChoiceOption:
+      type: object
+      required: [id, text]
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+
+    SingleChoiceContent:
+      type: object
+      required: [type, question, options, correctOptionId]
+      properties:
         type:
           type: string
-          description: Тип части. Может это вопрос с выбором одного/нескольких ответов, вопрос, где надо самому что-то написать, или что-то иное вообще.
-        content:
-          type: object
-          description: |
-            TODO: Надо вообще придумать какие у нас будут разные типы и для них структуру.
+          enum: [SINGLE_CHOICE]
+        question:
+          type: string
+        options:
+          type: array
+          minItems: 2
+          items:
+            $ref: '#/components/schemas/ChoiceOption'
+        correctOptionId:
+          type: integer
+
+    MultiChoiceContent:
+      type: object
+      required: [type, question, options, correctOptionIds]
+      properties:
+        type:
+          type: string
+          enum: [MULTI_CHOICE]
+        question:
+          type: string
+        options:
+          type: array
+          minItems: 2
+          items:
+            $ref: '#/components/schemas/ChoiceOption'
+        correctOptionIds:
+          type: array
+          minItems: 1
+          items:
+            type: integer
+
+    TextInputContent:
+      type: object
+      required: [type, question, correctAnswers]
+      properties:
+        type:
+          type: string
+          enum: [TEXT_INPUT]
+        question:
+          type: string
+        correctAnswers:
+          type: array
+          description: Список допустимых ответов (с учётом синонимов/вариантов)
+          minItems: 1
+          items:
+            type: string
+        caseSensitive:
+          type: boolean
+          default: false
 
     Scenario:
       type: object
+      required: [id, name, free, description, parts]
       properties:
+        id:
+          type: integer
+          format: int64
         name:
           type: string
-          description: Название сценария
         free:
           type: boolean
-          example: true
         description:
           type: string
-          description: Описание сценария
-        scenarioParts:
+        parts:
           type: array
-          description: Сценарий состоит из разных частей с разными заданиями
           items:
             $ref: '#/components/schemas/ScenarioPart'
