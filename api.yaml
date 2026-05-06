@@ -106,8 +106,8 @@ paths:
       summary: Получить список сценариев
       description: |
         Возвращает постраничный список всех сценариев (и платных, и бесплатных)
-        с флагом `free` у каждого. Доступ к самому контенту платного сценария
-        ограничивается на `GET /scenarios/{id}`.
+        с флагом free у каждого. Доступ к самому контенту платного сценария
+        ограничивается на GET /scenarios/{id}.
       operationId: listScenarios
       parameters:
         - name: page
@@ -142,6 +142,26 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /scenarios/{scenarioId}/progress:
+    get:
+      tags: [Scenarios]
+      summary: Получить текущий прогресс пользователя
+      operationId: getScenarioProgress
+      parameters:
+        - name: scenarioId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioProgress'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
   /scenarios/{scenarioId}:
     get:
       tags: [Scenarios]
@@ -169,8 +189,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
-
-  /subscriptions:
+    /subscriptions:
     post:
       tags: [Subscriptions]
       summary: Оформить подписку
@@ -219,7 +238,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
-
     delete:
       tags: [Subscriptions]
       summary: Отменить текущую подписку
@@ -313,6 +331,25 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /users/me/stats:
+    get:
+      tags: [Users]
+      summary: Получить статистику и прогресс пользователя
+      operationId: getUserStats
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+
+
 components:
   securitySchemes:
     BearerAuth:
@@ -353,6 +390,50 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
 
   schemas:
+    AnswerSubmissionRequest:
+      type: object
+      required: [userAnswer]
+      properties:
+        userAnswer:
+          description: Ответ пользователя. Формат зависит от типа части.
+          oneOf:
+            - type: integer
+            - type: array
+              items: { type: integer }
+            - type: string
+
+    AnswerResponse:
+      type: object
+      required: [isCorrect, isLastPart, xpEarned]
+      properties:
+        isCorrect: { type: boolean }
+        explanation: { type: string, nullable: true }
+        isLastPart: { type: boolean }
+        nextPartId: { type: string, nullable: true }
+        xpEarned: { type: integer }
+        progressPercent: { type: number, format: float }
+
+    ScenarioProgress:
+      type: object
+      required: [scenarioId, currentPartId, completedParts, isCompleted, xpEarned]
+      properties:
+        scenarioId: { type: string }
+        currentPartId: { type: string, nullable: true }
+        completedParts: { type: array, items: { type: string } }
+        isCompleted: { type: boolean }
+        xpEarned: { type: integer }
+        startedAt: { type: string, format: date-time }
+        lastAccessedAt: { type: string, format: date-time }
+
+    UserStats:
+      type: object
+      required: [totalXp, streak, completedScenariosCount, level]
+      properties:
+        totalXp: { type: integer }
+        streak: { type: integer, description: Дней подряд с активностью }
+        completedScenariosCount: { type: integer }
+        level: { type: integer }
+
     ErrorResponse:
       type: object
       required: [message]
@@ -542,29 +623,6 @@ components:
         - MULTI_CHOICE
         - TEXT_INPUT
 
-    ScenarioPart:
-      type: object
-      required: [id, name, type, content]
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/ScenarioPartType'
-        content:
-          oneOf:
-            - $ref: '#/components/schemas/SingleChoiceContent'
-            - $ref: '#/components/schemas/MultiChoiceContent'
-            - $ref: '#/components/schemas/TextInputContent'
-          discriminator:
-            propertyName: type
-            mapping:
-              SINGLE_CHOICE: '#/components/schemas/SingleChoiceContent'
-              MULTI_CHOICE: '#/components/schemas/MultiChoiceContent'
-              TEXT_INPUT: '#/components/schemas/TextInputContent'
-
     ChoiceOption:
       type: object
       required: [id, text]
@@ -629,6 +687,29 @@ components:
         caseSensitive:
           type: boolean
           default: false
+
+    ScenarioPart:
+      type: object
+      required: [id, name, type, content]
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/ScenarioPartType'
+        content:
+          oneOf:
+            - $ref: '#/components/schemas/SingleChoiceContent'
+            - $ref: '#/components/schemas/MultiChoiceContent'
+            - $ref: '#/components/schemas/TextInputContent'
+          discriminator:
+            propertyName: type
+            mapping:
+              SINGLE_CHOICE: '#/components/schemas/SingleChoiceContent'
+              MULTI_CHOICE: '#/components/schemas/MultiChoiceContent'
+              TEXT_INPUT: '#/components/schemas/TextInputContent'
 
     Scenario:
       type: object
