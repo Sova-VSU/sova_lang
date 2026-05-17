@@ -1,0 +1,19 @@
+{
+  "scenarios": [
+    {
+      "id": "coffee",
+      "title": "Заказ в кофейне",
+      "description": "Закажите кофе, чай или какао и оплатите заказ.",
+      "emoji": "☕",
+      "locked": false,
+      "version": 1
+    },
+    {
+      "id": "shop",
+      "title": "Магазин одежды",
+      "description": "Подберите размер и купите одежду.",
+      "emoji": "🛍️",
+      "locked": true
+    }
+  ]
+}

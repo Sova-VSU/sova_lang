@@ -1,0 +1,919 @@
+{
+  "id": "hotel",
+  "title": "HOTEL CHECK-IN",
+  "emoji": "🏨",
+  "startStepId": "step-1",
+  "completionMessage": "Вы успешно заселились в отель и получили ключи от номера!",
+  "theme": {
+    "background": "linear-gradient(135deg, #EBEEF2 0%, #E8EEF2 100%)",
+    "cardBackground": "#f8fafc",
+    "accentColor": "#be9955",
+    "primaryButton": "#2C3E50",
+    "npcBubbleColor": "#c6ced4"
+  },
+  "steps": {
+    "step-1": {
+      "title": "Приветствие",
+      "emoji": "🏨",
+      "requireChoice": true,
+      "npc": {
+        "text": "Good evening! Welcome to Grand Palace Hotel. Do you have a reservation?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ВАШ ОТВЕТ:",
+        "options": [
+          {
+            "id": "yes",
+            "emoji": "✅",
+            "label": "Yes, I have a reservation"
+          },
+          {
+            "id": "no",
+            "emoji": "❌",
+            "label": "No reservation"
+          },
+          {
+            "id": "not-sure",
+            "emoji": "❓",
+            "label": "I'm not sure"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "yes": {
+              "question": "Как правильно сказать «у меня есть бронь»?",
+              "options": [
+                "I have booking.",
+                "I have a reservation.",
+                "I reserved.",
+                "Reservation me."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I have a reservation\" — стандартная фраза."
+            },
+            "no": {
+              "question": "Как спросить есть ли свободные комнаты?",
+              "options": [
+                "Free room?",
+                "Do you have any rooms available?",
+                "I need room.",
+                "Room me please."
+              ],
+              "correctIndex": 1,
+              "tip": "\"available\" — доступный, свободный."
+            },
+            "not-sure": {
+              "question": "Как сказать «я не уверен»?",
+              "options": [
+                "I no know.",
+                "I'm not sure, could you check?",
+                "Maybe yes.",
+                "Unknown."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'm not sure\" — я не уверен."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "yes": "step-2",
+        "no": "step-walkin-1",
+        "not-sure": "step-help-1"
+      }
+    },
+    "step-2": {
+      "title": "Подтверждение брони",
+      "emoji": "📋",
+      "requireChoice": true,
+      "npc": {
+        "text": "Wonderful! Could I have your last name, please?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "НАЗОВИТЕ ФАМИЛИЮ:",
+        "options": [
+          {
+            "id": "Smith",
+            "emoji": "👤",
+            "label": "Smith"
+          },
+          {
+            "id": "Johnson",
+            "emoji": "👤",
+            "label": "Johnson"
+          },
+          {
+            "id": "Williams",
+            "emoji": "👤",
+            "label": "Williams"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "Smith": {
+              "sentence": "My last name is ___ .",
+              "options": [
+                "Smith",
+                "Johnson",
+                "Williams",
+                "Brown"
+              ],
+              "correctAnswer": "Smith",
+              "tip": "\"last name\" = фамилия."
+            },
+            "Johnson": {
+              "sentence": "My last name is ___ .",
+              "options": [
+                "Smith",
+                "Johnson",
+                "Williams",
+                "Brown"
+              ],
+              "correctAnswer": "Johnson",
+              "tip": "\"last name\" = фамилия."
+            },
+            "Williams": {
+              "sentence": "My last name is ___ .",
+              "options": [
+                "Smith",
+                "Johnson",
+                "Williams",
+                "Brown"
+              ],
+              "correctAnswer": "Williams",
+              "tip": "\"last name\" = фамилия."
+            }
+          }
+        }
+      ],
+      "next": "step-2-confirm"
+    },
+    "step-2-confirm": {
+      "title": "Детали брони",
+      "emoji": "📋",
+      "requireChoice": true,
+      "npc": {
+        "text": "I found your reservation. Double room for 3 nights. Is that correct?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ПОДТВЕРДИТЕ:",
+        "options": [
+          {
+            "id": "correct",
+            "emoji": "✅",
+            "label": "Yes, that's correct"
+          },
+          {
+            "id": "change",
+            "emoji": "🔄",
+            "label": "I need changes"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "translation",
+          "configByChoice": {
+            "correct": {
+              "sourceText": "Да, всё верно, спасибо.",
+              "options": [
+                "Yes correct thanks.",
+                "Yes, that's correct, thank you.",
+                "Good, right.",
+                "It is yes."
+              ],
+              "correctIndex": 1,
+              "tip": "\"That's correct\" — стандартное подтверждение."
+            },
+            "change": {
+              "sourceText": "Мне нужно изменить даты.",
+              "options": [
+                "Change dates.",
+                "I need to change the dates, please.",
+                "Dates wrong.",
+                "Fix my booking."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I need to change...\" — мне нужно изменить..."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "correct": "step-4",
+        "change": "step-2-change"
+      }
+    },
+    "step-2-change": {
+      "title": "Изменение брони",
+      "emoji": "🔄",
+      "npc": {
+        "text": "No problem! How many nights would you like to stay instead?",
+        "avatar": "🧑‍💼"
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "config": {
+            "hint": "Составьте: \"I would like to stay two more nights\"",
+            "correctOrder": [
+              "I",
+              "would",
+              "like",
+              "to",
+              "stay",
+              "two",
+              "more",
+              "nights"
+            ],
+            "tip": "\"to stay\" — остановиться, остаться."
+          }
+        }
+      ],
+      "next": "step-4"
+    },
+    "step-walkin-1": {
+      "title": "Без брони",
+      "emoji": "🚶",
+      "npc": {
+        "text": "No problem! Let me check what rooms we have available.",
+        "avatar": "🧑‍💼"
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "config": {
+            "hint": "Составьте: \"Do you have any available rooms?\"",
+            "correctOrder": [
+              "Do",
+              "you",
+              "have",
+              "any",
+              "available",
+              "rooms",
+              "?"
+            ],
+            "tip": "\"available\" — свободный."
+          }
+        }
+      ],
+      "next": "step-walkin-2"
+    },
+    "step-walkin-2": {
+      "title": "Доступные комнаты",
+      "emoji": "🛏️",
+      "requireChoice": true,
+      "npc": {
+        "text": "We have a single room at $89/night and a double room at $129/night.",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ВЫБЕРИТЕ КОМНАТУ:",
+        "options": [
+          {
+            "id": "single",
+            "emoji": "🛏️",
+            "label": "Single — $89"
+          },
+          {
+            "id": "double",
+            "emoji": "🛏️",
+            "label": "Double — $129"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "single": {
+              "sentence": "I'd like the ___ room, please.",
+              "options": [
+                "single",
+                "double",
+                "triple",
+                "big"
+              ],
+              "correctAnswer": "single",
+              "tip": "\"single room\" — одноместная, \"double room\" — двухместная."
+            },
+            "double": {
+              "sentence": "I'd like the ___ room, please.",
+              "options": [
+                "single",
+                "double",
+                "triple",
+                "big"
+              ],
+              "correctAnswer": "double",
+              "tip": "\"single room\" — одноместная, \"double room\" — двухместная."
+            }
+          }
+        }
+      ],
+      "next": "step-4"
+    },
+    "step-help-1": {
+      "title": "Поиск брони",
+      "emoji": "🔍",
+      "npc": {
+        "text": "That's okay! Could you tell me your last name? I can check our system.",
+        "avatar": "🧑‍💼"
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "config": {
+            "question": "Как вежливо попросить проверить бронь?",
+            "options": [
+              "Check my booking.",
+              "Could you check if I have a reservation?",
+              "Find my room.",
+              "Look reservation."
+            ],
+            "correctIndex": 1,
+            "tip": "\"Could you check...?\" — вежливая просьба."
+          }
+        }
+      ],
+      "next": "step-2-confirm"
+    },
+    "step-4": {
+      "title": "Этаж и вид",
+      "emoji": "🏢",
+      "requireChoice": true,
+      "npc": {
+        "text": "Would you prefer a city view, garden view, or sea view? Sea view has an extra $30 charge.",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ВЫБЕРИТЕ ВИД:",
+        "options": [
+          {
+            "id": "city",
+            "emoji": "🌆",
+            "label": "City view"
+          },
+          {
+            "id": "garden",
+            "emoji": "🌳",
+            "label": "Garden view"
+          },
+          {
+            "id": "sea",
+            "emoji": "🌊",
+            "label": "Sea view (+$30)"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "city": {
+              "sentence": "I'd prefer a room with a ___ view.",
+              "options": [
+                "city",
+                "garden",
+                "sea",
+                "parking"
+              ],
+              "correctAnswer": "city",
+              "tip": "\"view\" — вид. \"sea view\" — вид на море."
+            },
+            "garden": {
+              "sentence": "I'd prefer a room with a ___ view.",
+              "options": [
+                "city",
+                "garden",
+                "sea",
+                "parking"
+              ],
+              "correctAnswer": "garden",
+              "tip": "\"view\" — вид. \"sea view\" — вид на море."
+            },
+            "sea": {
+              "sentence": "I'd prefer a room with a ___ view.",
+              "options": [
+                "city",
+                "garden",
+                "sea",
+                "parking"
+              ],
+              "correctAnswer": "sea",
+              "tip": "\"view\" — вид. \"sea view\" — вид на море."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "city": "step-5",
+        "garden": "step-5",
+        "sea": "step-4-upgrade"
+      }
+    },
+    "step-4-upgrade": {
+      "title": "Предложение апгрейда",
+      "emoji": "⬆️",
+      "requireChoice": true,
+      "npc": {
+        "text": "Since you chose sea view, would you like to upgrade to a suite for just $50 more? It includes a balcony!",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "АПГРЕЙД:",
+        "options": [
+          {
+            "id": "yes",
+            "emoji": "✅",
+            "label": "Yes, upgrade!"
+          },
+          {
+            "id": "no",
+            "emoji": "❌",
+            "label": "No, thanks"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "yes": {
+              "question": "Как согласиться на апгрейд?",
+              "options": [
+                "Yes upgrade.",
+                "Yes, I'd love to upgrade!",
+                "OK suite.",
+                "Take suite."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'd love to...\" — я бы с удовольствием..."
+            },
+            "no": {
+              "question": "Как вежливо отказаться?",
+              "options": [
+                "No.",
+                "No, thank you. The standard room is fine.",
+                "Not want.",
+                "Standard OK."
+              ],
+              "correctIndex": 1,
+              "tip": "\"No, thank you\" — вежливый отказ."
+            }
+          }
+        }
+      ],
+      "next": "step-5"
+    },
+    "step-5": {
+      "title": "Завтрак",
+      "emoji": "🍳",
+      "requireChoice": true,
+      "npc": {
+        "text": "Your room includes complimentary breakfast. Would you like it in the restaurant or as room service?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ЗАВТРАК:",
+        "options": [
+          {
+            "id": "restaurant",
+            "emoji": "🍽️",
+            "label": "Restaurant"
+          },
+          {
+            "id": "room-service",
+            "emoji": "🛎️",
+            "label": "Room service"
+          },
+          {
+            "id": "skip",
+            "emoji": "🚫",
+            "label": "Skip breakfast"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "translation",
+          "configByChoice": {
+            "restaurant": {
+              "sourceText": "Я буду завтракать в ресторане.",
+              "options": [
+                "Breakfast restaurant.",
+                "I'll have breakfast in the restaurant.",
+                "Food in room.",
+                "Bring food."
+              ],
+              "correctIndex": 1,
+              "tip": "\"complimentary\" — бесплатный (включён в стоимость)."
+            },
+            "room-service": {
+              "sourceText": "Я бы хотел завтрак в номер.",
+              "options": [
+                "Breakfast restaurant.",
+                "I'd like room service, please.",
+                "Food in room.",
+                "Bring food."
+              ],
+              "correctIndex": 1,
+              "tip": "\"complimentary\" — бесплатный (включён в стоимость)."
+            },
+            "skip": {
+              "sourceText": "Я пропущу завтрак, спасибо.",
+              "options": [
+                "Breakfast restaurant.",
+                "I'll skip breakfast, thank you.",
+                "Food in room.",
+                "Bring food."
+              ],
+              "correctIndex": 1,
+              "tip": "\"complimentary\" — бесплатный (включён в стоимость)."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "restaurant": "step-6",
+        "room-service": "step-5-roomservice",
+        "skip": "step-6"
+      }
+    },
+    "step-5-roomservice": {
+      "title": "Время доставки",
+      "emoji": "🛎️",
+      "requireChoice": true,
+      "npc": {
+        "text": "What time would you like your breakfast delivered?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ВРЕМЯ:",
+        "options": [
+          {
+            "id": "7am",
+            "emoji": "🕖",
+            "label": "7:00 AM"
+          },
+          {
+            "id": "8am",
+            "emoji": "🕗",
+            "label": "8:00 AM"
+          },
+          {
+            "id": "9am",
+            "emoji": "🕘",
+            "label": "9:00 AM"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "7am": {
+              "sentence": "Please deliver breakfast at ___ AM.",
+              "options": [
+                "seven",
+                "eight",
+                "nine",
+                "ten"
+              ],
+              "correctAnswer": "seven",
+              "tip": "\"deliver\" — доставить."
+            },
+            "8am": {
+              "sentence": "Please deliver breakfast at ___ AM.",
+              "options": [
+                "seven",
+                "eight",
+                "nine",
+                "ten"
+              ],
+              "correctAnswer": "eight",
+              "tip": "\"deliver\" — доставить."
+            },
+            "9am": {
+              "sentence": "Please deliver breakfast at ___ AM.",
+              "options": [
+                "seven",
+                "eight",
+                "nine",
+                "ten"
+              ],
+              "correctAnswer": "nine",
+              "tip": "\"deliver\" — доставить."
+            }
+          }
+        }
+      ],
+      "next": "step-6"
+    },
+    "step-6": {
+      "title": "WiFi и услуги",
+      "emoji": "📶",
+      "npc": {
+        "text": "Our Wi-Fi is complimentary. We also have a gym, pool, and spa.",
+        "avatar": "🧑‍💼"
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "config": {
+            "hint": "Составьте: \"What is the Wi-Fi password?\"",
+            "correctOrder": [
+              "What",
+              "is",
+              "the",
+              "Wi-Fi",
+              "password",
+              "?"
+            ],
+            "tip": "\"complimentary Wi-Fi\" — бесплатный Wi-Fi."
+          }
+        }
+      ],
+      "next": "step-7"
+    },
+    "step-7": {
+      "title": "Оплата",
+      "emoji": "💳",
+      "requireChoice": true,
+      "npc": {
+        "text": "The total for your stay is $387. How would you like to pay?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "СПОСОБ ОПЛАТЫ:",
+        "options": [
+          {
+            "id": "card",
+            "emoji": "💳",
+            "label": "Credit card"
+          },
+          {
+            "id": "cash",
+            "emoji": "💵",
+            "label": "Cash"
+          },
+          {
+            "id": "problem",
+            "emoji": "⚠️",
+            "label": "Card issue"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "card": {
+              "question": "Как сказать «оплачу картой»?",
+              "options": [
+                "Card pay.",
+                "Can I pay by credit card?",
+                "I use card.",
+                "Pay with card me."
+              ],
+              "correctIndex": 1,
+              "tip": "\"pay by card\" — оплатить картой."
+            },
+            "cash": {
+              "question": "Как сказать «наличными»?",
+              "options": [
+                "Money please.",
+                "I'll pay in cash, please.",
+                "I use money.",
+                "Cash me."
+              ],
+              "correctIndex": 1,
+              "tip": "\"in cash\" — наличными."
+            },
+            "problem": {
+              "question": "Как сказать о проблеме с картой?",
+              "options": [
+                "Card broken.",
+                "I'm having trouble with my card.",
+                "Card no work.",
+                "Problem card."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'm having trouble with...\" — у меня проблема с..."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "card": "step-8",
+        "cash": "step-8",
+        "problem": "step-7-problem"
+      }
+    },
+    "step-7-problem": {
+      "title": "Альтернативная оплата",
+      "emoji": "🏧",
+      "requireChoice": true,
+      "npc": {
+        "text": "No problem! We accept debit cards, cash, or there's an ATM in the lobby.",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ВЫБЕРИТЕ:",
+        "options": [
+          {
+            "id": "debit",
+            "emoji": "💳",
+            "label": "Debit card"
+          },
+          {
+            "id": "cash",
+            "emoji": "💵",
+            "label": "Use cash"
+          },
+          {
+            "id": "atm",
+            "emoji": "🏧",
+            "label": "Find ATM"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "debit": {
+              "sentence": "I'll pay with my ___ , please.",
+              "options": [
+                "debit card",
+                "cash",
+                "credit card",
+                "check"
+              ],
+              "correctAnswer": "debit card",
+              "tip": "\"debit card\" — дебетовая карта."
+            },
+            "cash": {
+              "sentence": "I'll pay with my ___ , please.",
+              "options": [
+                "debit card",
+                "cash",
+                "credit card",
+                "check"
+              ],
+              "correctAnswer": "cash",
+              "tip": "\"debit card\" — дебетовая карта."
+            },
+            "atm": {
+              "sentence": "Is there an ___ in the lobby?",
+              "options": [
+                "ATM",
+                "elevator",
+                "restaurant",
+                "exit"
+              ],
+              "correctAnswer": "ATM",
+              "tip": "\"lobby\" — вестибюль, холл отеля."
+            }
+          }
+        }
+      ],
+      "next": "step-8"
+    },
+    "step-8": {
+      "title": "Ключ-карта",
+      "emoji": "🔑",
+      "requireChoice": true,
+      "npc": {
+        "text": "Here's your key card. Room 507, 5th floor. Would you like help with your luggage?",
+        "avatar": "🧑‍💼"
+      },
+      "choices": {
+        "label": "ПОМОЩЬ С БАГАЖОМ:",
+        "options": [
+          {
+            "id": "yes",
+            "emoji": "🧳",
+            "label": "Yes, please"
+          },
+          {
+            "id": "no",
+            "emoji": "💪",
+            "label": "No, I'm fine"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "yes": {
+              "question": "Как принять помощь?",
+              "options": [
+                "Yes give.",
+                "Yes, that would be very helpful, thank you.",
+                "Help me.",
+                "OK help."
+              ],
+              "correctIndex": 1,
+              "tip": "\"That would be helpful\" — это было бы полезно."
+            },
+            "no": {
+              "question": "Как вежливо отказаться?",
+              "options": [
+                "No.",
+                "No, thank you. I can manage.",
+                "I do.",
+                "Not need."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I can manage\" — я справлюсь сам."
+            }
+          }
+        }
+      ],
+      "next": "step-9"
+    },
+    "step-9": {
+      "title": "Закрепление лексики",
+      "emoji": "🧩",
+      "tasks": [
+        {
+          "type": "matching",
+          "config": {
+            "title": "Лексика отеля:",
+            "pairs": [
+              {
+                "en": "key card",
+                "ru": "ключ-карта"
+              },
+              {
+                "en": "elevator",
+                "ru": "лифт"
+              },
+              {
+                "en": "luggage",
+                "ru": "багаж"
+              },
+              {
+                "en": "lobby",
+                "ru": "холл"
+              },
+              {
+                "en": "floor",
+                "ru": "этаж"
+              },
+              {
+                "en": "check-in",
+                "ru": "заселение"
+              },
+              {
+                "en": "reservation",
+                "ru": "бронь"
+              },
+              {
+                "en": "breakfast",
+                "ru": "завтрак"
+              }
+            ]
+          }
+        }
+      ],
+      "next": "step-10"
+    },
+    "step-10": {
+      "title": "Приятного отдыха",
+      "emoji": "🎉",
+      "npc": {
+        "text": "You're all set! Enjoy your stay!",
+        "avatar": "🧑‍💼"
+      },
+      "isFinal": true,
+      "tasks": [
+        {
+          "type": "translation",
+          "config": {
+            "sourceText": "Спасибо большое! Хорошего вечера!",
+            "options": [
+              "Thanks! Good night!",
+              "Thank you so much! Have a great evening!",
+              "Thanks big! Evening good!",
+              "Many thanks! Night!"
+            ],
+            "correctIndex": 1
+          }
+        }
+      ],
+      "next": null
+    }
+  }
+}
