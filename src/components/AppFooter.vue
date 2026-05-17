@@ -3,6 +3,7 @@
     <div class="container footer__inner">
       <p>© {{ year }} App. Все права защищены.</p>
       <p>Sova2.0</p>
+      
     </div>
   </footer>
 </template>
