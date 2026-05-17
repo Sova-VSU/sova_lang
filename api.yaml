@@ -1,0 +1,730 @@
+openapi: 3.0.3
+info:
+  title: Сова
+  version: 1.0.0
+  description: API образовательной платформы со сценариями
+
+tags:
+  - name: Auth
+    description: Аутентификация и регистрация
+  - name: Scenarios
+    description: Работа со сценариями
+  - name: Subscriptions
+    description: Управление подпиской
+  - name: Users
+    description: Управление текущим пользователем
+
+security:
+  - BearerAuth: []
+
+paths:
+  /auth/login:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Залогиниться
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Успешный вход
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /auth/register:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Зарегистрироваться
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Пользователь создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Email уже занят
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Обновить access-токен по refresh-токену
+      operationId: refreshToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Новая пара токенов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPair'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /scenarios:
+    get:
+      tags: [Scenarios]
+      summary: Получить список сценариев
+      description: |
+        Возвращает постраничный список всех сценариев (и платных, и бесплатных)
+        с флагом free у каждого. Доступ к самому контенту платного сценария
+        ограничивается на GET /scenarios/{id}.
+      operationId: listScenarios
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: free
+          in: query
+          description: Опциональный фильтр по типу. Если не указан — возвращаются все.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedScenarioList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /scenarios/{scenarioId}/progress:
+    get:
+      tags: [Scenarios]
+      summary: Получить текущий прогресс пользователя
+      operationId: getScenarioProgress
+      parameters:
+        - name: scenarioId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioProgress'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /scenarios/{scenarioId}:
+    get:
+      tags: [Scenarios]
+      summary: Получить сценарий по id
+      operationId: getScenarioById
+      parameters:
+        - name: scenarioId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    /subscriptions:
+    post:
+      tags: [Subscriptions]
+      summary: Оформить подписку
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
+      responses:
+        '201':
+          description: Подписка оформлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: У пользователя уже есть активная подписка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /subscriptions/current:
+    get:
+      tags: [Subscriptions]
+      summary: Получить текущую подписку пользователя
+      operationId: getCurrentSubscription
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags: [Subscriptions]
+      summary: Отменить текущую подписку
+      operationId: cancelCurrentSubscription
+      responses:
+        '200':
+          description: Подписка отменена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me:
+    get:
+      tags: [Users]
+      summary: Получить профиль текущего пользователя
+      operationId: getCurrentUser
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags: [Users]
+      summary: Удалить текущего пользователя
+      operationId: deleteCurrentUser
+      responses:
+        '204':
+          description: Пользователь удалён
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me/name:
+    patch:
+      tags: [Users]
+      summary: Изменить имя текущего пользователя
+      operationId: updateCurrentUserName
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserNameRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me/password:
+    patch:
+      tags: [Users]
+      summary: Изменить пароль текущего пользователя
+      operationId: updateCurrentUserPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPasswordRequest'
+      responses:
+        '204':
+          description: Пароль обновлён
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/me/stats:
+    get:
+      tags: [Users]
+      summary: Получить статистику и прогресс пользователя
+      operationId: getUserStats
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Отсутствует или невалидный JWT-токен
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Недостаточно прав
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Внутренняя ошибка сервиса
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    AnswerSubmissionRequest:
+      type: object
+      required: [userAnswer]
+      properties:
+        userAnswer:
+          description: Ответ пользователя. Формат зависит от типа части.
+          oneOf:
+            - type: integer
+            - type: array
+              items: { type: integer }
+            - type: string
+
+    AnswerResponse:
+      type: object
+      required: [isCorrect, isLastPart, xpEarned]
+      properties:
+        isCorrect: { type: boolean }
+        explanation: { type: string, nullable: true }
+        isLastPart: { type: boolean }
+        nextPartId: { type: string, nullable: true }
+        xpEarned: { type: integer }
+        progressPercent: { type: number, format: float }
+
+    ScenarioProgress:
+      type: object
+      required: [scenarioId, currentPartId, completedParts, isCompleted, xpEarned]
+      properties:
+        scenarioId: { type: string }
+        currentPartId: { type: string, nullable: true }
+        completedParts: { type: array, items: { type: string } }
+        isCompleted: { type: boolean }
+        xpEarned: { type: integer }
+        startedAt: { type: string, format: date-time }
+        lastAccessedAt: { type: string, format: date-time }
+
+    UserStats:
+      type: object
+      required: [totalXp, streak, completedScenariosCount, level]
+      properties:
+        totalXp: { type: integer }
+        streak: { type: integer, description: Дней подряд с активностью }
+        completedScenariosCount: { type: integer }
+        level: { type: integer }
+
+    ErrorResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          example: Некорректный запрос
+        code:
+          type: string
+          description: Машиночитаемый код ошибки
+          example: VALIDATION_ERROR
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          format: password
+
+    RegisterRequest:
+      type: object
+      required: [name, email, password]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: Иванов Иван
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          format: password
+
+    RefreshTokenRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
+
+    UpdateUserNameRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+
+    UpdateUserPasswordRequest:
+      type: object
+      required: [currentPassword, newPassword]
+      properties:
+        currentPassword:
+          type: string
+          format: password
+        newPassword:
+          type: string
+          minLength: 8
+          format: password
+
+    CreateSubscriptionRequest:
+      type: object
+      required: [durationInDays]
+      properties:
+        durationInDays:
+          type: integer
+          minimum: 1
+          example: 30
+
+    TokenPair:
+      type: object
+      required: [accessToken, refreshToken, expiresIn]
+      properties:
+        accessToken:
+          type: string
+          description: JWT access-токен
+        refreshToken:
+          type: string
+          description: Refresh-токен для обновления access-токена
+        expiresIn:
+          type: integer
+          description: Время жизни access-токена в секундах
+          example: 900
+
+    AuthResponse:
+      type: object
+      required: [tokens, user]
+      properties:
+        tokens:
+          $ref: '#/components/schemas/TokenPair'
+        user:
+          $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      required: [id, name, email]
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          description: ФИО
+        email:
+          type: string
+          format: email
+        subscription:
+          allOf:
+            - $ref: '#/components/schemas/Subscription'
+          nullable: true
+          description: Активная подписка пользователя. null, если подписки нет.
+
+    Subscription:
+      type: object
+      required: [id, status, startedAt, endsAt]
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum: [ACTIVE, ENDED, CANCELLED]
+        startedAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+
+    ScenarioListItem:
+      type: object
+      required: [id, name, free]
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Знакомство в кафе
+        description:
+          type: string
+          example: Базовый диалог для уровня A1
+        free:
+          type: boolean
+
+    PaginationMeta:
+      type: object
+      required: [page, pageSize, totalItems, totalPages]
+      properties:
+        page:
+          type: integer
+          example: 1
+        pageSize:
+          type: integer
+          example: 20
+        totalItems:
+          type: integer
+          example: 137
+        totalPages:
+          type: integer
+          example: 7
+
+    PaginatedScenarioList:
+      type: object
+      required: [items, meta]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScenarioListItem'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+
+    ScenarioPartType:
+      type: string
+      enum:
+        - SINGLE_CHOICE
+        - MULTI_CHOICE
+        - TEXT_INPUT
+
+    ChoiceOption:
+      type: object
+      required: [id, text]
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+
+    SingleChoiceContent:
+      type: object
+      required: [type, question, options, correctOptionId]
+      properties:
+        type:
+          type: string
+          enum: [SINGLE_CHOICE]
+        question:
+          type: string
+        options:
+          type: array
+          minItems: 2
+          items:
+            $ref: '#/components/schemas/ChoiceOption'
+        correctOptionId:
+          type: integer
+
+    MultiChoiceContent:
+      type: object
+      required: [type, question, options, correctOptionIds]
+      properties:
+        type:
+          type: string
+          enum: [MULTI_CHOICE]
+        question:
+          type: string
+        options:
+          type: array
+          minItems: 2
+          items:
+            $ref: '#/components/schemas/ChoiceOption'
+        correctOptionIds:
+          type: array
+          minItems: 1
+          items:
+            type: integer
+
+    TextInputContent:
+      type: object
+      required: [type, question, correctAnswers]
+      properties:
+        type:
+          type: string
+          enum: [TEXT_INPUT]
+        question:
+          type: string
+        correctAnswers:
+          type: array
+          description: Список допустимых ответов (с учётом синонимов/вариантов)
+          minItems: 1
+          items:
+            type: string
+        caseSensitive:
+          type: boolean
+          default: false
+
+    ScenarioPart:
+      type: object
+      required: [id, name, type, content]
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/ScenarioPartType'
+        content:
+          oneOf:
+            - $ref: '#/components/schemas/SingleChoiceContent'
+            - $ref: '#/components/schemas/MultiChoiceContent'
+            - $ref: '#/components/schemas/TextInputContent'
+          discriminator:
+            propertyName: type
+            mapping:
+              SINGLE_CHOICE: '#/components/schemas/SingleChoiceContent'
+              MULTI_CHOICE: '#/components/schemas/MultiChoiceContent'
+              TEXT_INPUT: '#/components/schemas/TextInputContent'
+
+    Scenario:
+      type: object
+      required: [id, name, free, description, parts]
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        free:
+          type: boolean
+        description:
+          type: string
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScenarioPart'
