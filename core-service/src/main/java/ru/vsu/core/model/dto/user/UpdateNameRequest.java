@@ -1,0 +1,12 @@
+package ru.vsu.core.model.dto.user;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
+public class UpdateNameRequest {
+    @NotBlank
+    @Size(min = 1, max = 100)
+    private String name;
+}

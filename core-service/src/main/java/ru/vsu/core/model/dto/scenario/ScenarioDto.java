@@ -1,23 +1,19 @@
-package ru.vsu.core.model.entity;
+package ru.vsu.core.model.dto.scenario;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Map;
 
-@Document(collection = "scenarios")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Scenario {
-    @Id
+public class ScenarioDto {
     private String id;
-    private String name;
+    private String title;
     private String description;
     private String emoji;
     private boolean free;
