@@ -39,19 +39,19 @@ func Auth(jwtSecret string) func(http.Handler) http.Handler {
 				return
 			}
 
-			userIDFloat, ok := claims["sub"].(float64)
+			userID, ok := claims["sub"].(string)
 			if !ok {
 				http.Error(w, `{"message":"invalid token claims"}`, http.StatusUnauthorized)
 				return
 			}
 
-			ctx := context.WithValue(r.Context(), UserIDKey, int64(userIDFloat))
+			ctx := context.WithValue(r.Context(), UserIDKey, userID)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}
 }
 
-func UserIDFromContext(ctx context.Context) (int64, bool) {
-	id, ok := ctx.Value(UserIDKey).(int64)
+func UserIDFromContext(ctx context.Context) (string, bool) {
+	id, ok := ctx.Value(UserIDKey).(string)
 	return id, ok
 }

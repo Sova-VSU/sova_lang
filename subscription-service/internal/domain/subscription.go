@@ -17,20 +17,20 @@ const (
 
 type Subscription struct {
 	ID        int64              `json:"id"`
-	UserID    int64              `json:"-"`
+	UserID    string             `json:"-"`
 	Status    SubscriptionStatus `json:"status"`
 	StartedAt time.Time          `json:"startedAt"`
 	EndsAt    time.Time          `json:"endsAt"`
 }
 
 type SubscriptionRepository interface {
-	FindByUserID(userID int64) (*Subscription, error)
+	FindByUserID(userID string) (*Subscription, error)
 	Save(sub *Subscription) error
 	Update(sub *Subscription) error
 }
 
 type SubscriptionService interface {
-	Create(userID int64, durationInDays int) (*Subscription, error)
-	GetCurrent(userID int64) (*Subscription, error)
-	Cancel(userID int64) (*Subscription, error)
+	Create(userID string, durationInDays int) (*Subscription, error)
+	GetCurrent(userID string) (*Subscription, error)
+	Cancel(userID string) (*Subscription, error)
 }

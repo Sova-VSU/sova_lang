@@ -2,29 +2,27 @@ package ru.vsu.core.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.security.*;
-import java.util.Base64;
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.UUID;
 
 @Service
 public class JwtService {
 
-    private final KeyPair keyPair;
+    private final SecretKey secretKey;
     private final long accessTokenExpirySeconds;
 
-    public JwtService(@Value("${jwt.access-token-expiry-seconds:900}") long accessTokenExpirySeconds) {
+    public JwtService(
+            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.access-token-expiry-seconds:900}") long accessTokenExpirySeconds
+    ) {
+        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         this.accessTokenExpirySeconds = accessTokenExpirySeconds;
-        try {
-            KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
-            gen.initialize(2048);
-            this.keyPair = gen.generateKeyPair();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Failed to generate RSA key pair", e);
-        }
     }
 
     public String generateAccessToken(String userId) {
@@ -32,7 +30,7 @@ public class JwtService {
                 .subject(userId)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + accessTokenExpirySeconds * 1000))
-                .signWith(keyPair.getPrivate())
+                .signWith(secretKey)
                 .compact();
     }
 
@@ -42,14 +40,10 @@ public class JwtService {
 
     public Claims parseAccessToken(String token) {
         return Jwts.parser()
-                .verifyWith((PublicKey) keyPair.getPublic())
+                .verifyWith(secretKey)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
-    }
-
-    public String getPublicKeyBase64() {
-        return Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded());
     }
 
     public long getAccessTokenExpirySeconds() {

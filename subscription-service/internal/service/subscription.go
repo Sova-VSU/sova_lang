@@ -14,7 +14,7 @@ func NewSubscriptionService(repo domain.SubscriptionRepository) domain.Subscript
 	return &subscriptionService{repo: repo}
 }
 
-func (s *subscriptionService) Create(userID int64, durationInDays int) (*domain.Subscription, error) {
+func (s *subscriptionService) Create(userID string, durationInDays int) (*domain.Subscription, error) {
 	existing, err := s.repo.FindByUserID(userID)
 	if err == nil && existing.Status == domain.StatusActive {
 		return nil, errors.New("active subscription already exists")
@@ -34,7 +34,7 @@ func (s *subscriptionService) Create(userID int64, durationInDays int) (*domain.
 	return sub, nil
 }
 
-func (s *subscriptionService) GetCurrent(userID int64) (*domain.Subscription, error) {
+func (s *subscriptionService) GetCurrent(userID string) (*domain.Subscription, error) {
 	sub, err := s.repo.FindByUserID(userID)
 	if err != nil {
 		return nil, domain.ErrNotFound
@@ -48,7 +48,7 @@ func (s *subscriptionService) GetCurrent(userID int64) (*domain.Subscription, er
 	return sub, nil
 }
 
-func (s *subscriptionService) Cancel(userID int64) (*domain.Subscription, error) {
+func (s *subscriptionService) Cancel(userID string) (*domain.Subscription, error) {
 	sub, err := s.repo.FindByUserID(userID)
 	if err != nil {
 		return nil, domain.ErrNotFound

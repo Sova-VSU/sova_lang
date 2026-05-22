@@ -23,7 +23,7 @@ func main() {
 
 	jwtSecret := os.Getenv("JWT_SECRET")
 	if jwtSecret == "" {
-		jwtSecret = "secret"
+		jwtSecret = "sova-dev-jwt-secret-key-min-32-chars"
 	}
 
 	db, err := connectMongo(mongoURI)
@@ -43,7 +43,7 @@ func main() {
 	h.RegisterRoutes(mux, middleware.Auth(jwtSecret))
 
 	log.Println("server starting on :8080")
-	if err := http.ListenAndServe(":8080", mux); err != nil {
+	if err := http.ListenAndServe(":8082", mux); err != nil {
 		log.Fatal(err)
 	}
 }

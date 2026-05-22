@@ -16,7 +16,7 @@ type mongoSubscriptionRepository struct {
 
 type subscriptionDocument struct {
 	ID        bson.ObjectID              `bson:"_id,omitempty"`
-	UserID    int64                      `bson:"user_id"`
+	UserID    string                     `bson:"user_id"`
 	Status    domain.SubscriptionStatus  `bson:"status"`
 	StartedAt time.Time                  `bson:"started_at"`
 	EndsAt    time.Time                  `bson:"ends_at"`
@@ -36,7 +36,7 @@ func NewMongoSubscriptionRepository(db *mongo.Database) (domain.SubscriptionRepo
 	return &mongoSubscriptionRepository{col: col}, nil
 }
 
-func (r *mongoSubscriptionRepository) FindByUserID(userID int64) (*domain.Subscription, error) {
+func (r *mongoSubscriptionRepository) FindByUserID(userID string) (*domain.Subscription, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 

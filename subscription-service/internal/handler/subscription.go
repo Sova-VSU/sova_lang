@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	"strconv"
 	"strings"
 	"subscription-service/internal/domain"
 	"subscription-service/internal/middleware"
@@ -92,9 +91,8 @@ func (h *SubscriptionHandler) cancel(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *SubscriptionHandler) getByUserID(w http.ResponseWriter, r *http.Request) {
-	idStr := r.PathValue("userID")
-	userID, err := strconv.ParseInt(idStr, 10, 64)
-	if err != nil {
+	userID := r.PathValue("userID")
+	if userID == "" {
 		writeError(w, http.StatusBadRequest, "invalid user id")
 		return
 	}

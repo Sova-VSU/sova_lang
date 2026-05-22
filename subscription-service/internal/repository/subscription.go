@@ -7,7 +7,7 @@ import (
 
 type subscriptionRepository struct {
 	mu    sync.RWMutex
-	store map[int64]*domain.Subscription
+	store map[int64]*domain.Subscription // keyed by subscription ID
 	seq   int64
 }
 
@@ -17,7 +17,7 @@ func NewSubscriptionRepository() domain.SubscriptionRepository {
 	}
 }
 
-func (r *subscriptionRepository) FindByUserID(userID int64) (*domain.Subscription, error) {
+func (r *subscriptionRepository) FindByUserID(userID string) (*domain.Subscription, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 

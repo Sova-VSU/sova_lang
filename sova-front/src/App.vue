@@ -16,16 +16,19 @@
       :mode="authMode"
       @close="closeModal"
       @switch-mode="switchMode"
-      @submit="handleAuth"
+      @success="onAuthSuccess"
     />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
 import AuthModal from './components/AuthModal.vue'
+import { useUserStore, restoreSession } from './stores/userStore'
+
+const userStore = useUserStore()
 
 const isModalOpen = ref(false)
 const authMode = ref('login')
@@ -43,10 +46,17 @@ function switchMode() {
   authMode.value = authMode.value === 'login' ? 'register' : 'login'
 }
 
-function handleAuth(payload) {
-  console.log('Auth:', payload)
-  closeModal()
+function onAuthSuccess() {
+  // Можно добавить уведомление или редирект
+  console.log('Auth successful')
 }
+
+onMounted(async () => {
+  restoreSession()
+  if (userStore.state.isAuthenticated) {
+    await userStore.fetchCurrentUser()
+  }
+})
 </script>
 
 <style scoped>

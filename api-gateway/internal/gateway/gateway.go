@@ -50,6 +50,13 @@ func New(cfg Config) (*Gateway, error) {
 }
 
 func (g *Gateway) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	setCORS(w)
+
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
 	// Strip any client-provided X-User-ID to prevent spoofing.
 	r.Header.Del("X-User-ID")
 
@@ -59,7 +66,7 @@ func (g *Gateway) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		if !ok {
 			return
 		}
-		r.Header.Set("X-User-ID", fmt.Sprintf("%d", userID))
+		r.Header.Set("X-User-ID", userID)
 	}
 
 	backend := g.route(r.URL.Path)
@@ -71,11 +78,11 @@ func (g *Gateway) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	backend.ServeHTTP(w, r)
 }
 
-func (g *Gateway) authenticate(w http.ResponseWriter, r *http.Request) (int64, bool) {
+func (g *Gateway) authenticate(w http.ResponseWriter, r *http.Request) (string, bool) {
 	authHeader := r.Header.Get("Authorization")
 	if !strings.HasPrefix(authHeader, "Bearer ") {
 		writeError(w, http.StatusUnauthorized, "missing or invalid authorization header")
-		return 0, false
+		return "", false
 	}
 
 	tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
@@ -87,23 +94,29 @@ func (g *Gateway) authenticate(w http.ResponseWriter, r *http.Request) (int64, b
 	})
 	if err != nil || !token.Valid {
 		writeError(w, http.StatusUnauthorized, "invalid token")
-		return 0, false
+		return "", false
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok {
 		writeError(w, http.StatusUnauthorized, "invalid token claims")
-		return 0, false
+		return "", false
 	}
 
-	// JWT "sub" claim stores user ID.
-	sub, ok := claims["sub"].(float64)
+	// JWT "sub" claim stores user ID (MongoDB ObjectId string).
+	sub, ok := claims["sub"].(string)
 	if !ok {
 		writeError(w, http.StatusUnauthorized, "invalid token claims")
-		return 0, false
+		return "", false
 	}
 
-	return int64(sub), true
+	return sub, true
+}
+
+func setCORS(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 }
 
 // route resolves which backend handles the given path.

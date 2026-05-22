@@ -1,13 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'TildaSans', 'Arial', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #1f2937;
-  background: #f4f7fb;
+  background: #f8fafc;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #2398ab;
+  --primary-dark: #1a7a8a;
+  --primary-light: #e0f2f5;
+  --gray-bg: #f8fafc;
+}
+
+@font-face {
+  font-family: 'TildaSans';
+  src: local('Tilda Sans'), local('TildaSans');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -25,15 +40,47 @@ body,
 
 body {
   min-height: 100vh;
+  font-size: 16px;
 }
 
 button,
 input {
-  font: inherit;
+  font-family: inherit;
 }
 
 .container {
   width: 100%;
   margin: 0;
   padding: 0 24px;
+}
+
+/* Глобальные стили для кнопок */
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.btn--primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn--primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 1.5px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn--outline:hover {
+  background: var(--primary-light);
 }

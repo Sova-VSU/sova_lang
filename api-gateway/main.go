@@ -13,7 +13,7 @@ func main() {
 		Port:                   getenv("PORT", "8080"),
 		CoreServiceURL:         getenv("CORE_SERVICE_URL", "http://localhost:8081"),
 		SubscriptionServiceURL: getenv("SUBSCRIPTION_SERVICE_URL", "http://localhost:8082"),
-		JWTSecret:              getenv("JWT_SECRET", "secret"),
+		JWTSecret:              getenv("JWT_SECRET", "sova-dev-jwt-secret-key-min-32-chars"),
 	}
 
 	gw, err := gateway.New(cfg)

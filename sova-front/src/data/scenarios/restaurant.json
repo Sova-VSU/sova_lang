@@ -9,7 +9,12 @@
     "cardBackground": "#F4F9F4",
     "accentColor": "#236B43",
     "primaryButton": "#236B43",
-    "npcBubbleColor": "#93a293"
+    "npcBubbleColor": "#93a293",
+    "decorations": [
+      "🍖",
+      "🍽️",
+      "🍷"
+    ]
   },
   "steps": {
     "step-1": {

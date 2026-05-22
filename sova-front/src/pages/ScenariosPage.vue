@@ -1,33 +1,39 @@
 <template>
-  <section class="scenarios-page">
-    <h1>Выберите сценарий</h1>
-    <p class="subtitle">Практикуйте английский в реальных ситуациях</p>
+  <div class="scenarios-page">
+    <div class="scenarios-header">
+      <h1>Выберите сценарий</h1>
+      <p class="subtitle">Практикуйте английский в реальных ситуациях</p>
+    </div>
 
     <div class="scenarios-grid">
-      <router-link
+      <div
         v-for="scenario in scenarios"
         :key="scenario.id"
-        :to="`/scenarios/${scenario.id}`"
         class="scenario-card"
         :class="{ 'scenario-card--locked': scenario.locked }"
+        @click="!scenario.locked && $router.push(`/scenarios/${scenario.id}`)"
       >
         <span class="scenario-card__emoji">{{ scenario.emoji }}</span>
         <h3>{{ scenario.title }}</h3>
         <p>{{ scenario.description }}</p>
         <span v-if="scenario.locked" class="scenario-card__lock">🔒 Скоро</span>
-      </router-link>
+        <span v-else class="scenario-card__badge">Начать →</span>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const scenarios = [
   {
     id: 'coffee',
     emoji: '☕',
     title: 'Заказ в кофейне',
     description: 'Закажите кофе, чай или какао и оплатите заказ.',
-    route: '/scenarios/coffee',
     locked: false
   },
   {
@@ -35,7 +41,6 @@ const scenarios = [
     emoji: '🍽️',
     title: 'Ресторан',
     description: 'Забронируйте столик и сделайте заказ.',
-    route: '/scenarios/restaurant',
     locked: false
   },
   {
@@ -43,7 +48,6 @@ const scenarios = [
     emoji: '✈️',
     title: 'Аэропорт',
     description: 'Пройдите регистрацию и посадку на самолёт.',
-    route: '/scenarios/airport',
     locked: false
   },
   {
@@ -51,111 +55,130 @@ const scenarios = [
     emoji: '🏨',
     title: 'Заселение в отель',
     description: 'Забронируйте и заселитесь в отель.',
-    route: '/scenarios/hotel',
     locked: false
-  },
-  {
-    id: 'shop',
-    emoji: '🛍️',
-    title: 'Магазин одежды',
-    description: 'Подберите размер и купите одежду.',
-    route: '/scenarios/shop',
-    locked: true
-  },
-  {
-    id: 'taxi',
-    emoji: '🚕',
-    title: 'Такси',
-    description: 'Вызовите такси и доберитесь до места.',
-    route: '/scenarios/taxi',
-    locked: true
-  }
+  }/*, { id: 'shop', emoji: '🛍️', title: 'Магазин одежды', description: 'Подберите размер и купите одежду.', route: '/scenarios/shop', locked: true },
+   { id: 'taxi', emoji: '🚕', title: 'Такси', description: 'Вызовите такси и доберитесь до места.', route: '/scenarios/taxi', locked: true }*/
 ]
 </script>
 
 <style scoped>
 .scenarios-page {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 48px 24px;
-  text-align: center;
+  min-height: calc(100vh - 70px);
 }
 
-.scenarios-page h1 {
+.scenarios-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.scenarios-header h1 {
   font-size: 36px;
-  color: #0f172a;
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+  font-family: 'TildaSans', 'Arial', sans-serif;
 }
 
 .subtitle {
-  color: #64748b;
   font-size: 18px;
-  margin-bottom: 40px;
+  color: #64748b;
+  font-family: 'TildaSans', 'Arial', sans-serif;
 }
 
 .scenarios-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 28px;
 }
 
 .scenario-card {
   background: white;
-  border: 2px solid #e2e8f0;
   border-radius: 20px;
   padding: 32px 24px;
-  text-decoration: none;
-  color: #0f172a;
-  transition: 0.25s;
-  position: relative;
+  cursor: pointer;
+  transition: all 0.25s ease;
   text-align: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .scenario-card:hover:not(.scenario-card--locked) {
-  border-color: #3b82f6;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.12);
+  border-color: #2398ab;
+  transform: translateY(-6px);
+  box-shadow: 0 20px 32px -12px rgba(35, 152, 171, 0.2);
 }
 
 .scenario-card--locked {
   opacity: 0.5;
-  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .scenario-card__emoji {
-  font-size: 48px;
+  font-size: 56px;
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .scenario-card h3 {
-  margin-bottom: 8px;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 10px;
+  font-family: 'TildaSans', 'Arial', sans-serif;
 }
 
 .scenario-card p {
   color: #64748b;
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  font-family: 'TildaSans', 'Arial', sans-serif;
 }
 
 .scenario-card__badge {
   display: inline-block;
-  background: #eff6ff;
-  color: #2563eb;
-  padding: 4px 12px;
-  border-radius: 20px;
+  background: #e0f2f5;
+  color: #2398ab;
+  padding: 6px 20px;
+  border-radius: 40px;
   font-size: 13px;
   font-weight: 600;
+  font-family: 'TildaSans', 'Arial', sans-serif;
 }
 
 .scenario-card__lock {
   display: inline-block;
   background: #f1f5f9;
   color: #94a3b8;
-  padding: 4px 12px;
-  border-radius: 20px;
+  padding: 6px 20px;
+  border-radius: 40px;
   font-size: 13px;
   font-weight: 600;
+  font-family: 'TildaSans', 'Arial', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .scenarios-page {
+    padding: 32px 16px;
+  }
+  
+  .scenarios-header h1 {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+  }
+  
+  .scenario-card {
+    padding: 24px 20px;
+  }
+  
+  .scenario-card h3 {
+    font-size: 20px;
+  }
 }
 </style>

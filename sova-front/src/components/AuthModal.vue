@@ -55,8 +55,11 @@
           <p v-if="errorMessage" class="modal__error">
             {{ errorMessage }}
           </p>
+          <p v-if="storeLoading" class="modal__loading">
+            Загрузка...
+          </p>
 
-          <button class="btn btn--primary btn--full" type="submit">
+          <button class="btn btn--primary btn--full" type="submit" :disabled="storeLoading">
             {{ submitText }}
           </button>
         </form>
@@ -71,6 +74,7 @@
 
 <script setup>
 import { computed, reactive, ref, watch, onMounted, onBeforeUnmount } from 'vue'
+import { useUserStore } from '../stores/userStore'
 
 const props = defineProps({
   mode: {
@@ -79,7 +83,10 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['close', 'switch-mode', 'submit'])
+const emit = defineEmits(['close', 'switch-mode', 'success'])
+
+const userStore = useUserStore()
+const storeState = computed(() => userStore.state)
 
 const form = reactive({
   name: '',
@@ -89,6 +96,7 @@ const form = reactive({
 })
 
 const errorMessage = ref('')
+const storeLoading = computed(() => storeState.value.loading)
 
 const title = computed(() =>
   props.mode === 'login' ? 'Вход в аккаунт' : 'Регистрация'
@@ -114,7 +122,7 @@ function resetForm() {
 
 watch(() => props.mode, resetForm)
 
-function submitForm() {
+async function submitForm() {
   errorMessage.value = ''
 
   if (props.mode === 'register' && !form.name.trim()) {
@@ -132,22 +140,20 @@ function submitForm() {
     return
   }
 
-  const payload =
-    props.mode === 'login'
-      ? {
-          mode: 'login',
-          email: form.email,
-          password: form.password
-        }
-      : {
-          mode: 'register',
-          name: form.name,
-          email: form.email,
-          password: form.password
-        }
+  let success = false
+  if (props.mode === 'login') {
+    success = await userStore.login(form.email, form.password)
+  } else {
+    success = await userStore.register(form.name, form.email, form.password)
+  }
 
-  emit('submit', payload)
-  resetForm()
+  if (success) {
+    resetForm()
+    emit('success')
+    emit('close')
+  } else {
+    errorMessage.value = storeState.value.error || 'Произошла ошибка'
+  }
 }
 
 function handleEsc(event) {
@@ -239,6 +245,12 @@ onBeforeUnmount(() => {
   font-size: 14px;
 }
 
+.modal__loading {
+  color: #2563eb;
+  font-size: 14px;
+  text-align: center;
+}
+
 .btn {
   border: none;
   border-radius: 12px;
@@ -253,8 +265,13 @@ onBeforeUnmount(() => {
   color: white;
 }
 
-.btn--primary:hover {
+.btn--primary:hover:not(:disabled) {
   background: #1d4ed8;
+}
+
+.btn--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn--full {
