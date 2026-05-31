@@ -1,0 +1,50 @@
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  core-service:
+    build: ./core-service
+    ports:
+      - "8081:8081"
+    environment:
+      JAVA_TOOL_OPTIONS: "-Dspring.data.mongodb.uri=mongodb://mongo:27017/core_service -Dspring.mongodb.uri=mongodb://mongo:27017/core_service"
+      SUBSCRIPTION_SERVICE_URL: http://subscription-service:8082
+      JWT_SECRET: sova-dev-jwt-secret-key-min-32-chars
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  subscription-service:
+    build: ./subscription-service
+    ports:
+      - "8082:8082"
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      JWT_SECRET: sova-dev-jwt-secret-key-min-32-chars
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      CORE_SERVICE_URL: http://core-service:8081
+      SUBSCRIPTION_SERVICE_URL: http://subscription-service:8082
+      JWT_SECRET: sova-dev-jwt-secret-key-min-32-chars
+    depends_on:
+      - core-service
+      - subscription-service
+
+volumes:
+  mongo_data:

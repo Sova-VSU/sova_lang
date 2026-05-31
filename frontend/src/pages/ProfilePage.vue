@@ -136,6 +136,29 @@
         </div>
       </div>
     </div>
+
+    <div v-if="showSubscribeModal" class="modal-overlay" @click.self="showSubscribeModal = false">
+      <div class="modal">
+        <h3>Оформить подписку</h3>
+        <p style="color:#64748b; margin-bottom:20px;">Выберите срок подписки:</p>
+        <div class="duration-options">
+          <button
+            v-for="option in durationOptions"
+            :key="option.days"
+            class="duration-btn"
+            :class="{ selected: selectedDuration === option.days }"
+            @click="selectedDuration = option.days"
+          >
+            <span class="duration-label">{{ option.label }}</span>
+            <span class="duration-price">{{ option.price }}</span>
+          </button>
+        </div>
+        <div class="modal-actions">
+          <button @click="showSubscribeModal = false">Отмена</button>
+          <button class="btn-primary" @click="handleSubscribe">Оформить</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -152,6 +175,12 @@ const loading = ref(false)
 const showEditNameModal = ref(false)
 const showChangePasswordModal = ref(false)
 const showSubscribeModal = ref(false)
+const selectedDuration = ref(30)
+const durationOptions = [
+  { days: 30,  label: '1 месяц',  price: '299 ₽' },
+  { days: 90,  label: '3 месяца', price: '799 ₽' },
+  { days: 365, label: '1 год',    price: '2490 ₽' },
+]
 const newName = ref('')
 const passwordForm = ref({
   current: '',
@@ -232,6 +261,11 @@ async function deleteAccount() {
   if (success) {
     router.push('/')
   }
+}
+
+async function handleSubscribe() {
+  await userStore.createSubscription(selectedDuration.value)
+  showSubscribeModal.value = false
 }
 
 async function cancelSubscription() {
@@ -597,6 +631,45 @@ onMounted(async () => {
   color: #dc2626;
   font-size: 14px;
   margin-top: 8px;
+}
+
+.duration-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.duration-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: 'TildaSans', 'Arial', sans-serif;
+}
+
+.duration-btn:hover {
+  border-color: #2398ab;
+}
+
+.duration-btn.selected {
+  border-color: #2398ab;
+  background: #e0f2f5;
+}
+
+.duration-label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.duration-price {
+  color: #2398ab;
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
