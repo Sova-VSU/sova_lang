@@ -1,5 +1,6 @@
 package ru.vsu.core.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class Scenario {
     @Id
     private String id;
+    @JsonAlias("title")
     private String name;
     private String description;
     private String emoji;

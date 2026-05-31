@@ -1,0 +1,1088 @@
+{
+  "id": "restaurant",
+  "title": "RESTAURANT",
+  "emoji": "🍽️",
+  "startStepId": "step-1",
+  "completionMessage": "Вы отлично поужинали в ресторане и корректно оплатили счёт!",
+  "theme": {
+    "background": "linear-gradient(135deg, #d7eee6 0%, #93a293 100%)",
+    "cardBackground": "#F4F9F4",
+    "accentColor": "#236B43",
+    "primaryButton": "#236B43",
+    "npcBubbleColor": "#93a293",
+    "decorations": [
+      "🍖",
+      "🍽️",
+      "🍷"
+    ]
+  },
+  "steps": {
+    "step-1": {
+      "title": "Вход в ресторан",
+      "emoji": "🍽️",
+      "requireChoice": true,
+      "npc": {
+        "text": "Good evening! Welcome to La Bella Italia. Do you have a reservation?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ВАШ ОТВЕТ:",
+        "options": [
+          {
+            "id": "yes",
+            "emoji": "✅",
+            "label": "Yes, reservation"
+          },
+          {
+            "id": "no",
+            "emoji": "❌",
+            "label": "No reservation"
+          },
+          {
+            "id": "book",
+            "emoji": "📅",
+            "label": "Book for later"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "yes": {
+              "question": "Как сказать «у меня бронь на двоих»?",
+              "options": [
+                "Table two.",
+                "I have a reservation for two.",
+                "Two table.",
+                "Reservation two."
+              ],
+              "correctIndex": 1,
+              "tip": "\"reservation for two\" — бронь на двоих."
+            },
+            "no": {
+              "question": "Как спросить о свободном столике?",
+              "options": [
+                "Table free?",
+                "Do you have a table available?",
+                "Want table.",
+                "Place for me?"
+              ],
+              "correctIndex": 1,
+              "tip": "\"available\" — свободный, доступный."
+            },
+            "book": {
+              "question": "Как забронировать столик?",
+              "options": [
+                "Table please.",
+                "I'd like to book a table, please.",
+                "Reserve me.",
+                "I need table."
+              ],
+              "correctIndex": 1,
+              "tip": "\"to book a table\" — забронировать столик."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "yes": "step-2",
+        "no": "step-walkin",
+        "book": "step-book"
+      }
+    },
+    "step-walkin": {
+      "title": "Выбор места",
+      "emoji": "🚶",
+      "requireChoice": true,
+      "npc": {
+        "text": "We have a table by the window or a booth. Where would you prefer?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ВЫБЕРИТЕ МЕСТО:",
+        "options": [
+          {
+            "id": "window",
+            "emoji": "🪟",
+            "label": "By the window"
+          },
+          {
+            "id": "booth",
+            "emoji": "🛋️",
+            "label": "Booth"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "window": {
+              "sentence": "I'd prefer ___ , please.",
+              "options": [
+                "by the window",
+                "in the booth",
+                "outside",
+                "inside"
+              ],
+              "correctAnswer": "by the window",
+              "tip": "\"by the window\" — у окна, \"booth\" — кабинка."
+            },
+            "booth": {
+              "sentence": "I'd prefer ___ , please.",
+              "options": [
+                "by the window",
+                "in the booth",
+                "outside",
+                "inside"
+              ],
+              "correctAnswer": "in the booth",
+              "tip": "\"by the window\" — у окна, \"booth\" — кабинка."
+            }
+          }
+        }
+      ],
+      "next": "step-2"
+    },
+    "step-book": {
+      "title": "Бронирование",
+      "emoji": "📅",
+      "requireChoice": true,
+      "npc": {
+        "text": "Of course! For what day?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ВЫБЕРИТЕ ДЕНЬ:",
+        "options": [
+          {
+            "id": "friday",
+            "emoji": "📅",
+            "label": "Friday"
+          },
+          {
+            "id": "saturday",
+            "emoji": "📅",
+            "label": "Saturday"
+          },
+          {
+            "id": "sunday",
+            "emoji": "📅",
+            "label": "Sunday"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "configByChoice": {
+            "friday": {
+              "hint": "Составьте: \"I'd like to book a table for Friday\"",
+              "correctOrder": [
+                "I'd",
+                "like",
+                "to",
+                "book",
+                "a",
+                "table",
+                "for",
+                "Friday"
+              ],
+              "tip": "\"to book a table\" — забронировать столик."
+            },
+            "saturday": {
+              "hint": "Составьте: \"I'd like to book a table for Saturday\"",
+              "correctOrder": [
+                "I'd",
+                "like",
+                "to",
+                "book",
+                "a",
+                "table",
+                "for",
+                "Saturday"
+              ],
+              "tip": "\"to book a table\" — забронировать столик."
+            },
+            "sunday": {
+              "hint": "Составьте: \"I'd like to book a table for Sunday\"",
+              "correctOrder": [
+                "I'd",
+                "like",
+                "to",
+                "book",
+                "a",
+                "table",
+                "for",
+                "Sunday"
+              ],
+              "tip": "\"to book a table\" — забронировать столик."
+            }
+          }
+        }
+      ],
+      "next": "step-2"
+    },
+    "step-2": {
+      "title": "Напиток для начала",
+      "emoji": "🥤",
+      "requireChoice": true,
+      "npc": {
+        "text": "Here are your menus. Can I get you a drink to start?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "НАПИТОК:",
+        "options": [
+          {
+            "id": "water",
+            "emoji": "💧",
+            "label": "Water"
+          },
+          {
+            "id": "wine",
+            "emoji": "🍷",
+            "label": "Wine"
+          },
+          {
+            "id": "juice",
+            "emoji": "🧃",
+            "label": "Juice"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "water": {
+              "sentence": "Could I have a glass of ___ , please?",
+              "options": [
+                "water",
+                "wine",
+                "juice",
+                "milk"
+              ],
+              "correctAnswer": "water",
+              "tip": "\"Could I have...?\" — вежливая форма."
+            },
+            "wine": {
+              "sentence": "Could I have a glass of ___ , please?",
+              "options": [
+                "water",
+                "wine",
+                "juice",
+                "milk"
+              ],
+              "correctAnswer": "wine",
+              "tip": "\"Could I have...?\" — вежливая форма."
+            },
+            "juice": {
+              "sentence": "Could I have a glass of ___ , please?",
+              "options": [
+                "water",
+                "wine",
+                "juice",
+                "milk"
+              ],
+              "correctAnswer": "juice",
+              "tip": "\"Could I have...?\" — вежливая форма."
+            }
+          }
+        }
+      ],
+      "next": "step-3"
+    },
+    "step-3": {
+      "title": "Изучение меню",
+      "emoji": "📖",
+      "requireChoice": true,
+      "npc": {
+        "text": "Are you ready to order, or would you like more time?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ВАШ ОТВЕТ:",
+        "options": [
+          {
+            "id": "ready",
+            "emoji": "✅",
+            "label": "Ready to order"
+          },
+          {
+            "id": "more-time",
+            "emoji": "⏳",
+            "label": "Need more time"
+          },
+          {
+            "id": "recommend",
+            "emoji": "❓",
+            "label": "Recommendations?"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "ready": {
+              "question": "Как сказать «мы готовы заказать»?",
+              "options": [
+                "We ready.",
+                "We're ready to order.",
+                "Order now.",
+                "Food please."
+              ],
+              "correctIndex": 1,
+              "tip": "\"We're ready to order.\" — мы готовы заказать."
+            },
+            "more-time": {
+              "question": "Как попросить ещё минутку?",
+              "options": [
+                "More time.",
+                "Could we have a few more minutes, please?",
+                "Wait.",
+                "We not ready."
+              ],
+              "correctIndex": 1,
+              "tip": "\"a few more minutes\" — ещё несколько минут."
+            },
+            "recommend": {
+              "question": "Как попросить рекомендацию?",
+              "options": [
+                "What good?",
+                "What would you recommend?",
+                "Best food?",
+                "Recommend me."
+              ],
+              "correctIndex": 1,
+              "tip": "\"What would you recommend?\" — что посоветуете?"
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "ready": "step-4",
+        "more-time": "step-4",
+        "recommend": "step-3-recommend"
+      }
+    },
+    "step-3-recommend": {
+      "title": "Рекомендации шефа",
+      "emoji": "👨‍🍳",
+      "npc": {
+        "text": "Chef's special: grilled salmon and mushroom risotto for vegetarians.",
+        "avatar": "🤵"
+      },
+      "tasks": [
+        {
+          "type": "matching",
+          "config": {
+            "title": "Лексика ресторана:",
+            "pairs": [
+              {
+                "en": "grilled",
+                "ru": "на гриле"
+              },
+              {
+                "en": "salmon",
+                "ru": "лосось"
+              },
+              {
+                "en": "sauce",
+                "ru": "соус"
+              },
+              {
+                "en": "mushroom",
+                "ru": "гриб"
+              },
+              {
+                "en": "risotto",
+                "ru": "ризотто"
+              },
+              {
+                "en": "vegetarian",
+                "ru": "вегетарианский"
+              }
+            ]
+          }
+        }
+      ],
+      "next": "step-4"
+    },
+    "step-4": {
+      "title": "Заказ закуски",
+      "emoji": "🥗",
+      "requireChoice": true,
+      "npc": {
+        "text": "What would you like for your starter?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ЗАКУСКА:",
+        "options": [
+          {
+            "id": "soup",
+            "emoji": "🍜",
+            "label": "Tomato soup"
+          },
+          {
+            "id": "salad",
+            "emoji": "🥗",
+            "label": "Caesar salad"
+          },
+          {
+            "id": "bruschetta",
+            "emoji": "🍞",
+            "label": "Bruschetta"
+          },
+          {
+            "id": "allergy",
+            "emoji": "⚠️",
+            "label": "I have allergies"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "configByChoice": {
+            "soup": {
+              "hint": "Составьте: \"I'll have the tomato soup\"",
+              "correctOrder": [
+                "I'll",
+                "have",
+                "the",
+                "tomato",
+                "soup"
+              ],
+              "tip": "\"I'll have the...\" — стандартная форма заказа."
+            },
+            "salad": {
+              "hint": "Составьте: \"I'll have the Caesar salad\"",
+              "correctOrder": [
+                "I'll",
+                "have",
+                "the",
+                "Caesar",
+                "salad"
+              ],
+              "tip": "\"I'll have the...\" — стандартная форма заказа."
+            },
+            "bruschetta": {
+              "hint": "Составьте: \"I'll have the bruschetta\"",
+              "correctOrder": [
+                "I'll",
+                "have",
+                "the",
+                "bruschetta"
+              ],
+              "tip": "\"I'll have the...\" — стандартная форма заказа."
+            },
+            "allergy": {
+              "hint": "Составьте: \"I have a food allergy\"",
+              "correctOrder": [
+                "I",
+                "have",
+                "a",
+                "food",
+                "allergy"
+              ],
+              "tip": "\"food allergy\" — пищевая аллергия."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "soup": "step-4-main",
+        "salad": "step-4-main",
+        "bruschetta": "step-4-main",
+        "allergy": "step-4-allergy"
+      }
+    },
+    "step-4-allergy": {
+      "title": "Аллергия",
+      "emoji": "⚠️",
+      "requireChoice": true,
+      "npc": {
+        "text": "Of course! What are you allergic to?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "АЛЛЕРГИЯ:",
+        "options": [
+          {
+            "id": "gluten",
+            "emoji": "🌾",
+            "label": "Gluten"
+          },
+          {
+            "id": "dairy",
+            "emoji": "🥛",
+            "label": "Dairy"
+          },
+          {
+            "id": "nuts",
+            "emoji": "🥜",
+            "label": "Nuts"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "gluten": {
+              "sentence": "I'm allergic to ___ .",
+              "options": [
+                "gluten",
+                "dairy",
+                "nuts",
+                "sugar"
+              ],
+              "correctAnswer": "gluten",
+              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+            },
+            "dairy": {
+              "sentence": "I'm allergic to ___ .",
+              "options": [
+                "gluten",
+                "dairy",
+                "nuts",
+                "sugar"
+              ],
+              "correctAnswer": "dairy",
+              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+            },
+            "nuts": {
+              "sentence": "I'm allergic to ___ .",
+              "options": [
+                "gluten",
+                "dairy",
+                "nuts",
+                "sugar"
+              ],
+              "correctAnswer": "nuts",
+              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+            }
+          }
+        }
+      ],
+      "next": "step-4-main"
+    },
+    "step-4-main": {
+      "title": "Основное блюдо",
+      "emoji": "🥩",
+      "requireChoice": true,
+      "npc": {
+        "text": "And for the main course? We have steak, pasta, fish, and a vegetarian option.",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ОСНОВНОЕ:",
+        "options": [
+          {
+            "id": "steak",
+            "emoji": "🥩",
+            "label": "Steak"
+          },
+          {
+            "id": "pasta",
+            "emoji": "🍝",
+            "label": "Pasta"
+          },
+          {
+            "id": "fish",
+            "emoji": "🐟",
+            "label": "Fish"
+          },
+          {
+            "id": "veggie",
+            "emoji": "🥬",
+            "label": "Vegetarian"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "steak": {
+              "question": "Официант спрашивает \"How would you like your steak?\". Что ответить?",
+              "options": [
+                "Good steak.",
+                "Medium-rare, please.",
+                "I like steak.",
+                "Hot steak."
+              ],
+              "correctIndex": 1,
+              "tip": "\"medium-rare\" — средней прожарки."
+            },
+            "pasta": {
+              "question": "Как заказать pasta?",
+              "options": [
+                "pasta please.",
+                "I'll have the pasta, please.",
+                "Give pasta.",
+                "I want pasta."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'll have the...\" — стандартная форма заказа."
+            },
+            "fish": {
+              "question": "Как заказать fish?",
+              "options": [
+                "fish please.",
+                "I'll have the fish, please.",
+                "Give fish.",
+                "I want fish."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'll have the...\" — стандартная форма заказа."
+            },
+            "veggie": {
+              "question": "Как заказать veggie?",
+              "options": [
+                "veggie please.",
+                "I'll have the veggie, please.",
+                "Give veggie.",
+                "I want veggie."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'll have the...\" — стандартная форма заказа."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "steak": "step-4-steak",
+        "pasta": "step-5",
+        "fish": "step-5",
+        "veggie": "step-5"
+      }
+    },
+    "step-4-steak": {
+      "title": "Прожарка стейка",
+      "emoji": "🥩",
+      "requireChoice": true,
+      "npc": {
+        "text": "How would you like your steak cooked?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ПРОЖАРКА:",
+        "options": [
+          {
+            "id": "rare",
+            "emoji": "🩸",
+            "label": "Rare"
+          },
+          {
+            "id": "medium",
+            "emoji": "🟫",
+            "label": "Medium"
+          },
+          {
+            "id": "well-done",
+            "emoji": "🟤",
+            "label": "Well-done"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "rare": {
+              "sentence": "I would like it ___ , please.",
+              "options": [
+                "rare",
+                "medium",
+                "well-done",
+                "raw"
+              ],
+              "correctAnswer": "rare",
+              "tip": "\"rare\" — с кровью, \"medium\" — средне, \"well-done\" — хорошо прожаренный."
+            },
+            "medium": {
+              "sentence": "I would like it ___ , please.",
+              "options": [
+                "rare",
+                "medium",
+                "well-done",
+                "raw"
+              ],
+              "correctAnswer": "medium",
+              "tip": "\"rare\" — с кровью, \"medium\" — средне, \"well-done\" — хорошо прожаренный."
+            },
+            "well-done": {
+              "sentence": "I would like it ___ , please.",
+              "options": [
+                "rare",
+                "medium",
+                "well-done",
+                "raw"
+              ],
+              "correctAnswer": "well-done",
+              "tip": "\"rare\" — с кровью, \"medium\" — средне, \"well-done\" — хорошо прожаренный."
+            }
+          }
+        }
+      ],
+      "next": "step-5"
+    },
+    "step-5": {
+      "title": "Десерт",
+      "emoji": "🍰",
+      "requireChoice": true,
+      "npc": {
+        "text": "Would you like dessert? We have tiramisu, panna cotta, and chocolate fondant.",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ДЕСЕРТ:",
+        "options": [
+          {
+            "id": "tiramisu",
+            "emoji": "🍰",
+            "label": "Tiramisu"
+          },
+          {
+            "id": "panna-cotta",
+            "emoji": "🍮",
+            "label": "Panna cotta"
+          },
+          {
+            "id": "fondant",
+            "emoji": "🍫",
+            "label": "Chocolate fondant"
+          },
+          {
+            "id": "no",
+            "emoji": "🚫",
+            "label": "No dessert"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "configByChoice": {
+            "tiramisu": {
+              "hint": "Составьте: \"Could I have the tiramisu please ?\"",
+              "correctOrder": [
+                "Could",
+                "I",
+                "have",
+                "the",
+                "tiramisu",
+                "please",
+                "?"
+              ],
+              "tip": "\"dessert\" — десерт (две буквы s!)."
+            },
+            "panna-cotta": {
+              "hint": "Составьте: \"Could I have the panna cotta please ?\"",
+              "correctOrder": [
+                "Could",
+                "I",
+                "have",
+                "the",
+                "panna",
+                "cotta",
+                "please",
+                "?"
+              ],
+              "tip": "\"dessert\" — десерт (две буквы s!)."
+            },
+            "fondant": {
+              "hint": "Составьте: \"Could I have the chocolate fondant please ?\"",
+              "correctOrder": [
+                "Could",
+                "I",
+                "have",
+                "the",
+                "chocolate",
+                "fondant",
+                "please",
+                "?"
+              ],
+              "tip": "\"dessert\" — десерт (две буквы s!)."
+            },
+            "no": {
+              "hint": "Составьте: \"No dessert just the bill please\"",
+              "correctOrder": [
+                "No",
+                "dessert",
+                "just",
+                "the",
+                "bill",
+                "please"
+              ],
+              "tip": "\"bill\" — счёт."
+            }
+          }
+        }
+      ],
+      "next": "step-6"
+    },
+    "step-6": {
+      "title": "Счёт",
+      "emoji": "🧾",
+      "requireChoice": true,
+      "npc": {
+        "text": "Are you ready for the bill?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ОПЛАТА:",
+        "options": [
+          {
+            "id": "together",
+            "emoji": "💳",
+            "label": "Together"
+          },
+          {
+            "id": "split",
+            "emoji": "➗",
+            "label": "Split the bill"
+          },
+          {
+            "id": "problem",
+            "emoji": "⚠️",
+            "label": "Problem with bill"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "together": {
+              "question": "Как попросить счёт вместе?",
+              "options": [
+                "Give bill.",
+                "We'll pay together. Could we have the bill, please?",
+                "Money please.",
+                "Pay now."
+              ],
+              "correctIndex": 1,
+              "tip": "\"pay together\" — оплатить вместе."
+            },
+            "split": {
+              "question": "Как попросить разделить счёт?",
+              "options": [
+                "Half half.",
+                "Could we split the bill, please?",
+                "Divide money.",
+                "Separate pay."
+              ],
+              "correctIndex": 1,
+              "tip": "\"split the bill\" — разделить счёт."
+            },
+            "problem": {
+              "question": "Как сказать о проблеме со счётом?",
+              "options": [
+                "Bill wrong.",
+                "I think there's a mistake on the bill.",
+                "Money no.",
+                "Bill bad."
+              ],
+              "correctIndex": 1,
+              "tip": "\"There's a mistake\" — здесь ошибка."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "together": "step-7",
+        "split": "step-6-split",
+        "problem": "step-6-problem"
+      }
+    },
+    "step-6-split": {
+      "title": "Разделить счёт",
+      "emoji": "➗",
+      "requireChoice": true,
+      "npc": {
+        "text": "Sure! Equally or pay separately for what you ordered?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "КАК ДЕЛИТЬ:",
+        "options": [
+          {
+            "id": "equally",
+            "emoji": "⚖️",
+            "label": "Equally"
+          },
+          {
+            "id": "separate",
+            "emoji": "👥",
+            "label": "What each ordered"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "translation",
+          "configByChoice": {
+            "equally": {
+              "sourceText": "Разделите поровну, пожалуйста.",
+              "options": [
+                "Half half please.",
+                "Split it evenly, please.",
+                "Same money.",
+                "Pay self."
+              ],
+              "correctIndex": 1,
+              "tip": "\"split evenly\" — разделить поровну."
+            },
+            "separate": {
+              "sourceText": "Каждый платит за своё.",
+              "options": [
+                "Half half please.",
+                "Each pays for their own, please.",
+                "Same money.",
+                "Pay self."
+              ],
+              "correctIndex": 1,
+              "tip": "\"split evenly\" — разделить поровну."
+            }
+          }
+        }
+      ],
+      "next": "step-7"
+    },
+    "step-6-problem": {
+      "title": "Ошибка в счёте",
+      "emoji": "⚠️",
+      "requireChoice": true,
+      "npc": {
+        "text": "I'm sorry! What's the issue?",
+        "avatar": "🤵"
+      },
+      "choices": {
+        "label": "ПРОБЛЕМА:",
+        "options": [
+          {
+            "id": "extra-item",
+            "emoji": "➕",
+            "label": "Extra item charged"
+          },
+          {
+            "id": "wrong-price",
+            "emoji": "💰",
+            "label": "Wrong price"
+          }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "extra-item": {
+              "sentence": "There's an ___ item on the bill.",
+              "options": [
+                "extra",
+                "wrong",
+                "missing",
+                "small"
+              ],
+              "correctAnswer": "extra",
+              "tip": "\"extra item\" — лишний пункт."
+            },
+            "wrong-price": {
+              "sentence": "I think the ___ is wrong.",
+              "options": [
+                "price",
+                "food",
+                "time",
+                "table"
+              ],
+              "correctAnswer": "price",
+              "tip": "\"price\" — цена."
+            }
+          }
+        }
+      ],
+      "next": "step-7"
+    },
+    "step-7": {
+      "title": "Закрепление лексики",
+      "emoji": "🧩",
+      "tasks": [
+        {
+          "type": "matching",
+          "config": {
+            "title": "Лексика ресторана:",
+            "pairs": [
+              {
+                "en": "bill",
+                "ru": "счёт"
+              },
+              {
+                "en": "tip",
+                "ru": "чаевые"
+              },
+              {
+                "en": "starter",
+                "ru": "закуска"
+              },
+              {
+                "en": "main course",
+                "ru": "основное блюдо"
+              },
+              {
+                "en": "dessert",
+                "ru": "десерт"
+              },
+              {
+                "en": "wine list",
+                "ru": "винная карта"
+              },
+              {
+                "en": "well-done",
+                "ru": "хорошо прожаренный"
+              },
+              {
+                "en": "split the bill",
+                "ru": "разделить счёт"
+              }
+            ]
+          }
+        }
+      ],
+      "next": "step-8"
+    },
+    "step-8": {
+      "title": "Прощание",
+      "emoji": "🎉",
+      "npc": {
+        "text": "Thank you for dining with us! We hope you had a wonderful evening!",
+        "avatar": "🤵"
+      },
+      "isFinal": true,
+      "tasks": [
+        {
+          "type": "translation",
+          "config": {
+            "sourceText": "Было очень вкусно! Передайте комплименты шефу!",
+            "options": [
+              "Food was good. Tell chef.",
+              "It was delicious! Please compliment the chef!",
+              "Very tasty! Chef good!",
+              "I liked food. Chef is great."
+            ],
+            "correctIndex": 1,
+            "tip": "\"compliment the chef\" — передать комплименты шефу."
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  "description": "Пройди весь путь в ресторане: от выбора столика до разделения счёта.",
+  "free": true
+}
