@@ -1,6 +1,6 @@
 <template>
   <div class="task task--matching">
-    <h3 class="task__title">🔗 {{ config.title || 'Соедините пары:' }}</h3>
+    <h3 class="task__title"> {{ config.title || 'Соедините пары:' }}</h3>
 
     <div class="matching-container">
       <!-- Левая колонка -->
@@ -106,12 +106,10 @@ function tryMatch() {
   if (!selectedLeft.value || !selectedRight.value) return
 
   if (selectedLeft.value.id === selectedRight.value.id) {
-    // ✅ правильная пара
     selectedLeft.value.matched = true
     selectedRight.value.matched = true
     resetSelection()
   } else {
-    // ❌ неправильная пара
     errorPair.value = {
       left: selectedLeft.value.id,
       right: selectedRight.value.id

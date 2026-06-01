@@ -10,15 +10,11 @@
     "accentColor": "#A67C52",
     "primaryButton": "#8B5E3C",
     "npcBubbleColor": "#f5efd6",
-    "decorations": [
-      "☕",
-      "🍰",
-      "🥐"
-    ]
+    "decorations": ["☕", "🍰", "🥐"]
   },
   "steps": {
     "step-1": {
-      "title": "Приветствие",
+      "title": "Кофейня",
       "emoji": "☕",
       "requireChoice": true,
       "npc": {
@@ -28,26 +24,10 @@
       "choices": {
         "label": "ВЫБЕРИТЕ НАПИТОК:",
         "options": [
-          {
-            "id": "coffee",
-            "emoji": "☕",
-            "label": "Coffee"
-          },
-          {
-            "id": "tea",
-            "emoji": "🍵",
-            "label": "Tea"
-          },
-          {
-            "id": "cocoa",
-            "emoji": "🍫",
-            "label": "Cocoa"
-          },
-          {
-            "id": "help",
-            "emoji": "❓",
-            "label": "I'm not sure"
-          }
+          { "id": "coffee", "emoji": "☕", "label": "Кофе" },
+          { "id": "tea", "emoji": "🍵", "label": "Чай" },
+          { "id": "cocoa", "emoji": "🍫", "label": "Какао" },
+          { "id": "help", "emoji": "❓", "label": "Нужна помощь" }
         ]
       },
       "tasks": [
@@ -55,49 +35,28 @@
           "type": "fill-blank",
           "configByChoice": {
             "coffee": {
-              "title": "Заполните пропуск:",
               "sentence": "I'd like a ___ , please.",
-              "options": [
-                "coffee",
-                "tea",
-                "cocoa"
-              ],
+              "options": ["coffee", "tea", "cocoa"],
               "correctAnswer": "coffee",
-              "tip": "\"I'd like\" — вежливая форма заказа."
+              "tip": "Конструкция I'd like a... — Я бы хотел... Coffee — кофе."
             },
             "tea": {
-              "title": "Заполните пропуск:",
               "sentence": "I'd like a ___ , please.",
-              "options": [
-                "coffee",
-                "tea",
-                "cocoa"
-              ],
+              "options": ["coffee", "tea", "cocoa"],
               "correctAnswer": "tea",
-              "tip": "\"I'd like\" — вежливая форма заказа."
+              "tip": "Конструкция I'd like a... — Я бы хотел... Tea — чай."
             },
             "cocoa": {
-              "title": "Заполните пропуск:",
               "sentence": "I'd like a ___ , please.",
-              "options": [
-                "coffee",
-                "tea",
-                "cocoa"
-              ],
+              "options": ["coffee", "tea", "cocoa"],
               "correctAnswer": "cocoa",
-              "tip": "\"I'd like\" — вежливая форма заказа."
+              "tip": "Конструкция I'd like a... — Я бы хотел... Cocoa — какао."
             },
             "help": {
-              "title": "Попросите помощь:",
               "sentence": "Can you ___ me choose?",
-              "options": [
-                "help",
-                "give",
-                "tell",
-                "show"
-              ],
+              "options": ["help", "give", "tell", "show"],
               "correctAnswer": "help",
-              "tip": "\"Can you help me choose?\" — вежливая просьба о помощи."
+              "tip": "Can you help me choose? — Можешь помочь мне выбрать? Choose — выбирать."
             }
           }
         }
@@ -110,7 +69,7 @@
       }
     },
     "step-1-help": {
-      "title": "Запрос помощи",
+      "title": "Кофейня",
       "emoji": "❓",
       "npc": {
         "text": "No problem! Let me help you choose. Do you prefer something hot or cold?",
@@ -120,16 +79,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "hot",
-            "emoji": "🔥",
-            "label": "Hot"
-          },
-          {
-            "id": "cold",
-            "emoji": "🧊",
-            "label": "Cold"
-          }
+          { "id": "hot", "emoji": "🔥", "label": "Горячий" },
+          { "id": "cold", "emoji": "🧊", "label": "Холодный" }
         ]
       },
       "tasks": [
@@ -138,25 +89,15 @@
           "configByChoice": {
             "hot": {
               "sentence": "I prefer something ___ .",
-              "options": [
-                "hot",
-                "cold",
-                "warm",
-                "cool"
-              ],
+              "options": ["hot", "cold", "warm", "cool"],
               "correctAnswer": "hot",
-              "tip": "\"I prefer...\" — я предпочитаю."
+              "tip": "Hot — горячий, cold — холодный, warm — тёплый, cool — прохладный."
             },
             "cold": {
               "sentence": "I prefer something ___ .",
-              "options": [
-                "hot",
-                "cold",
-                "warm",
-                "cool"
-              ],
+              "options": ["hot", "cold", "warm", "cool"],
               "correctAnswer": "cold",
-              "tip": "\"I prefer...\" — я предпочитаю."
+              "tip": "Hot — горячий, cold — холодный, warm — тёплый, cool — прохладный."
             }
           }
         }
@@ -167,7 +108,7 @@
       }
     },
     "step-1-help-hot": {
-      "title": "Горячие напитки",
+      "title": "Кофейня",
       "emoji": "🔥",
       "npc": {
         "text": "Great! Do you like strong coffee or something sweet and mild?",
@@ -177,16 +118,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "strong",
-            "emoji": "💪",
-            "label": "Strong coffee"
-          },
-          {
-            "id": "sweet",
-            "emoji": "🍬",
-            "label": "Sweet drink"
-          }
+          { "id": "strong", "emoji": "💪", "label": "Крепкий кофе" },
+          { "id": "sweet", "emoji": "🍬", "label": "Сладкий напиток" }
         ]
       },
       "tasks": [
@@ -195,25 +128,15 @@
           "configByChoice": {
             "strong": {
               "question": "Как сказать «я предпочитаю крепкий кофе»?",
-              "options": [
-                "I like strong.",
-                "I prefer strong coffee.",
-                "Strong for me.",
-                "Coffee strong."
-              ],
+              "options": ["I like strong.", "I prefer strong coffee.", "Strong for me.", "Coffee strong."],
               "correctIndex": 1,
-              "tip": "\"I prefer...\" — стандартная конструкция."
+              "tip": "I prefer strong coffee — я предпочитаю крепкий кофе. Prefer — предпочитать."
             },
             "sweet": {
               "question": "Как сказать «я предпочитаю сладкий напиток»?",
-              "options": [
-                "I like strong.",
-                "I prefer strong coffee.",
-                "Strong for me.",
-                "Coffee strong."
-              ],
+              "options": ["I like strong.", "I prefer sweet drink.", "Sweet for me.", "Drink sweet."],
               "correctIndex": 1,
-              "tip": "\"I prefer...\" — стандартная конструкция."
+              "tip": "I prefer sweet drink — я предпочитаю сладкий напиток. Sweet — сладкий."
             }
           }
         }
@@ -224,7 +147,7 @@
       }
     },
     "step-1-help-strong": {
-      "title": "Рекомендация: Эспрессо",
+      "title": "Кофейня",
       "emoji": "☕",
       "npc": {
         "text": "Then I recommend our espresso! It's bold and intense. Would you like to try it?",
@@ -234,20 +157,16 @@
         {
           "type": "word-order",
           "config": {
-            "hint": "Составьте: \"that sounds good\"",
-            "correctOrder": [
-              "that",
-              "sounds",
-              "good"
-            ],
-            "tip": "\"That sounds good\" — отличная форма согласия."
+            "hint": "Составьте: \"звучит неплохо\"",
+            "correctOrder": ["that", "sounds", "good"],
+            "tip": "That sounds good — звучит хорошо. Фраза для выражения согласия."
           }
         }
       ],
       "next": "step-1-help-confirm"
     },
     "step-1-help-sweet": {
-      "title": "Рекомендация: Карамельный латте",
+      "title": "Кофейня",
       "emoji": "☕",
       "npc": {
         "text": "How about a caramel latte? It's sweet and smooth!",
@@ -258,21 +177,16 @@
           "type": "translation",
           "config": {
             "sourceText": "Звучит хорошо!",
-            "options": [
-              "Good sound.",
-              "That sounds good!",
-              "It is good.",
-              "Nice noise."
-            ],
+            "options": ["Good sound.", "That sounds good!", "It is good.", "Nice noise."],
             "correctIndex": 1,
-            "tip": "\"That sounds...\" — конструкция для согласия."
+            "tip": "That sounds good! — Звучит хорошо! Smooth — мягкий, нежный."
           }
         }
       ],
       "next": "step-1-help-confirm"
     },
     "step-1-help-cold": {
-      "title": "Холодные напитки",
+      "title": "Кофейня",
       "emoji": "🧊",
       "npc": {
         "text": "Perfect for a hot day! Do you want something creamy or fruity?",
@@ -282,16 +196,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "creamy",
-            "emoji": "🥛",
-            "label": "Creamy"
-          },
-          {
-            "id": "fruity",
-            "emoji": "🍑",
-            "label": "Fruity"
-          }
+          { "id": "creamy", "emoji": "🥛", "label": "Сливочный" },
+          { "id": "fruity", "emoji": "🍑", "label": "Фруктовый" }
         ]
       },
       "tasks": [
@@ -300,25 +206,15 @@
           "configByChoice": {
             "creamy": {
               "sourceText": "Я бы хотел что-то сливочное.",
-              "options": [
-                "I like cream.",
-                "I'd like something creamy.",
-                "Creamy drink.",
-                "With cream."
-              ],
+              "options": ["I like cream.", "I'd like something creamy.", "Creamy drink.", "With cream."],
               "correctIndex": 1,
-              "tip": "\"I'd like something...\" — вежливая форма."
+              "tip": "I'd like something creamy — я бы хотел что-то сливочное. Creamy — сливочный."
             },
             "fruity": {
               "sourceText": "Я бы хотел что-то фруктовое.",
-              "options": [
-                "I like cream.",
-                "I'd like something creamy.",
-                "Creamy drink.",
-                "With cream."
-              ],
+              "options": ["I like fruit.", "I'd like something fruity.", "Fruity drink.", "With fruit."],
               "correctIndex": 1,
-              "tip": "\"I'd like something...\" — вежливая форма."
+              "tip": "I'd like something fruity — я бы хотел что-то фруктовое. Fruity — фруктовый."
             }
           }
         }
@@ -329,7 +225,7 @@
       }
     },
     "step-1-help-creamy": {
-      "title": "Iced Vanilla Latte",
+      "title": "Кофейня",
       "emoji": "🧊",
       "npc": {
         "text": "Our iced vanilla latte is super creamy! Want to try?",
@@ -340,21 +236,16 @@
           "type": "multiple-choice",
           "config": {
             "question": "Как вежливо согласиться?",
-            "options": [
-              "Yes.",
-              "Yes, please!",
-              "I want.",
-              "Good."
-            ],
+            "options": ["Yes.", "Yes, please!", "I want.", "Good."],
             "correctIndex": 1,
-            "tip": "\"Yes, please!\" — вежливое согласие."
+            "tip": "Yes, please! — Да, пожалуйста! Вежливая форма согласия."
           }
         }
       ],
       "next": "step-1-help-confirm"
     },
     "step-1-help-fruity": {
-      "title": "Iced Peach Tea",
+      "title": "Кофейня",
       "emoji": "🍑",
       "npc": {
         "text": "We have amazing iced peach tea! Very refreshing!",
@@ -366,30 +257,19 @@
           "config": {
             "title": "Соедините пары:",
             "pairs": [
-              {
-                "en": "refreshing",
-                "ru": "освежающий"
-              },
-              {
-                "en": "fruity",
-                "ru": "фруктовый"
-              },
-              {
-                "en": "peach",
-                "ru": "персик"
-              },
-              {
-                "en": "iced",
-                "ru": "холодный"
-              }
-            ]
+              { "en": "refreshing", "ru": "освежающий" },
+              { "en": "fruity", "ru": "фруктовый" },
+              { "en": "peach", "ru": "персик" },
+              { "en": "iced", "ru": "со льдом" }
+            ],
+            "tip": "Iced — напиток со льдом. В кофейнях используют iced для холодных напитков."
           }
         }
       ],
       "next": "step-1-help-confirm"
     },
     "step-1-help-confirm": {
-      "title": "Подтверждение",
+      "title": "Кофейня",
       "emoji": "✅",
       "npc": {
         "text": "Excellent choice!",
@@ -400,26 +280,16 @@
           "type": "fill-blank",
           "config": {
             "sentence": "I'll try the ___ , please.",
-            "options": [
-              "espresso",
-              "caramel latte",
-              "iced vanilla latte",
-              "peach tea"
-            ],
-            "correctAnswer": [
-              "espresso",
-              "caramel latte",
-              "iced vanilla latte",
-              "peach tea"
-            ],
-            "tip": "\"I'll try...\" — я попробую."
+            "options": ["espresso", "caramel latte", "iced vanilla latte", "peach tea"],
+            "correctAnswer": ["espresso", "caramel latte", "iced vanilla latte", "peach tea"],
+            "tip": "I'll try — я попробую. I'll = I will (будущее время)."
           }
         }
       ],
       "next": "step-3"
     },
     "step-2-coffee": {
-      "title": "Тип кофе",
+      "title": "Кофейня",
       "emoji": "☕",
       "requireChoice": true,
       "npc": {
@@ -429,21 +299,9 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ТИП КОФЕ:",
         "options": [
-          {
-            "id": "espresso",
-            "emoji": "☕",
-            "label": "Espresso"
-          },
-          {
-            "id": "cappuccino",
-            "emoji": "☕",
-            "label": "Cappuccino"
-          },
-          {
-            "id": "latte",
-            "emoji": "☕",
-            "label": "Latte"
-          }
+          { "id": "espresso", "emoji": "☕", "label": "Эспрессо" },
+          { "id": "cappuccino", "emoji": "☕", "label": "Капучино" },
+          { "id": "latte", "emoji": "☕", "label": "Латте" }
         ]
       },
       "tasks": [
@@ -451,37 +309,19 @@
           "type": "word-order",
           "configByChoice": {
             "espresso": {
-              "hint": "Составьте: \"I'll have a espresso, please\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "a",
-                "espresso",
-                "please"
-              ],
-              "tip": "\"I'll have...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму эспрессо, пожалуйста\"",
+              "correctOrder": ["I'll", "have", "an", "espresso", "please"],
+              "tip": "I'll have a... — Я возьму... Стандартная фраза заказа."
             },
             "cappuccino": {
-              "hint": "Составьте: \"I'll have a cappuccino, please\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "a",
-                "cappuccino",
-                "please"
-              ],
-              "tip": "\"I'll have...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму капучино, пожалуйста\"",
+              "correctOrder": ["I'll", "have", "a", "cappuccino", "please"],
+              "tip": "I'll have a... — Я возьму... Стандартная фраза заказа."
             },
             "latte": {
-              "hint": "Составьте: \"I'll have a latte, please\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "a",
-                "latte",
-                "please"
-              ],
-              "tip": "\"I'll have...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму латте, пожалуйста\"",
+              "correctOrder": ["I'll", "have", "a", "latte", "please"],
+              "tip": "I'll have a... — Я возьму... Стандартная фраза заказа."
             }
           }
         }
@@ -489,7 +329,7 @@
       "next": "step-3"
     },
     "step-2-tea": {
-      "title": "Тип чая",
+      "title": "Кофейня",
       "emoji": "🍵",
       "requireChoice": true,
       "npc": {
@@ -499,21 +339,9 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ТИП ЧАЯ:",
         "options": [
-          {
-            "id": "black tea",
-            "emoji": "🍵",
-            "label": "Black tea"
-          },
-          {
-            "id": "green tea",
-            "emoji": "🍵",
-            "label": "Green tea"
-          },
-          {
-            "id": "herbal tea",
-            "emoji": "🌿",
-            "label": "Herbal tea"
-          }
+          { "id": "black tea", "emoji": "🍵", "label": "Чёрный чай" },
+          { "id": "green tea", "emoji": "🍵", "label": "Зелёный чай" },
+          { "id": "herbal tea", "emoji": "🌿", "label": "Травяной чай" }
         ]
       },
       "tasks": [
@@ -522,36 +350,21 @@
           "configByChoice": {
             "black tea": {
               "sourceText": "Я бы хотел чёрный чай, пожалуйста.",
-              "options": [
-                "I want black tea please.",
-                "I'd like black tea, please.",
-                "Give me black tea.",
-                "black tea for me."
-              ],
+              "options": ["I want black tea please.", "I'd like black tea, please.", "Give me black tea.", "black tea for me."],
               "correctIndex": 1,
-              "tip": "\"I'd like..., please.\" — самая вежливая форма."
+              "tip": "I'd like black tea, please — я бы хотел чёрный чай, пожалуйста."
             },
             "green tea": {
               "sourceText": "Я бы хотел зелёный чай, пожалуйста.",
-              "options": [
-                "I want green tea please.",
-                "I'd like green tea, please.",
-                "Give me green tea.",
-                "green tea for me."
-              ],
+              "options": ["I want green tea please.", "I'd like green tea, please.", "Give me green tea.", "green tea for me."],
               "correctIndex": 1,
-              "tip": "\"I'd like..., please.\" — самая вежливая форма."
+              "tip": "I'd like green tea, please — я бы хотел зелёный чай, пожалуйста."
             },
             "herbal tea": {
               "sourceText": "Я бы хотел травяной чай, пожалуйста.",
-              "options": [
-                "I want herbal tea please.",
-                "I'd like herbal tea, please.",
-                "Give me herbal tea.",
-                "herbal tea for me."
-              ],
+              "options": ["I want herbal tea please.", "I'd like herbal tea, please.", "Give me herbal tea.", "herbal tea for me."],
               "correctIndex": 1,
-              "tip": "\"I'd like..., please.\" — самая вежливая форма."
+              "tip": "I'd like herbal tea, please — я бы хотел травяной чай, пожалуйста."
             }
           }
         }
@@ -559,7 +372,7 @@
       "next": "step-3"
     },
     "step-2-cocoa": {
-      "title": "Добавки к какао",
+      "title": "Кофейня",
       "emoji": "🍫",
       "requireChoice": true,
       "npc": {
@@ -569,16 +382,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ДОБАВКУ:",
         "options": [
-          {
-            "id": "marshmallows",
-            "emoji": "🍬",
-            "label": "Marshmallows"
-          },
-          {
-            "id": "whipped cream",
-            "emoji": "🍦",
-            "label": "Whipped cream"
-          }
+          { "id": "marshmallows", "emoji": "🍬", "label": "Маршмеллоу" },
+          { "id": "whipped cream", "emoji": "🍦", "label": "Взбитые сливки" }
         ]
       },
       "tasks": [
@@ -587,25 +392,15 @@
           "configByChoice": {
             "marshmallows": {
               "sentence": "With ___ , please.",
-              "options": [
-                "marshmallows",
-                "whipped cream",
-                "sugar",
-                "ice"
-              ],
+              "options": ["marshmallows", "whipped cream", "sugar", "ice"],
               "correctAnswer": "marshmallows",
-              "tip": "\"marshmallows\" — маршмеллоу, \"whipped cream\" — взбитые сливки."
+              "tip": "Marshmallows — маршмеллоу, whipped cream — взбитые сливки."
             },
             "whipped cream": {
               "sentence": "With ___ , please.",
-              "options": [
-                "marshmallows",
-                "whipped cream",
-                "sugar",
-                "ice"
-              ],
+              "options": ["marshmallows", "whipped cream", "sugar", "ice"],
               "correctAnswer": "whipped cream",
-              "tip": "\"marshmallows\" — маршмеллоу, \"whipped cream\" — взбитые сливки."
+              "tip": "Whipped cream — взбитые сливки, marshmallows — маршмеллоу."
             }
           }
         }
@@ -613,7 +408,7 @@
       "next": "step-3"
     },
     "step-3": {
-      "title": "Размер порции",
+      "title": "Кофейня",
       "emoji": "📏",
       "requireChoice": true,
       "npc": {
@@ -623,26 +418,10 @@
       "choices": {
         "label": "ВЫБЕРИТЕ РАЗМЕР:",
         "options": [
-          {
-            "id": "small",
-            "emoji": "📏",
-            "label": "Small"
-          },
-          {
-            "id": "medium",
-            "emoji": "📏",
-            "label": "Medium"
-          },
-          {
-            "id": "large",
-            "emoji": "📏",
-            "label": "Large"
-          },
-          {
-            "id": "offer",
-            "emoji": "🎁",
-            "label": "Tell me about offer"
-          }
+          { "id": "small", "emoji": "📏", "label": "Маленький" },
+          { "id": "medium", "emoji": "📏", "label": "Средний" },
+          { "id": "large", "emoji": "📏", "label": "Большой" },
+          { "id": "talk-other", "emoji": "💬", "label": "Поговорить с другим посетителем" }
         ]
       },
       "tasks": [
@@ -650,48 +429,28 @@
           "type": "multiple-choice",
           "configByChoice": {
             "small": {
-              "question": "Вы выбрали small. Как правильно заказать?",
-              "options": [
-                "Big one.",
-                "Normal, please.",
-                "Small size, please.",
-                "I want drink."
-              ],
+              "question": "Как правильно заказать маленький размер?",
+              "options": ["Big one.", "Normal, please.", "Small size, please.", "I want drink."],
               "correctIndex": 2,
-              "tip": "В кофейнях используют: Small, Medium, Large."
+              "tip": "Small size, please — маленький размер, пожалуйста."
             },
             "medium": {
-              "question": "Вы выбрали medium. Как правильно заказать?",
-              "options": [
-                "Big one.",
-                "Normal, please.",
-                "Medium size, please.",
-                "I want drink."
-              ],
+              "question": "Как правильно заказать средний размер?",
+              "options": ["Big one.", "Normal, please.", "Medium size, please.", "I want drink."],
               "correctIndex": 2,
-              "tip": "В кофейнях используют: Small, Medium, Large."
+              "tip": "Medium size, please — средний размер, пожалуйста."
             },
             "large": {
-              "question": "Вы выбрали large. Как правильно заказать?",
-              "options": [
-                "Big one.",
-                "Normal, please.",
-                "Large size, please.",
-                "I want drink."
-              ],
+              "question": "Как правильно заказать большой размер?",
+              "options": ["Big one.", "Normal, please.", "Large size, please.", "I want drink."],
               "correctIndex": 2,
-              "tip": "В кофейнях используют: Small, Medium, Large."
+              "tip": "Large size, please — большой размер, пожалуйста."
             },
-            "offer": {
-              "question": "Как спросить про акцию?",
-              "options": [
-                "What offer?",
-                "Could you tell me more about the offer?",
-                "Offer me.",
-                "Free cookie?"
-              ],
+            "talk-other": {
+              "question": "Как спросить у другого посетителя про печенье?",
+              "options": ["What cookie?", "Is the cookie good?", "Cookie tasty?", "Good cookie?"],
               "correctIndex": 1,
-              "tip": "\"Could you tell me more about...?\" — вежливый вопрос."
+              "tip": "Is the cookie good? — Печенье вкусное?"
             }
           }
         }
@@ -700,35 +459,63 @@
         "small": "step-4",
         "medium": "step-4",
         "large": "step-4",
-        "offer": "step-3-offer"
+        "talk-other": "step-3-other-customer"
       }
     },
-    "step-3-offer": {
-      "title": "Акция",
-      "emoji": "🎁",
-      "npc": {
-        "text": "Sure! If you order a large size, you get a free chocolate chip cookie. We also have oatmeal cookies. Interested?",
-        "avatar": "🧑‍🍳"
-      },
+    "step-3-other-customer": {
+      "title": "Посетитель кофейни",
+      "emoji": "🧑",
       "requireChoice": true,
+      "npc": {
+        "text": "Hi! Actually, the chocolate chip cookie is amazing! I recommend it. Is this your first time here?",
+        "avatar": "🧑‍🤝‍🧑"
+      },
       "choices": {
-        "label": "ВЫБЕРИТЕ:",
+        "label": "ОТВЕТЬТЕ:",
         "options": [
-          {
-            "id": "large-choc",
-            "emoji": "🍪",
-            "label": "Large + Chocolate cookie"
-          },
-          {
-            "id": "large-oat",
-            "emoji": "🍪",
-            "label": "Large + Oatmeal cookie"
-          },
-          {
-            "id": "no-thanks",
-            "emoji": "❌",
-            "label": "No thanks, medium"
+          { "id": "first-time", "emoji": "🆕", "label": "Да, впервые" },
+          { "id": "regular", "emoji": "⭐", "label": "Нет, бываю часто" },
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "first-time": {
+              "sentence": "Yes, it's my ___ time here. Thanks for the recommendation!",
+              "options": ["first", "second", "third", "last"],
+              "correctAnswer": "first",
+              "tip": "It's my first time here — я здесь впервые. First — первый."
+            },
+            "regular": {
+              "sentence": "No, I'm a ___ customer. I love this place!",
+              "options": ["regular", "new", "loyal", "good"],
+              "correctAnswer": "regular",
+              "tip": "Regular customer — постоянный клиент. Regular — регулярный, постоянный."
+            }
           }
+        }
+      ],
+      "nextByChoice": {
+        "first-time": "step-3-offer-from-customer",
+        "regular": "step-3-offer-from-customer",
+        "polite": "step-3-offer-from-customer"
+      }
+    },
+    "step-3-offer-from-customer": {
+      "title": "Посетитель кофейни",
+      "emoji": "🍪",
+      "requireChoice": true,
+      "npc": {
+        "text": "You should definitely try their special offer! If you order a large size, you get a free chocolate chip cookie. They also have oatmeal cookies. Interested?",
+        "avatar": "🧑‍🤝‍🧑"
+      },
+      "choices": {
+        "label": "ЧТО ВЫБЕРЕТЕ:",
+        "options": [
+          { "id": "large-choc", "emoji": "🍪", "label": "Большой + Шоколадное печенье" },
+          { "id": "large-oat", "emoji": "🍪", "label": "Большой + Овсяное печенье" },
+          { "id": "no-thanks", "emoji": "❌", "label": "Нет спасибо, средний" }
         ]
       },
       "tasks": [
@@ -736,34 +523,22 @@
           "type": "fill-blank",
           "configByChoice": {
             "large-choc": {
-              "sentence": "I'll take ___ with the cookie, please.",
-              "options": [
-                "small",
-                "medium",
-                "large"
-              ],
+              "sentence": "I'll take the ___ size with the chocolate chip cookie.",
+              "options": ["large", "medium", "small", "extra"],
               "correctAnswer": "large",
-              "tip": "Акция действует только для large!"
+              "tip": "Large size — большой размер. Акция действует только для large."
             },
             "large-oat": {
-              "sentence": "I'll take ___ with the cookie, please.",
-              "options": [
-                "small",
-                "medium",
-                "large"
-              ],
+              "sentence": "I'll take the ___ size with the oatmeal cookie.",
+              "options": ["large", "medium", "small", "extra"],
               "correctAnswer": "large",
-              "tip": "Акция действует только для large!"
+              "tip": "Oatmeal cookie — овсяное печенье. Акция только для большого размера."
             },
             "no-thanks": {
-              "sentence": "I'll take a ___ size, please.",
-              "options": [
-                "small",
-                "medium",
-                "large"
-              ],
+              "sentence": "No thanks, I'll just take a ___ size.",
+              "options": ["medium", "small", "regular", "normal"],
               "correctAnswer": "medium",
-              "tip": "Вы отказались от акции и выбрали medium."
+              "tip": "Medium size — средний размер. No thanks — вежливый отказ."
             }
           }
         }
@@ -771,7 +546,7 @@
       "next": "step-4"
     },
     "step-4": {
-      "title": "Температура",
+      "title": "Кофейня",
       "emoji": "🌡️",
       "requireChoice": true,
       "npc": {
@@ -781,16 +556,8 @@
       "choices": {
         "label": "ТЕМПЕРАТУРА:",
         "options": [
-          {
-            "id": "hot",
-            "emoji": "🔥",
-            "label": "Hot"
-          },
-          {
-            "id": "iced",
-            "emoji": "🧊",
-            "label": "Iced"
-          }
+          { "id": "hot", "emoji": "🔥", "label": "Горячий" },
+          { "id": "iced", "emoji": "🧊", "label": "Со льдом" }
         ]
       },
       "tasks": [
@@ -799,25 +566,15 @@
           "configByChoice": {
             "hot": {
               "sentence": "I'd like it ___ , please.",
-              "options": [
-                "hot",
-                "iced",
-                "cold",
-                "warm"
-              ],
+              "options": ["hot", "iced", "cold", "warm"],
               "correctAnswer": "hot",
-              "tip": "\"Hot\" — горячий."
+              "tip": "Hot — горячий, iced — со льдом."
             },
             "iced": {
               "sentence": "I'd like it ___ , please.",
-              "options": [
-                "hot",
-                "iced",
-                "cold",
-                "warm"
-              ],
+              "options": ["hot", "iced", "cold", "warm"],
               "correctAnswer": "iced",
-              "tip": "\"Iced\" — со льдом (не \"cold\")."
+              "tip": "Iced — со льдом (специальный термин в кофейнях)."
             }
           }
         }
@@ -825,7 +582,7 @@
       "next": "step-5"
     },
     "step-5": {
-      "title": "Сахар",
+      "title": "Кофейня",
       "emoji": "🍬",
       "requireChoice": true,
       "npc": {
@@ -835,21 +592,9 @@
       "choices": {
         "label": "САХАР:",
         "options": [
-          {
-            "id": "no",
-            "emoji": "🚫",
-            "label": "No sugar"
-          },
-          {
-            "id": "one",
-            "emoji": "1️⃣",
-            "label": "One sugar"
-          },
-          {
-            "id": "two",
-            "emoji": "2️⃣",
-            "label": "Two sugars"
-          }
+          { "id": "no", "emoji": "🚫", "label": "Без сахара" },
+          { "id": "one", "emoji": "1️⃣", "label": "Один сахар" },
+          { "id": "two", "emoji": "2️⃣", "label": "Два сахара" }
         ]
       },
       "tasks": [
@@ -857,31 +602,19 @@
           "type": "word-order",
           "configByChoice": {
             "no": {
-              "hint": "Составьте фразу для \"no sugar\"",
-              "correctOrder": [
-                "no",
-                "sugar",
-                "thanks"
-              ],
-              "tip": "\"No sugar\" — без артикля. \"Two sugars\" — множественное число."
+              "hint": "Составьте фразу для \"без сахара\"",
+              "correctOrder": ["no", "sugar", "thanks"],
+              "tip": "No sugar — без сахара, two sugars — два сахара."
             },
             "one": {
-              "hint": "Составьте фразу для \"one sugar\"",
-              "correctOrder": [
-                "one",
-                "sugar",
-                "please"
-              ],
-              "tip": "\"No sugar\" — без артикля. \"Two sugars\" — множественное число."
+              "hint": "Составьте фразу для \"один сахар\"",
+              "correctOrder": ["one", "sugar", "please"],
+              "tip": "One sugar — один сахар, please — пожалуйста."
             },
             "two": {
-              "hint": "Составьте фразу для \"two sugar\"",
-              "correctOrder": [
-                "two",
-                "sugars",
-                "please"
-              ],
-              "tip": "\"No sugar\" — без артикля. \"Two sugars\" — множественное число."
+              "hint": "Составьте фразу для \"два сахара\"",
+              "correctOrder": ["two", "sugars", "please"],
+              "tip": "Two sugars — два сахара (множественное число)."
             }
           }
         }
@@ -889,7 +622,7 @@
       "next": "step-6"
     },
     "step-6": {
-      "title": "Тип молока",
+      "title": "Кофейня",
       "emoji": "🥛",
       "requireChoice": true,
       "npc": {
@@ -899,31 +632,11 @@
       "choices": {
         "label": "ВЫБЕРИТЕ МОЛОКО:",
         "options": [
-          {
-            "id": "whole",
-            "emoji": "🥛",
-            "label": "Whole milk"
-          },
-          {
-            "id": "skim",
-            "emoji": "🥛",
-            "label": "Skim milk"
-          },
-          {
-            "id": "oat",
-            "emoji": "🌾",
-            "label": "Oat milk"
-          },
-          {
-            "id": "almond",
-            "emoji": "🥜",
-            "label": "Almond milk"
-          },
-          {
-            "id": "no",
-            "emoji": "🚫",
-            "label": "No milk"
-          }
+          { "id": "whole", "emoji": "🥛", "label": "Цельное" },
+          { "id": "skim", "emoji": "🥛", "label": "Обезжиренное" },
+          { "id": "oat", "emoji": "🌾", "label": "Овсяное" },
+          { "id": "almond", "emoji": "🥜", "label": "Миндальное" },
+          { "id": "no", "emoji": "🚫", "label": "Без молока" }
         ]
       },
       "tasks": [
@@ -932,58 +645,33 @@
           "configByChoice": {
             "whole": {
               "sourceText": "Цельное молоко, пожалуйста.",
-              "options": [
-                "Whole milk.",
-                "Whole milk, please.",
-                "I like whole.",
-                "With whole milk me."
-              ],
+              "options": ["Whole milk.", "Whole milk, please.", "I like whole.", "With whole milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Whole milk, please — цельное молоко, пожалуйста."
             },
             "skim": {
               "sourceText": "Обезжиренное молоко, пожалуйста.",
-              "options": [
-                "Skim milk.",
-                "Skim milk, please.",
-                "I like skim.",
-                "With skim milk me."
-              ],
+              "options": ["Skim milk.", "Skim milk, please.", "I like skim.", "With skim milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Skim milk, please — обезжиренное молоко, пожалуйста."
             },
             "oat": {
               "sourceText": "Овсяное молоко, пожалуйста.",
-              "options": [
-                "Oat milk.",
-                "Oat milk, please.",
-                "I like oat.",
-                "With oat milk me."
-              ],
+              "options": ["Oat milk.", "Oat milk, please.", "I like oat.", "With oat milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Oat milk, please — овсяное молоко, пожалуйста."
             },
             "almond": {
               "sourceText": "Миндальное молоко, пожалуйста.",
-              "options": [
-                "Almond milk.",
-                "Almond milk, please.",
-                "I like almond.",
-                "With almond milk me."
-              ],
+              "options": ["Almond milk.", "Almond milk, please.", "I like almond.", "With almond milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Almond milk, please — миндальное молоко, пожалуйста."
             },
             "no": {
               "sourceText": "Без молока, пожалуйста.",
-              "options": [
-                "No milk.",
-                "No milk, please.",
-                "I like no.",
-                "With no milk me."
-              ],
+              "options": ["No milk.", "No milk, please.", "I like no.", "With no milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "No milk, please — без молока, пожалуйста."
             }
           }
         }
@@ -991,7 +679,7 @@
       "next": "step-7"
     },
     "step-7": {
-      "title": "Закрепление лексики",
+      "title": "Кофейня",
       "emoji": "🧩",
       "tasks": [
         {
@@ -999,46 +687,23 @@
           "config": {
             "title": "Соедините пары:",
             "pairs": [
-              {
-                "en": "strong",
-                "ru": "крепкий"
-              },
-              {
-                "en": "mild",
-                "ru": "мягкий"
-              },
-              {
-                "en": "sweet",
-                "ru": "сладкий"
-              },
-              {
-                "en": "bitter",
-                "ru": "горький"
-              },
-              {
-                "en": "espresso",
-                "ru": "эспрессо"
-              },
-              {
-                "en": "cappuccino",
-                "ru": "капучино"
-              },
-              {
-                "en": "latte",
-                "ru": "латте"
-              },
-              {
-                "en": "iced",
-                "ru": "со льдом"
-              }
-            ]
+              { "en": "strong", "ru": "крепкий" },
+              { "en": "mild", "ru": "мягкий" },
+              { "en": "sweet", "ru": "сладкий" },
+              { "en": "bitter", "ru": "горький" },
+              { "en": "espresso", "ru": "эспрессо" },
+              { "en": "cappuccino", "ru": "капучино" },
+              { "en": "latte", "ru": "латте" },
+              { "en": "iced", "ru": "со льдом" }
+            ],
+            "tip": "Strong — крепкий, mild — мягкий, sweet — сладкий, bitter — горький. Espresso, cappuccino, latte — кофейные напитки."
           }
         }
       ],
       "next": "step-8"
     },
     "step-8": {
-      "title": "Оплата",
+      "title": "Кофейня",
       "emoji": "💳",
       "requireChoice": true,
       "npc": {
@@ -1048,21 +713,9 @@
       "choices": {
         "label": "СПОСОБ ОПЛАТЫ:",
         "options": [
-          {
-            "id": "card",
-            "emoji": "💳",
-            "label": "Card"
-          },
-          {
-            "id": "cash",
-            "emoji": "💵",
-            "label": "Cash"
-          },
-          {
-            "id": "problem",
-            "emoji": "⚠️",
-            "label": "Problem with card"
-          }
+          { "id": "card", "emoji": "💳", "label": "Картой" },
+          { "id": "cash", "emoji": "💵", "label": "Наличными" },
+          { "id": "problem", "emoji": "⚠️", "label": "Проблема с картой" }
         ]
       },
       "tasks": [
@@ -1071,36 +724,21 @@
           "configByChoice": {
             "card": {
               "question": "Как правильно сказать «картой»?",
-              "options": [
-                "I pay with card.",
-                "By card, please.",
-                "Card me.",
-                "Yes, card."
-              ],
+              "options": ["I pay with card.", "By card, please.", "Card me.", "Yes, card."],
               "correctIndex": 1,
-              "tip": "\"By card, please.\" — стандартная конструкция."
+              "tip": "By card, please — картой, пожалуйста."
             },
             "cash": {
               "question": "Как сказать «наличными»?",
-              "options": [
-                "Money please.",
-                "Cash, please.",
-                "I pay money.",
-                "With money."
-              ],
+              "options": ["Money please.", "Cash, please.", "I pay money.", "With money."],
               "correctIndex": 1,
-              "tip": "\"Cash, please.\" — кратко и вежливо."
+              "tip": "Cash, please — наличными, пожалуйста."
             },
             "problem": {
               "question": "Как сказать о проблеме с картой?",
-              "options": [
-                "Card broken.",
-                "I'm having trouble with my card.",
-                "Card no work.",
-                "Problem card."
-              ],
+              "options": ["Card broken.", "I'm having trouble with my card.", "Card no work.", "Problem card."],
               "correctIndex": 1,
-              "tip": "\"I'm having trouble with...\" — у меня проблема с..."
+              "tip": "I'm having trouble with my card — у меня проблемы с картой."
             }
           }
         }
@@ -1112,7 +750,7 @@
       }
     },
     "step-8-problem": {
-      "title": "Альтернативная оплата",
+      "title": "Кофейня",
       "emoji": "📱",
       "requireChoice": true,
       "npc": {
@@ -1122,26 +760,10 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "apple",
-            "emoji": "🍎",
-            "label": "Apple Pay"
-          },
-          {
-            "id": "google",
-            "emoji": "📱",
-            "label": "Google Pay"
-          },
-          {
-            "id": "cash",
-            "emoji": "💵",
-            "label": "Cash"
-          },
-          {
-            "id": "atm",
-            "emoji": "🏧",
-            "label": "ATM nearby?"
-          }
+          { "id": "apple", "emoji": "🍎", "label": "Apple Pay" },
+          { "id": "google", "emoji": "📱", "label": "Google Pay" },
+          { "id": "cash", "emoji": "💵", "label": "Наличные" },
+          { "id": "atm", "emoji": "🏧", "label": "Банкомат рядом?" }
         ]
       },
       "tasks": [
@@ -1149,46 +771,24 @@
           "type": "word-order",
           "configByChoice": {
             "apple": {
-              "hint": "Составьте: \"I'll pay with Apple Pay\"",
-              "correctOrder": [
-                "I'll",
-                "pay",
-                "with",
-                "Apple Pay"
-              ],
-              "tip": "\"I'll pay with...\" — я оплачу через..."
+              "hint": "Составьте: \"Я оплачу Apple Pay\"",
+              "correctOrder": ["I'll", "pay", "with", "Apple Pay"],
+              "tip": "I'll pay with Apple Pay — я оплачу Apple Pay."
             },
             "google": {
-              "hint": "Составьте: \"I'll pay with Google Pay\"",
-              "correctOrder": [
-                "I'll",
-                "pay",
-                "with",
-                "Google Pay"
-              ],
-              "tip": "\"I'll pay with...\" — я оплачу через..."
+              "hint": "Составьте: \"Я оплачу Google Pay\"",
+              "correctOrder": ["I'll", "pay", "with", "Google Pay"],
+              "tip": "I'll pay with Google Pay — я оплачу Google Pay."
             },
             "cash": {
-              "hint": "Составьте: \"I'll pay with cash\"",
-              "correctOrder": [
-                "I'll",
-                "pay",
-                "with",
-                "cash"
-              ],
-              "tip": "\"I'll pay with...\" — я оплачу через..."
+              "hint": "Составьте: \"Я оплачу наличными\"",
+              "correctOrder": ["I'll", "pay", "with", "cash"],
+              "tip": "I'll pay with cash — я оплачу наличными."
             },
             "atm": {
-              "hint": "Составьте: \"Is there an ATM nearby?\"",
-              "correctOrder": [
-                "Is",
-                "there",
-                "an",
-                "ATM",
-                "nearby",
-                "?"
-              ],
-              "tip": "\"nearby\" — поблизости."
+              "hint": "Составьте: \"Здесь есть банкомат поблизости?\"",
+              "correctOrder": ["Is", "there", "an", "ATM", "nearby", "?"],
+              "tip": "Is there an ATM nearby? — Здесь есть банкомат поблизости?"
             }
           }
         }
@@ -1201,7 +801,7 @@
       }
     },
     "step-8-atm": {
-      "title": "Банкомат",
+      "title": "Кофейня",
       "emoji": "🏧",
       "npc": {
         "text": "Yes, there's an ATM right outside, next to the entrance.",
@@ -1213,34 +813,20 @@
           "config": {
             "title": "Финансовая лексика:",
             "pairs": [
-              {
-                "en": "card",
-                "ru": "карта"
-              },
-              {
-                "en": "cash",
-                "ru": "наличные"
-              },
-              {
-                "en": "ATM",
-                "ru": "банкомат"
-              },
-              {
-                "en": "pay",
-                "ru": "платить"
-              },
-              {
-                "en": "accept",
-                "ru": "принимать"
-              }
-            ]
+              { "en": "card", "ru": "карта" },
+              { "en": "cash", "ru": "наличные" },
+              { "en": "ATM", "ru": "банкомат" },
+              { "en": "pay", "ru": "платить" },
+              { "en": "accept", "ru": "принимать" }
+            ],
+            "tip": "Card — карта, cash — наличные, ATM — банкомат, pay — платить, accept — принимать."
           }
         }
       ],
       "next": "step-9"
     },
     "step-9": {
-      "title": "Прощание",
+      "title": "Кофейня",
       "emoji": "🎉",
       "npc": {
         "text": "Thank you! Your order will be ready in 5 minutes. Have a great day!",
@@ -1253,31 +839,14 @@
           "config": {
             "title": "Финальные пары:",
             "pairs": [
-              {
-                "en": "please",
-                "ru": "пожалуйста"
-              },
-              {
-                "en": "thank you",
-                "ru": "спасибо"
-              },
-              {
-                "en": "you too",
-                "ru": "и тебе тоже"
-              },
-              {
-                "en": "have a great day",
-                "ru": "хорошего дня"
-              },
-              {
-                "en": "order",
-                "ru": "заказ"
-              },
-              {
-                "en": "ready",
-                "ru": "готов"
-              }
-            ]
+              { "en": "please", "ru": "пожалуйста" },
+              { "en": "thank you", "ru": "спасибо" },
+              { "en": "you too", "ru": "и тебе тоже" },
+              { "en": "have a great day", "ru": "хорошего дня" },
+              { "en": "order", "ru": "заказ" },
+              { "en": "ready", "ru": "готов" }
+            ],
+            "tip": "Thank you — спасибо, you too — и вам тоже, have a great day — хорошего дня, order — заказ, ready — готов."
           }
         }
       ],

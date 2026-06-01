@@ -1,6 +1,6 @@
 <template>
   <div class="task task--multiple-choice">
-    <h3 class="task__title">💬 {{ config.title || 'Выберите правильную реплику:' }}</h3>
+    <h3 class="task__title"> {{ config.title || 'Выберите правильную реплику:' }}</h3>
 
     <p v-if="config.question" class="task__question">{{ config.question }}</p>
 
@@ -48,7 +48,7 @@ function check() {
     type: correct ? 'polite' : 'error',
     message: correct
       ? '✅ Правильно!'
-      : `❌ Неверно. Правильный ответ: "${props.config.options[props.config.correctIndex]}"`,
+      : '❌ Неправильно. Попробуйте ещё раз!',
     tip: correct ? props.config.tip : ''
   })
 }

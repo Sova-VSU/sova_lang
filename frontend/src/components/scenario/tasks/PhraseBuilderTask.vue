@@ -87,11 +87,7 @@ function getOriginalIndex(filteredIndex) {
 
 function check() {
   const userAnswer = sentence.value.join(' ')
-  const isPolite = sentence.value.some(w =>
-    (props.config.politeWords || []).includes(w)
-  )
 
-  // Проверка соответствия выбранному варианту (если задано)
   let isCorrectChoice = true
   if (props.config.requiredWord) {
     isCorrectChoice = sentence.value
@@ -103,9 +99,7 @@ function check() {
     emit('complete', {
       correct: false,
       userAnswer,
-      type: 'mismatch',
-      message: '❌ Ваша фраза не соответствует выбранному варианту!',
-      tip: 'Картинка и текст должны совпадать.'
+      message: '❌ Неправильно. Попробуйте ещё раз!'
     })
     return
   }
@@ -113,11 +107,7 @@ function check() {
   emit('complete', {
     correct: true,
     userAnswer,
-    type: isPolite ? 'polite' : 'rude',
-    message: isPolite
-      ? (props.config.politeMessage || '✅ Отлично! Вежливая форма.')
-      : (props.config.rudeMessage || '⚠️ Понятно, но попробуйте вежливее.'),
-    tip: isPolite ? props.config.politeTip : props.config.rudeTip
+    message: '✅ Правильно!'
   })
 }
 </script>

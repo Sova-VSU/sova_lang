@@ -3,7 +3,7 @@
     class="scenario-page"
     :style="themeStyles"
   >
-    <!-- Декорации на фоне -->
+    <!-- фон -->
     <div v-if="theme.decorations && theme.decorations.length" class="scenario-decorations">
       <span
         v-for="(deco, i) in theme.decorations"
@@ -15,7 +15,6 @@
       </span>
     </div>
 
-    <!-- Кнопки в углах экрана (ниже шапки) -->
     <div class="corner-actions">
       <button class="corner-btn corner-btn--left" @click="$emit('back')">
         ← Назад
@@ -30,10 +29,10 @@
         <!-- Заголовок шага -->
         <div class="scenario-card__header">
           <span class="scenario-card__emoji">{{ currentStep.emoji || scenario.emoji }}</span>
-          <h2>{{ scenario.title }}</h2>
+          <h2>{{ currentStep.title || scenario.title }}</h2>
         </div>
 
-        <!-- Реплика NPC -->
+        <!--  NPC -->
         <div v-if="currentStep.npc" class="npc-block">
           <div class="npc-avatar">{{ currentStep.npc.avatar || '🧑‍🍳' }}</div>
           <div class="npc-bubble" :style="{ background: theme.npcBubbleColor || '#fef9c3' }">
@@ -53,7 +52,6 @@
           @select="handleChoice"
         />
 
-        <!-- Предупреждение -->
         <div v-if="needChoiceWarning" class="choice-warning">
           ⚠️ Сначала выберите вариант выше
         </div>
@@ -90,7 +88,7 @@
             class="btn-retry"
             @click="retryTask"
           >
-            🔄 Попробовать снова
+            Попробовать снова
           </button>
 
           <button
@@ -98,7 +96,7 @@
             class="btn-finish"
             @click="handleComplete"
           >
-            🎉 Завершить сценарий
+            Завершить сценарий
           </button>
         </div>
       </div>
@@ -384,7 +382,6 @@ async function handleComplete() {
   50% { transform: translateY(-20px) rotate(5deg); }
 }
 
-/* Кнопки в углах экрана (ниже шапки) */
 .corner-actions {
   position: fixed;
   top: 80px;
