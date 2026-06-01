@@ -1,6 +1,6 @@
 <template>
   <div class="task task--fill-blank">
-    <h3 class="task__title">✍️ {{ config.title || 'Заполните пропуск:' }}</h3>
+    <h3 class="task__title"> {{ config.title || 'Заполните пропуск:' }}</h3>
 
     <div class="fill-blank__sentence">
       <span v-for="(part, i) in sentenceParts" :key="i">
@@ -47,8 +47,6 @@ const props = defineProps({
 const emit = defineEmits(['complete'])
 
 const selectedAnswer = ref(null)
-
-// Парсим предложение типа "I'd like a ___ , please."
 const sentenceParts = computed(() => {
   const parts = props.config.sentence.split('___')
   const result = []
@@ -62,7 +60,6 @@ const sentenceParts = computed(() => {
 })
 
 function check() {
-  // correctAnswer может быть строкой или массивом (несколько правильных)
   const correct = Array.isArray(props.config.correctAnswer)
     ? props.config.correctAnswer.includes(selectedAnswer.value)
     : selectedAnswer.value === props.config.correctAnswer
@@ -73,11 +70,7 @@ function check() {
     type: correct ? 'polite' : 'error',
     message: correct
       ? '✅ Правильно!'
-      : `❌ Неверно. Правильный ответ: "${
-          Array.isArray(props.config.correctAnswer)
-            ? props.config.correctAnswer.join(' / ')
-            : props.config.correctAnswer
-        }"`,
+      : '❌ Неправильно. Попробуйте ещё раз!',
     tip: correct ? props.config.tip : ''
   })
 }

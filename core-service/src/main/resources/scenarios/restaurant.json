@@ -10,11 +10,7 @@
     "accentColor": "#236B43",
     "primaryButton": "#236B43",
     "npcBubbleColor": "#93a293",
-    "decorations": [
-      "🍖",
-      "🍽️",
-      "🍷"
-    ]
+    "decorations": ["🍖", "🍽️", "🍷"]
   },
   "steps": {
     "step-1": {
@@ -28,21 +24,9 @@
       "choices": {
         "label": "ВАШ ОТВЕТ:",
         "options": [
-          {
-            "id": "yes",
-            "emoji": "✅",
-            "label": "Yes, reservation"
-          },
-          {
-            "id": "no",
-            "emoji": "❌",
-            "label": "No reservation"
-          },
-          {
-            "id": "book",
-            "emoji": "📅",
-            "label": "Book for later"
-          }
+          { "id": "yes", "emoji": "✅", "label": "Да, есть бронь" },
+          { "id": "no", "emoji": "❌", "label": "Нет брони" },
+          { "id": "book", "emoji": "📅", "label": "Забронировать" }
         ]
       },
       "tasks": [
@@ -51,36 +35,21 @@
           "configByChoice": {
             "yes": {
               "question": "Как сказать «у меня бронь на двоих»?",
-              "options": [
-                "Table two.",
-                "I have a reservation for two.",
-                "Two table.",
-                "Reservation two."
-              ],
+              "options": ["Table two.", "I have a reservation for two.", "Two table.", "Reservation two."],
               "correctIndex": 1,
-              "tip": "\"reservation for two\" — бронь на двоих."
+              "tip": "Reservation — бронь. I have a reservation for two — у меня бронь на двоих. Конструкция I have + a reservation + for + количество человек."
             },
             "no": {
               "question": "Как спросить о свободном столике?",
-              "options": [
-                "Table free?",
-                "Do you have a table available?",
-                "Want table.",
-                "Place for me?"
-              ],
+              "options": ["Table free?", "Do you have a table available?", "Want table.", "Place for me?"],
               "correctIndex": 1,
-              "tip": "\"available\" — свободный, доступный."
+              "tip": "Available — свободный, доступный. Do you have a table available? — У вас есть свободный столик?"
             },
             "book": {
               "question": "Как забронировать столик?",
-              "options": [
-                "Table please.",
-                "I'd like to book a table, please.",
-                "Reserve me.",
-                "I need table."
-              ],
+              "options": ["Table please.", "I'd like to book a table, please.", "Reserve me.", "I need table."],
               "correctIndex": 1,
-              "tip": "\"to book a table\" — забронировать столик."
+              "tip": "I'd like to book a table — я хотел бы забронировать столик. Конструкция I'd like + to + глагол (book)."
             }
           }
         }
@@ -102,16 +71,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ МЕСТО:",
         "options": [
-          {
-            "id": "window",
-            "emoji": "🪟",
-            "label": "By the window"
-          },
-          {
-            "id": "booth",
-            "emoji": "🛋️",
-            "label": "Booth"
-          }
+          { "id": "window", "emoji": "🪟", "label": "У окна" },
+          { "id": "booth", "emoji": "🛋️", "label": "В кабинке" }
         ]
       },
       "tasks": [
@@ -120,25 +81,15 @@
           "configByChoice": {
             "window": {
               "sentence": "I'd prefer ___ , please.",
-              "options": [
-                "by the window",
-                "in the booth",
-                "outside",
-                "inside"
-              ],
+              "options": ["by the window", "in the booth", "outside", "inside"],
               "correctAnswer": "by the window",
-              "tip": "\"by the window\" — у окна, \"booth\" — кабинка."
+              "tip": "I'd prefer — я бы предпочёл. By the window — у окна, booth — отдельная кабинка."
             },
             "booth": {
               "sentence": "I'd prefer ___ , please.",
-              "options": [
-                "by the window",
-                "in the booth",
-                "outside",
-                "inside"
-              ],
+              "options": ["by the window", "in the booth", "outside", "inside"],
               "correctAnswer": "in the booth",
-              "tip": "\"by the window\" — у окна, \"booth\" — кабинка."
+              "tip": "I'd prefer — я бы предпочёл. In the booth — в кабинке, by the window — у окна."
             }
           }
         }
@@ -156,21 +107,9 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ДЕНЬ:",
         "options": [
-          {
-            "id": "friday",
-            "emoji": "📅",
-            "label": "Friday"
-          },
-          {
-            "id": "saturday",
-            "emoji": "📅",
-            "label": "Saturday"
-          },
-          {
-            "id": "sunday",
-            "emoji": "📅",
-            "label": "Sunday"
-          }
+          { "id": "friday", "emoji": "📅", "label": "Пятница" },
+          { "id": "saturday", "emoji": "📅", "label": "Суббота" },
+          { "id": "sunday", "emoji": "📅", "label": "Воскресенье" }
         ]
       },
       "tasks": [
@@ -178,46 +117,19 @@
           "type": "word-order",
           "configByChoice": {
             "friday": {
-              "hint": "Составьте: \"I'd like to book a table for Friday\"",
-              "correctOrder": [
-                "I'd",
-                "like",
-                "to",
-                "book",
-                "a",
-                "table",
-                "for",
-                "Friday"
-              ],
-              "tip": "\"to book a table\" — забронировать столик."
+              "hint": "Составьте: \"Я хотел бы забронировать столик на пятницу\"",
+              "correctOrder": ["I'd", "like", "to", "book", "a", "table", "for", "Friday"],
+              "tip": "Конструкция I'd like to + глагол (book) — я хотел бы... For Friday — на пятницу (for + день недели)."
             },
             "saturday": {
-              "hint": "Составьте: \"I'd like to book a table for Saturday\"",
-              "correctOrder": [
-                "I'd",
-                "like",
-                "to",
-                "book",
-                "a",
-                "table",
-                "for",
-                "Saturday"
-              ],
-              "tip": "\"to book a table\" — забронировать столик."
+              "hint": "Составьте: \"Я хотел бы забронировать столик на субботу\"",
+              "correctOrder": ["I'd", "like", "to", "book", "a", "table", "for", "Saturday"],
+              "tip": "Конструкция I'd like to + глагол (book) — я хотел бы... For Saturday — на субботу (for + день недели)."
             },
             "sunday": {
-              "hint": "Составьте: \"I'd like to book a table for Sunday\"",
-              "correctOrder": [
-                "I'd",
-                "like",
-                "to",
-                "book",
-                "a",
-                "table",
-                "for",
-                "Sunday"
-              ],
-              "tip": "\"to book a table\" — забронировать столик."
+              "hint": "Составьте: \"Я хотел бы забронировать столик на воскресенье\"",
+              "correctOrder": ["I'd", "like", "to", "book", "a", "table", "for", "Sunday"],
+              "tip": "Конструкция I'd like to + глагол (book) — я хотел бы... For Sunday — на воскресенье (for + день недели)."
             }
           }
         }
@@ -235,21 +147,9 @@
       "choices": {
         "label": "НАПИТОК:",
         "options": [
-          {
-            "id": "water",
-            "emoji": "💧",
-            "label": "Water"
-          },
-          {
-            "id": "wine",
-            "emoji": "🍷",
-            "label": "Wine"
-          },
-          {
-            "id": "juice",
-            "emoji": "🧃",
-            "label": "Juice"
-          }
+          { "id": "water", "emoji": "💧", "label": "Вода" },
+          { "id": "wine", "emoji": "🍷", "label": "Вино" },
+          { "id": "juice", "emoji": "🧃", "label": "Сок" }
         ]
       },
       "tasks": [
@@ -258,36 +158,21 @@
           "configByChoice": {
             "water": {
               "sentence": "Could I have a glass of ___ , please?",
-              "options": [
-                "water",
-                "wine",
-                "juice",
-                "milk"
-              ],
+              "options": ["water", "wine", "juice", "milk"],
               "correctAnswer": "water",
-              "tip": "\"Could I have...?\" — вежливая форма."
+              "tip": "Could I have a glass of...? — Можно мне стакан...? Water — вода, wine — вино, juice — сок."
             },
             "wine": {
               "sentence": "Could I have a glass of ___ , please?",
-              "options": [
-                "water",
-                "wine",
-                "juice",
-                "milk"
-              ],
+              "options": ["water", "wine", "juice", "milk"],
               "correctAnswer": "wine",
-              "tip": "\"Could I have...?\" — вежливая форма."
+              "tip": "Could I have a glass of...? — Можно мне стакан...? Water — вода, wine — вино, juice — сок."
             },
             "juice": {
               "sentence": "Could I have a glass of ___ , please?",
-              "options": [
-                "water",
-                "wine",
-                "juice",
-                "milk"
-              ],
+              "options": ["water", "wine", "juice", "milk"],
               "correctAnswer": "juice",
-              "tip": "\"Could I have...?\" — вежливая форма."
+              "tip": "Could I have a glass of...? — Можно мне стакан...? Water — вода, wine — вино, juice — сок."
             }
           }
         }
@@ -305,21 +190,9 @@
       "choices": {
         "label": "ВАШ ОТВЕТ:",
         "options": [
-          {
-            "id": "ready",
-            "emoji": "✅",
-            "label": "Ready to order"
-          },
-          {
-            "id": "more-time",
-            "emoji": "⏳",
-            "label": "Need more time"
-          },
-          {
-            "id": "recommend",
-            "emoji": "❓",
-            "label": "Recommendations?"
-          }
+          { "id": "ready", "emoji": "✅", "label": "Готовы заказать" },
+          { "id": "more-time", "emoji": "⏳", "label": "Нужно больше времени" },
+          { "id": "recommend", "emoji": "❓", "label": "Что посоветуете?" }
         ]
       },
       "tasks": [
@@ -328,36 +201,21 @@
           "configByChoice": {
             "ready": {
               "question": "Как сказать «мы готовы заказать»?",
-              "options": [
-                "We ready.",
-                "We're ready to order.",
-                "Order now.",
-                "Food please."
-              ],
+              "options": ["We ready.", "We're ready to order.", "Order now.", "Food please."],
               "correctIndex": 1,
-              "tip": "\"We're ready to order.\" — мы готовы заказать."
+              "tip": "We're ready to order — мы готовы заказать. Конструкция to be ready + to + глагол."
             },
             "more-time": {
               "question": "Как попросить ещё минутку?",
-              "options": [
-                "More time.",
-                "Could we have a few more minutes, please?",
-                "Wait.",
-                "We not ready."
-              ],
+              "options": ["More time.", "Could we have a few more minutes, please?", "Wait.", "We not ready."],
               "correctIndex": 1,
-              "tip": "\"a few more minutes\" — ещё несколько минут."
+              "tip": "Could we have a few more minutes? — Можно нам ещё пару минут? Вежливая просьба. A few — несколько."
             },
             "recommend": {
               "question": "Как попросить рекомендацию?",
-              "options": [
-                "What good?",
-                "What would you recommend?",
-                "Best food?",
-                "Recommend me."
-              ],
+              "options": ["What good?", "What would you recommend?", "Best food?", "Recommend me."],
               "correctIndex": 1,
-              "tip": "\"What would you recommend?\" — что посоветуете?"
+              "tip": "What would you recommend? — Что бы вы порекомендовали? Would you recommend — вежливая форма вопроса."
             }
           }
         }
@@ -381,31 +239,14 @@
           "config": {
             "title": "Лексика ресторана:",
             "pairs": [
-              {
-                "en": "grilled",
-                "ru": "на гриле"
-              },
-              {
-                "en": "salmon",
-                "ru": "лосось"
-              },
-              {
-                "en": "sauce",
-                "ru": "соус"
-              },
-              {
-                "en": "mushroom",
-                "ru": "гриб"
-              },
-              {
-                "en": "risotto",
-                "ru": "ризотто"
-              },
-              {
-                "en": "vegetarian",
-                "ru": "вегетарианский"
-              }
-            ]
+              { "en": "grilled", "ru": "на гриле" },
+              { "en": "salmon", "ru": "лосось" },
+              { "en": "sauce", "ru": "соус" },
+              { "en": "mushroom", "ru": "гриб" },
+              { "en": "risotto", "ru": "ризотто" },
+              { "en": "vegetarian", "ru": "вегетарианский" }
+            ],
+            "tip": "Grilled — приготовленный на гриле, salmon — лосось, sauce — соус, mushroom — гриб, risotto — ризотто, vegetarian — вегетарианский."
           }
         }
       ],
@@ -422,26 +263,10 @@
       "choices": {
         "label": "ЗАКУСКА:",
         "options": [
-          {
-            "id": "soup",
-            "emoji": "🍜",
-            "label": "Tomato soup"
-          },
-          {
-            "id": "salad",
-            "emoji": "🥗",
-            "label": "Caesar salad"
-          },
-          {
-            "id": "bruschetta",
-            "emoji": "🍞",
-            "label": "Bruschetta"
-          },
-          {
-            "id": "allergy",
-            "emoji": "⚠️",
-            "label": "I have allergies"
-          }
+          { "id": "soup", "emoji": "🍜", "label": "Томатный суп" },
+          { "id": "salad", "emoji": "🥗", "label": "Цезарь" },
+          { "id": "bruschetta", "emoji": "🍞", "label": "Брускетта" },
+          { "id": "allergy", "emoji": "⚠️", "label": "У меня аллергия" }
         ]
       },
       "tasks": [
@@ -449,47 +274,24 @@
           "type": "word-order",
           "configByChoice": {
             "soup": {
-              "hint": "Составьте: \"I'll have the tomato soup\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "the",
-                "tomato",
-                "soup"
-              ],
-              "tip": "\"I'll have the...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму томатный суп\"",
+              "correctOrder": ["I'll", "have", "the", "tomato", "soup"],
+              "tip": "I'll have the... — Я возьму... (стандартная форма заказа). Tomato soup — томатный суп."
             },
             "salad": {
-              "hint": "Составьте: \"I'll have the Caesar salad\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "the",
-                "Caesar",
-                "salad"
-              ],
-              "tip": "\"I'll have the...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму салат Цезарь\"",
+              "correctOrder": ["I'll", "have", "the", "Caesar", "salad"],
+              "tip": "I'll have the... — Я возьму... Caesar salad — салат Цезарь."
             },
             "bruschetta": {
-              "hint": "Составьте: \"I'll have the bruschetta\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "the",
-                "bruschetta"
-              ],
-              "tip": "\"I'll have the...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму брускетту\"",
+              "correctOrder": ["I'll", "have", "the", "bruschetta"],
+              "tip": "I'll have the... — Я возьму... Bruschetta — брускетта (итальянская закуска)."
             },
             "allergy": {
-              "hint": "Составьте: \"I have a food allergy\"",
-              "correctOrder": [
-                "I",
-                "have",
-                "a",
-                "food",
-                "allergy"
-              ],
-              "tip": "\"food allergy\" — пищевая аллергия."
+              "hint": "Составьте: \"У меня пищевая аллергия\"",
+              "correctOrder": ["I", "have", "a", "food", "allergy"],
+              "tip": "Food allergy — пищевая аллергия. Конструкция I have + a food allergy. Allergic to — аллергия на..."
             }
           }
         }
@@ -512,21 +314,9 @@
       "choices": {
         "label": "АЛЛЕРГИЯ:",
         "options": [
-          {
-            "id": "gluten",
-            "emoji": "🌾",
-            "label": "Gluten"
-          },
-          {
-            "id": "dairy",
-            "emoji": "🥛",
-            "label": "Dairy"
-          },
-          {
-            "id": "nuts",
-            "emoji": "🥜",
-            "label": "Nuts"
-          }
+          { "id": "gluten", "emoji": "🌾", "label": "Глютен" },
+          { "id": "dairy", "emoji": "🥛", "label": "Молочные продукты" },
+          { "id": "nuts", "emoji": "🥜", "label": "Орехи" }
         ]
       },
       "tasks": [
@@ -535,36 +325,21 @@
           "configByChoice": {
             "gluten": {
               "sentence": "I'm allergic to ___ .",
-              "options": [
-                "gluten",
-                "dairy",
-                "nuts",
-                "sugar"
-              ],
+              "options": ["gluten", "dairy", "nuts", "sugar"],
               "correctAnswer": "gluten",
-              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+              "tip": "I'm allergic to... — у меня аллергия на... Gluten — глютен, dairy — молочные продукты, nuts — орехи."
             },
             "dairy": {
               "sentence": "I'm allergic to ___ .",
-              "options": [
-                "gluten",
-                "dairy",
-                "nuts",
-                "sugar"
-              ],
+              "options": ["gluten", "dairy", "nuts", "sugar"],
               "correctAnswer": "dairy",
-              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+              "tip": "I'm allergic to... — у меня аллергия на... Dairy — молочные продукты, gluten — глютен, nuts — орехи."
             },
             "nuts": {
               "sentence": "I'm allergic to ___ .",
-              "options": [
-                "gluten",
-                "dairy",
-                "nuts",
-                "sugar"
-              ],
+              "options": ["gluten", "dairy", "nuts", "sugar"],
               "correctAnswer": "nuts",
-              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+              "tip": "I'm allergic to... — у меня аллергия на... Nuts — орехи, dairy — молочные продукты, gluten — глютен."
             }
           }
         }
@@ -582,26 +357,10 @@
       "choices": {
         "label": "ОСНОВНОЕ:",
         "options": [
-          {
-            "id": "steak",
-            "emoji": "🥩",
-            "label": "Steak"
-          },
-          {
-            "id": "pasta",
-            "emoji": "🍝",
-            "label": "Pasta"
-          },
-          {
-            "id": "fish",
-            "emoji": "🐟",
-            "label": "Fish"
-          },
-          {
-            "id": "veggie",
-            "emoji": "🥬",
-            "label": "Vegetarian"
-          }
+          { "id": "steak", "emoji": "🥩", "label": "Стейк" },
+          { "id": "pasta", "emoji": "🍝", "label": "Паста" },
+          { "id": "fish", "emoji": "🐟", "label": "Рыба" },
+          { "id": "veggie", "emoji": "🥬", "label": "Вегетарианское" }
         ]
       },
       "tasks": [
@@ -610,47 +369,27 @@
           "configByChoice": {
             "steak": {
               "question": "Официант спрашивает \"How would you like your steak?\". Что ответить?",
-              "options": [
-                "Good steak.",
-                "Medium-rare, please.",
-                "I like steak.",
-                "Hot steak."
-              ],
+              "options": ["Good steak.", "Medium-rare, please.", "I like steak.", "Hot steak."],
               "correctIndex": 1,
-              "tip": "\"medium-rare\" — средней прожарки."
+              "tip": "Medium-rare — средней прожарки (с кровью). Well-done — хорошо прожаренный, rare — с кровью."
             },
             "pasta": {
-              "question": "Как заказать pasta?",
-              "options": [
-                "pasta please.",
-                "I'll have the pasta, please.",
-                "Give pasta.",
-                "I want pasta."
-              ],
+              "question": "Как заказать пасту?",
+              "options": ["pasta please.", "I'll have the pasta, please.", "Give pasta.", "I want pasta."],
               "correctIndex": 1,
-              "tip": "\"I'll have the...\" — стандартная форма заказа."
+              "tip": "I'll have the pasta, please — я возьму пасту, пожалуйста. I'll have the... — стандартная форма заказа."
             },
             "fish": {
-              "question": "Как заказать fish?",
-              "options": [
-                "fish please.",
-                "I'll have the fish, please.",
-                "Give fish.",
-                "I want fish."
-              ],
+              "question": "Как заказать рыбу?",
+              "options": ["fish please.", "I'll have the fish, please.", "Give fish.", "I want fish."],
               "correctIndex": 1,
-              "tip": "\"I'll have the...\" — стандартная форма заказа."
+              "tip": "I'll have the fish, please — я возьму рыбу, пожалуйста. I'll have the... — стандартная форма заказа."
             },
             "veggie": {
-              "question": "Как заказать veggie?",
-              "options": [
-                "veggie please.",
-                "I'll have the veggie, please.",
-                "Give veggie.",
-                "I want veggie."
-              ],
+              "question": "Как заказать вегетарианское блюдо?",
+              "options": ["veggie please.", "I'll have the veggie option, please.", "Give veggie.", "I want veggie."],
               "correctIndex": 1,
-              "tip": "\"I'll have the...\" — стандартная форма заказа."
+              "tip": "I'll have the veggie option, please — я возьму вегетарианский вариант. Veggie — разговорное сокращение от vegetarian."
             }
           }
         }
@@ -673,21 +412,9 @@
       "choices": {
         "label": "ПРОЖАРКА:",
         "options": [
-          {
-            "id": "rare",
-            "emoji": "🩸",
-            "label": "Rare"
-          },
-          {
-            "id": "medium",
-            "emoji": "🟫",
-            "label": "Medium"
-          },
-          {
-            "id": "well-done",
-            "emoji": "🟤",
-            "label": "Well-done"
-          }
+          { "id": "rare", "emoji": "🩸", "label": "С кровью" },
+          { "id": "medium", "emoji": "🟫", "label": "Средняя" },
+          { "id": "well-done", "emoji": "🟤", "label": "Хорошо прожаренный" }
         ]
       },
       "tasks": [
@@ -696,36 +423,21 @@
           "configByChoice": {
             "rare": {
               "sentence": "I would like it ___ , please.",
-              "options": [
-                "rare",
-                "medium",
-                "well-done",
-                "raw"
-              ],
+              "options": ["rare", "medium", "well-done", "raw"],
               "correctAnswer": "rare",
-              "tip": "\"rare\" — с кровью, \"medium\" — средне, \"well-done\" — хорошо прожаренный."
+              "tip": "Rare — с кровью, medium — средняя прожарка, well-done — хорошо прожаренный."
             },
             "medium": {
               "sentence": "I would like it ___ , please.",
-              "options": [
-                "rare",
-                "medium",
-                "well-done",
-                "raw"
-              ],
+              "options": ["rare", "medium", "well-done", "raw"],
               "correctAnswer": "medium",
-              "tip": "\"rare\" — с кровью, \"medium\" — средне, \"well-done\" — хорошо прожаренный."
+              "tip": "Medium — средняя прожарка, rare — с кровью, well-done — хорошо прожаренный."
             },
             "well-done": {
               "sentence": "I would like it ___ , please.",
-              "options": [
-                "rare",
-                "medium",
-                "well-done",
-                "raw"
-              ],
+              "options": ["rare", "medium", "well-done", "raw"],
               "correctAnswer": "well-done",
-              "tip": "\"rare\" — с кровью, \"medium\" — средне, \"well-done\" — хорошо прожаренный."
+              "tip": "Well-done — хорошо прожаренный, medium — средняя прожарка, rare — с кровью."
             }
           }
         }
@@ -743,26 +455,10 @@
       "choices": {
         "label": "ДЕСЕРТ:",
         "options": [
-          {
-            "id": "tiramisu",
-            "emoji": "🍰",
-            "label": "Tiramisu"
-          },
-          {
-            "id": "panna-cotta",
-            "emoji": "🍮",
-            "label": "Panna cotta"
-          },
-          {
-            "id": "fondant",
-            "emoji": "🍫",
-            "label": "Chocolate fondant"
-          },
-          {
-            "id": "no",
-            "emoji": "🚫",
-            "label": "No dessert"
-          }
+          { "id": "tiramisu", "emoji": "🍰", "label": "Тирамису" },
+          { "id": "panna-cotta", "emoji": "🍮", "label": "Панна котта" },
+          { "id": "fondant", "emoji": "🍫", "label": "Шоколадный фондан" },
+          { "id": "no", "emoji": "🚫", "label": "Без десерта" }
         ]
       },
       "tasks": [
@@ -770,57 +466,24 @@
           "type": "word-order",
           "configByChoice": {
             "tiramisu": {
-              "hint": "Составьте: \"Could I have the tiramisu please ?\"",
-              "correctOrder": [
-                "Could",
-                "I",
-                "have",
-                "the",
-                "tiramisu",
-                "please",
-                "?"
-              ],
-              "tip": "\"dessert\" — десерт (две буквы s!)."
+              "hint": "Составьте: \"Можно мне тирамису, пожалуйста?\"",
+              "correctOrder": ["Could", "I", "have", "the", "tiramisu", "please", "?"],
+              "tip": "Could I have the...? — Можно мне...? Вежливая форма заказа. Dessert — десерт (две буквы s!)."
             },
             "panna-cotta": {
-              "hint": "Составьте: \"Could I have the panna cotta please ?\"",
-              "correctOrder": [
-                "Could",
-                "I",
-                "have",
-                "the",
-                "panna",
-                "cotta",
-                "please",
-                "?"
-              ],
-              "tip": "\"dessert\" — десерт (две буквы s!)."
+              "hint": "Составьте: \"Можно мне панна котту, пожалуйста?\"",
+              "correctOrder": ["Could", "I", "have", "the", "panna", "cotta", "please", "?"],
+              "tip": "Could I have the...? — Можно мне...? Panna cotta — итальянский десерт из сливок."
             },
             "fondant": {
-              "hint": "Составьте: \"Could I have the chocolate fondant please ?\"",
-              "correctOrder": [
-                "Could",
-                "I",
-                "have",
-                "the",
-                "chocolate",
-                "fondant",
-                "please",
-                "?"
-              ],
-              "tip": "\"dessert\" — десерт (две буквы s!)."
+              "hint": "Составьте: \"Можно мне шоколадный фондан, пожалуйста?\"",
+              "correctOrder": ["Could", "I", "have", "the", "chocolate", "fondant", "please", "?"],
+              "tip": "Could I have the...? — Можно мне...? Chocolate fondant — шоколадный фондан (десерт с жидкой начинкой)."
             },
             "no": {
-              "hint": "Составьте: \"No dessert just the bill please\"",
-              "correctOrder": [
-                "No",
-                "dessert",
-                "just",
-                "the",
-                "bill",
-                "please"
-              ],
-              "tip": "\"bill\" — счёт."
+              "hint": "Составьте: \"Без десерта, только счёт, пожалуйста\"",
+              "correctOrder": ["No", "dessert", "just", "the", "bill", "please"],
+              "tip": "No dessert — без десерта. Bill — счёт (в британском английском), check — счёт (в американском)."
             }
           }
         }
@@ -838,21 +501,9 @@
       "choices": {
         "label": "ОПЛАТА:",
         "options": [
-          {
-            "id": "together",
-            "emoji": "💳",
-            "label": "Together"
-          },
-          {
-            "id": "split",
-            "emoji": "➗",
-            "label": "Split the bill"
-          },
-          {
-            "id": "problem",
-            "emoji": "⚠️",
-            "label": "Problem with bill"
-          }
+          { "id": "together", "emoji": "💳", "label": "Вместе" },
+          { "id": "split", "emoji": "➗", "label": "Разделить счёт" },
+          { "id": "problem", "emoji": "⚠️", "label": "Проблема со счётом" }
         ]
       },
       "tasks": [
@@ -861,36 +512,21 @@
           "configByChoice": {
             "together": {
               "question": "Как попросить счёт вместе?",
-              "options": [
-                "Give bill.",
-                "We'll pay together. Could we have the bill, please?",
-                "Money please.",
-                "Pay now."
-              ],
+              "options": ["Give bill.", "We'll pay together. Could we have the bill, please?", "Money please.", "Pay now."],
               "correctIndex": 1,
-              "tip": "\"pay together\" — оплатить вместе."
+              "tip": "Pay together — оплатить вместе. Could we have the bill? — Можно нам счёт?"
             },
             "split": {
               "question": "Как попросить разделить счёт?",
-              "options": [
-                "Half half.",
-                "Could we split the bill, please?",
-                "Divide money.",
-                "Separate pay."
-              ],
+              "options": ["Half half.", "Could we split the bill, please?", "Divide money.", "Separate pay."],
               "correctIndex": 1,
-              "tip": "\"split the bill\" — разделить счёт."
+              "tip": "Split the bill — разделить счёт. Split — делить, разделять. Could we split the bill? — Можем ли мы разделить счёт?"
             },
             "problem": {
               "question": "Как сказать о проблеме со счётом?",
-              "options": [
-                "Bill wrong.",
-                "I think there's a mistake on the bill.",
-                "Money no.",
-                "Bill bad."
-              ],
+              "options": ["Bill wrong.", "I think there's a mistake on the bill.", "Money no.", "Bill bad."],
               "correctIndex": 1,
-              "tip": "\"There's a mistake\" — здесь ошибка."
+              "tip": "There's a mistake — здесь ошибка. I think there's a mistake on the bill — кажется, в счёте ошибка. Mistake — ошибка."
             }
           }
         }
@@ -912,16 +548,8 @@
       "choices": {
         "label": "КАК ДЕЛИТЬ:",
         "options": [
-          {
-            "id": "equally",
-            "emoji": "⚖️",
-            "label": "Equally"
-          },
-          {
-            "id": "separate",
-            "emoji": "👥",
-            "label": "What each ordered"
-          }
+          { "id": "equally", "emoji": "⚖️", "label": "Поровну" },
+          { "id": "separate", "emoji": "👥", "label": "Каждый за своё" }
         ]
       },
       "tasks": [
@@ -930,25 +558,15 @@
           "configByChoice": {
             "equally": {
               "sourceText": "Разделите поровну, пожалуйста.",
-              "options": [
-                "Half half please.",
-                "Split it evenly, please.",
-                "Same money.",
-                "Pay self."
-              ],
+              "options": ["Half half please.", "Split it evenly, please.", "Same money.", "Pay self."],
               "correctIndex": 1,
-              "tip": "\"split evenly\" — разделить поровну."
+              "tip": "Split it evenly — разделить поровну. Evenly — равномерно, поровну. Equally — также означает поровну."
             },
             "separate": {
               "sourceText": "Каждый платит за своё.",
-              "options": [
-                "Half half please.",
-                "Each pays for their own, please.",
-                "Same money.",
-                "Pay self."
-              ],
+              "options": ["Half half please.", "Each pays for their own, please.", "Same money.", "Pay self."],
               "correctIndex": 1,
-              "tip": "\"split evenly\" — разделить поровну."
+              "tip": "Each pays for their own — каждый платит за своё. Own — свой собственный."
             }
           }
         }
@@ -966,16 +584,8 @@
       "choices": {
         "label": "ПРОБЛЕМА:",
         "options": [
-          {
-            "id": "extra-item",
-            "emoji": "➕",
-            "label": "Extra item charged"
-          },
-          {
-            "id": "wrong-price",
-            "emoji": "💰",
-            "label": "Wrong price"
-          }
+          { "id": "extra-item", "emoji": "➕", "label": "Лишний пункт" },
+          { "id": "wrong-price", "emoji": "💰", "label": "Неверная цена" }
         ]
       },
       "tasks": [
@@ -984,25 +594,15 @@
           "configByChoice": {
             "extra-item": {
               "sentence": "There's an ___ item on the bill.",
-              "options": [
-                "extra",
-                "wrong",
-                "missing",
-                "small"
-              ],
+              "options": ["extra", "wrong", "missing", "small"],
               "correctAnswer": "extra",
-              "tip": "\"extra item\" — лишний пункт."
+              "tip": "Extra item — лишний пункт (которого не заказывали). Extra — дополнительный, лишний."
             },
             "wrong-price": {
               "sentence": "I think the ___ is wrong.",
-              "options": [
-                "price",
-                "food",
-                "time",
-                "table"
-              ],
+              "options": ["price", "food", "time", "table"],
               "correctAnswer": "price",
-              "tip": "\"price\" — цена."
+              "tip": "Price — цена. Wrong — неправильный. I think the price is wrong — кажется, цена неверная."
             }
           }
         }
@@ -1018,39 +618,16 @@
           "config": {
             "title": "Лексика ресторана:",
             "pairs": [
-              {
-                "en": "bill",
-                "ru": "счёт"
-              },
-              {
-                "en": "tip",
-                "ru": "чаевые"
-              },
-              {
-                "en": "starter",
-                "ru": "закуска"
-              },
-              {
-                "en": "main course",
-                "ru": "основное блюдо"
-              },
-              {
-                "en": "dessert",
-                "ru": "десерт"
-              },
-              {
-                "en": "wine list",
-                "ru": "винная карта"
-              },
-              {
-                "en": "well-done",
-                "ru": "хорошо прожаренный"
-              },
-              {
-                "en": "split the bill",
-                "ru": "разделить счёт"
-              }
-            ]
+              { "en": "bill", "ru": "счёт" },
+              { "en": "tip", "ru": "чаевые" },
+              { "en": "starter", "ru": "закуска" },
+              { "en": "main course", "ru": "основное блюдо" },
+              { "en": "dessert", "ru": "десерт" },
+              { "en": "wine list", "ru": "винная карта" },
+              { "en": "well-done", "ru": "хорошо прожаренный" },
+              { "en": "split the bill", "ru": "разделить счёт" }
+            ],
+            "tip": "Bill — счёт, tip — чаевые, starter — закуска, main course — основное блюдо, dessert — десерт, wine list — винная карта, well-done — хорошо прожаренный, split the bill — разделить счёт."
           }
         }
       ],
@@ -1069,14 +646,9 @@
           "type": "translation",
           "config": {
             "sourceText": "Было очень вкусно! Передайте комплименты шефу!",
-            "options": [
-              "Food was good. Tell chef.",
-              "It was delicious! Please compliment the chef!",
-              "Very tasty! Chef good!",
-              "I liked food. Chef is great."
-            ],
+            "options": ["Food was good. Tell chef.", "It was delicious! Please compliment the chef!", "Very tasty! Chef good!", "I liked food. Chef is great."],
             "correctIndex": 1,
-            "tip": "\"compliment the chef\" — передать комплименты шефу."
+            "tip": "Compliment the chef — передать комплименты шеф-повару. Delicious — очень вкусно."
           }
         }
       ],

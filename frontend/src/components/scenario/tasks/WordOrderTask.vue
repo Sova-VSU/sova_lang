@@ -1,6 +1,6 @@
 <template>
   <div class="task task--word-order">
-    <h3 class="task__title">🔄 {{ config.title || 'Расставьте слова по порядку:' }}</h3>
+    <h3 class="task__title"> {{ config.title || 'Расставьте слова по порядку:' }}</h3>
 
     <p v-if="config.hint" class="task__hint">{{ config.hint }}</p>
 
@@ -55,7 +55,6 @@ const shuffledWords = ref([])
 const removedIndices = ref(new Set())
 
 onMounted(() => {
-  // Перемешиваем слова из правильной фразы
   shuffledWords.value = [...props.config.correctOrder].sort(() => Math.random() - 0.5)
 })
 
@@ -103,7 +102,7 @@ function check() {
     type: correct ? 'polite' : 'error',
     message: correct
       ? '✅ Отлично! Правильный порядок.'
-      : `❌ Неверный порядок. Правильно: "${correctAnswer}"`,
+      : '❌ Неправильный порядок. Попробуйте ещё раз!',
     tip: correct ? props.config.tip : ''
   })
 }

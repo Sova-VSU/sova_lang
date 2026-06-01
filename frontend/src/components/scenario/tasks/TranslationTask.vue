@@ -50,7 +50,7 @@ function check() {
     type: correct ? 'polite' : 'error',
     message: correct
       ? '✅ Правильный перевод!'
-      : `❌ Неверно. Правильный ответ: "${props.config.options[props.config.correctIndex]}"`,
+      : '❌ Неправильно. Попробуйте ещё раз!',
     tip: correct ? props.config.tip : ''
   })
 }

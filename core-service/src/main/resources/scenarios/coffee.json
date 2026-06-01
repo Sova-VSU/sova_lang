@@ -10,11 +10,7 @@
     "accentColor": "#A67C52",
     "primaryButton": "#8B5E3C",
     "npcBubbleColor": "#f5efd6",
-    "decorations": [
-      "☕",
-      "🍰",
-      "🥐"
-    ]
+    "decorations": ["☕", "🍰", "🥐"]
   },
   "steps": {
     "step-1": {
@@ -28,26 +24,10 @@
       "choices": {
         "label": "ВЫБЕРИТЕ НАПИТОК:",
         "options": [
-          {
-            "id": "coffee",
-            "emoji": "☕",
-            "label": "Coffee"
-          },
-          {
-            "id": "tea",
-            "emoji": "🍵",
-            "label": "Tea"
-          },
-          {
-            "id": "cocoa",
-            "emoji": "🍫",
-            "label": "Cocoa"
-          },
-          {
-            "id": "help",
-            "emoji": "❓",
-            "label": "I'm not sure"
-          }
+          { "id": "coffee", "emoji": "☕", "label": "Кофе" },
+          { "id": "tea", "emoji": "🍵", "label": "Чай" },
+          { "id": "cocoa", "emoji": "🍫", "label": "Какао" },
+          { "id": "help", "emoji": "❓", "label": "Нужна помощь" }
         ]
       },
       "tasks": [
@@ -57,47 +37,30 @@
             "coffee": {
               "title": "Заполните пропуск:",
               "sentence": "I'd like a ___ , please.",
-              "options": [
-                "coffee",
-                "tea",
-                "cocoa"
-              ],
+              "options": ["coffee", "tea", "cocoa"],
               "correctAnswer": "coffee",
-              "tip": "\"I'd like\" — вежливая форма заказа."
+              "tip": "Конструкция I'd like + a + напиток, please — вежливая форма заказа. Coffee — кофе, tea — чай, cocoa — какао."
             },
             "tea": {
               "title": "Заполните пропуск:",
               "sentence": "I'd like a ___ , please.",
-              "options": [
-                "coffee",
-                "tea",
-                "cocoa"
-              ],
+              "options": ["coffee", "tea", "cocoa"],
               "correctAnswer": "tea",
-              "tip": "\"I'd like\" — вежливая форма заказа."
+              "tip": "Конструкция I'd like + a + напиток, please — вежливая форма заказа. Coffee — кофе, tea — чай, cocoa — какао."
             },
             "cocoa": {
               "title": "Заполните пропуск:",
               "sentence": "I'd like a ___ , please.",
-              "options": [
-                "coffee",
-                "tea",
-                "cocoa"
-              ],
+              "options": ["coffee", "tea", "cocoa"],
               "correctAnswer": "cocoa",
-              "tip": "\"I'd like\" — вежливая форма заказа."
+              "tip": "Конструкция I'd like + a + напиток, please — вежливая форма заказа. Coffee — кофе, tea — чай, cocoa — какао."
             },
             "help": {
               "title": "Попросите помощь:",
               "sentence": "Can you ___ me choose?",
-              "options": [
-                "help",
-                "give",
-                "tell",
-                "show"
-              ],
+              "options": ["help", "give", "tell", "show"],
               "correctAnswer": "help",
-              "tip": "\"Can you help me choose?\" — вежливая просьба о помощи."
+              "tip": "Глагол choose требует помощи: Can you help me choose? — Можешь помочь мне выбрать? choose — выбирать."
             }
           }
         }
@@ -120,16 +83,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "hot",
-            "emoji": "🔥",
-            "label": "Hot"
-          },
-          {
-            "id": "cold",
-            "emoji": "🧊",
-            "label": "Cold"
-          }
+          { "id": "hot", "emoji": "🔥", "label": "Горячий" },
+          { "id": "cold", "emoji": "🧊", "label": "Холодный" }
         ]
       },
       "tasks": [
@@ -138,25 +93,15 @@
           "configByChoice": {
             "hot": {
               "sentence": "I prefer something ___ .",
-              "options": [
-                "hot",
-                "cold",
-                "warm",
-                "cool"
-              ],
+              "options": ["hot", "cold", "warm", "cool"],
               "correctAnswer": "hot",
-              "tip": "\"I prefer...\" — я предпочитаю."
+              "tip": "Прилагательные для описания температуры напитков: hot — горячий, cold — холодный, warm — тёплый, cool — прохладный. В кофейнях также используют iced — со льдом."
             },
             "cold": {
               "sentence": "I prefer something ___ .",
-              "options": [
-                "hot",
-                "cold",
-                "warm",
-                "cool"
-              ],
+              "options": ["hot", "cold", "warm", "cool"],
               "correctAnswer": "cold",
-              "tip": "\"I prefer...\" — я предпочитаю."
+              "tip": "Прилагательные для описания температуры напитков: hot — горячий, cold — холодный, warm — тёплый, cool — прохладный. В кофейнях также используют iced — со льдом."
             }
           }
         }
@@ -177,16 +122,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "strong",
-            "emoji": "💪",
-            "label": "Strong coffee"
-          },
-          {
-            "id": "sweet",
-            "emoji": "🍬",
-            "label": "Sweet drink"
-          }
+          { "id": "strong", "emoji": "💪", "label": "Крепкий кофе" },
+          { "id": "sweet", "emoji": "🍬", "label": "Сладкий напиток" }
         ]
       },
       "tasks": [
@@ -195,25 +132,15 @@
           "configByChoice": {
             "strong": {
               "question": "Как сказать «я предпочитаю крепкий кофе»?",
-              "options": [
-                "I like strong.",
-                "I prefer strong coffee.",
-                "Strong for me.",
-                "Coffee strong."
-              ],
+              "options": ["I like strong.", "I prefer strong coffee.", "Strong for me.", "Coffee strong."],
               "correctIndex": 1,
-              "tip": "\"I prefer...\" — стандартная конструкция."
+              "tip": "Strong coffee — крепкий кофе. Mild — мягкий (о вкусе). Глагол prefer (предпочитать) указывает на личный выбор."
             },
             "sweet": {
               "question": "Как сказать «я предпочитаю сладкий напиток»?",
-              "options": [
-                "I like strong.",
-                "I prefer strong coffee.",
-                "Strong for me.",
-                "Coffee strong."
-              ],
+              "options": ["I like strong.", "I prefer sweet drink.", "Sweet for me.", "Drink sweet."],
               "correctIndex": 1,
-              "tip": "\"I prefer...\" — стандартная конструкция."
+              "tip": "Sweet drink — сладкий напиток. Глагол prefer (предпочитать) показывает вкусовые предпочтения. Sweet — сладкий."
             }
           }
         }
@@ -234,13 +161,9 @@
         {
           "type": "word-order",
           "config": {
-            "hint": "Составьте: \"that sounds good\"",
-            "correctOrder": [
-              "that",
-              "sounds",
-              "good"
-            ],
-            "tip": "\"That sounds good\" — отличная форма согласия."
+            "hint": "Составьте: \"звучит неплохо\"",
+            "correctOrder": ["that", "sounds", "good"],
+            "tip": "Конструкция That sounds good — звучит хорошо. Используется для выражения согласия с предложением. Глагол sound (звучать) описывает впечатление."
           }
         }
       ],
@@ -258,14 +181,9 @@
           "type": "translation",
           "config": {
             "sourceText": "Звучит хорошо!",
-            "options": [
-              "Good sound.",
-              "That sounds good!",
-              "It is good.",
-              "Nice noise."
-            ],
+            "options": ["Good sound.", "That sounds good!", "It is good.", "Nice noise."],
             "correctIndex": 1,
-            "tip": "\"That sounds...\" — конструкция для согласия."
+            "tip": "That sounds good! — Звучит хорошо! Глагол sound (звучать) + прилагательное good. Smooth — мягкий, нежный (о вкусе)."
           }
         }
       ],
@@ -282,16 +200,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "creamy",
-            "emoji": "🥛",
-            "label": "Creamy"
-          },
-          {
-            "id": "fruity",
-            "emoji": "🍑",
-            "label": "Fruity"
-          }
+          { "id": "creamy", "emoji": "🥛", "label": "Сливочный" },
+          { "id": "fruity", "emoji": "🍑", "label": "Фруктовый" }
         ]
       },
       "tasks": [
@@ -300,25 +210,15 @@
           "configByChoice": {
             "creamy": {
               "sourceText": "Я бы хотел что-то сливочное.",
-              "options": [
-                "I like cream.",
-                "I'd like something creamy.",
-                "Creamy drink.",
-                "With cream."
-              ],
+              "options": ["I like cream.", "I'd like something creamy.", "Creamy drink.", "With cream."],
               "correctIndex": 1,
-              "tip": "\"I'd like something...\" — вежливая форма."
+              "tip": "Конструкция I'd like something + прилагательное — я бы хотел что-то... Creamy — сливочный (напоминает сливки)."
             },
             "fruity": {
               "sourceText": "Я бы хотел что-то фруктовое.",
-              "options": [
-                "I like cream.",
-                "I'd like something creamy.",
-                "Creamy drink.",
-                "With cream."
-              ],
+              "options": ["I like fruit.", "I'd like something fruity.", "Fruity drink.", "With fruit."],
               "correctIndex": 1,
-              "tip": "\"I'd like something...\" — вежливая форма."
+              "tip": "Конструкция I'd like something + прилагательное — я бы хотел что-то... Fruity — фруктовый (содержит вкус фруктов)."
             }
           }
         }
@@ -329,7 +229,7 @@
       }
     },
     "step-1-help-creamy": {
-      "title": "Iced Vanilla Latte",
+      "title": "Айс Ван Латте",
       "emoji": "🧊",
       "npc": {
         "text": "Our iced vanilla latte is super creamy! Want to try?",
@@ -340,21 +240,16 @@
           "type": "multiple-choice",
           "config": {
             "question": "Как вежливо согласиться?",
-            "options": [
-              "Yes.",
-              "Yes, please!",
-              "I want.",
-              "Good."
-            ],
+            "options": ["Yes.", "Yes, please!", "I want.", "Good."],
             "correctIndex": 1,
-            "tip": "\"Yes, please!\" — вежливое согласие."
+            "tip": "Yes, please! — Да, пожалуйста! В английском языке вежливость выражается добавлением please при согласии или просьбе."
           }
         }
       ],
       "next": "step-1-help-confirm"
     },
     "step-1-help-fruity": {
-      "title": "Iced Peach Tea",
+      "title": "Айс Персиковый чай",
       "emoji": "🍑",
       "npc": {
         "text": "We have amazing iced peach tea! Very refreshing!",
@@ -366,23 +261,12 @@
           "config": {
             "title": "Соедините пары:",
             "pairs": [
-              {
-                "en": "refreshing",
-                "ru": "освежающий"
-              },
-              {
-                "en": "fruity",
-                "ru": "фруктовый"
-              },
-              {
-                "en": "peach",
-                "ru": "персик"
-              },
-              {
-                "en": "iced",
-                "ru": "холодный"
-              }
-            ]
+              { "en": "refreshing", "ru": "освежающий" },
+              { "en": "fruity", "ru": "фруктовый" },
+              { "en": "peach", "ru": "персик" },
+              { "en": "iced", "ru": "со льдом" }
+            ],
+            "tip": "Iced означает напиток со льдом (в отличие от cold — просто холодный). В кофейнях и кафе используют именно iced для холодных версий напитков."
           }
         }
       ],
@@ -400,19 +284,9 @@
           "type": "fill-blank",
           "config": {
             "sentence": "I'll try the ___ , please.",
-            "options": [
-              "espresso",
-              "caramel latte",
-              "iced vanilla latte",
-              "peach tea"
-            ],
-            "correctAnswer": [
-              "espresso",
-              "caramel latte",
-              "iced vanilla latte",
-              "peach tea"
-            ],
-            "tip": "\"I'll try...\" — я попробую."
+            "options": ["espresso", "caramel latte", "iced vanilla latte", "peach tea"],
+            "correctAnswer": ["espresso", "caramel latte", "iced vanilla latte", "peach tea"],
+            "tip": "Конструкция I'll try + the + напиток — я попробую... I'll — сокращение от I will (будущее время). Определённый артикль the указывает на конкретный напиток."
           }
         }
       ],
@@ -429,21 +303,9 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ТИП КОФЕ:",
         "options": [
-          {
-            "id": "espresso",
-            "emoji": "☕",
-            "label": "Espresso"
-          },
-          {
-            "id": "cappuccino",
-            "emoji": "☕",
-            "label": "Cappuccino"
-          },
-          {
-            "id": "latte",
-            "emoji": "☕",
-            "label": "Latte"
-          }
+          { "id": "espresso", "emoji": "☕", "label": "Эспрессо" },
+          { "id": "cappuccino", "emoji": "☕", "label": "Капучино" },
+          { "id": "latte", "emoji": "☕", "label": "Латте" }
         ]
       },
       "tasks": [
@@ -451,37 +313,19 @@
           "type": "word-order",
           "configByChoice": {
             "espresso": {
-              "hint": "Составьте: \"I'll have a espresso, please\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "a",
-                "espresso",
-                "please"
-              ],
-              "tip": "\"I'll have...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму эспрессо, пожалуйста\"",
+              "correctOrder": ["I'll", "have", "a", "espresso", "please"],
+              "tip": "Стандартная фраза заказа в кафе: I'll have a... + напиток, please — Я возьму..., пожалуйста. I'll = I will (будущее время)."
             },
             "cappuccino": {
-              "hint": "Составьте: \"I'll have a cappuccino, please\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "a",
-                "cappuccino",
-                "please"
-              ],
-              "tip": "\"I'll have...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму капучино, пожалуйста\"",
+              "correctOrder": ["I'll", "have", "a", "cappuccino", "please"],
+              "tip": "Стандартная фраза заказа в кафе: I'll have a... + напиток, please — Я возьму..., пожалуйста. I'll = I will (будущее время)."
             },
             "latte": {
-              "hint": "Составьте: \"I'll have a latte, please\"",
-              "correctOrder": [
-                "I'll",
-                "have",
-                "a",
-                "latte",
-                "please"
-              ],
-              "tip": "\"I'll have...\" — стандартная форма заказа."
+              "hint": "Составьте: \"Я возьму латте, пожалуйста\"",
+              "correctOrder": ["I'll", "have", "a", "latte", "please"],
+              "tip": "Стандартная фраза заказа в кафе: I'll have a... + напиток, please — Я возьму..., пожалуйста. I'll = I will (будущее время)."
             }
           }
         }
@@ -499,21 +343,9 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ТИП ЧАЯ:",
         "options": [
-          {
-            "id": "black tea",
-            "emoji": "🍵",
-            "label": "Black tea"
-          },
-          {
-            "id": "green tea",
-            "emoji": "🍵",
-            "label": "Green tea"
-          },
-          {
-            "id": "herbal tea",
-            "emoji": "🌿",
-            "label": "Herbal tea"
-          }
+          { "id": "black tea", "emoji": "🍵", "label": "Чёрный чай" },
+          { "id": "green tea", "emoji": "🍵", "label": "Зелёный чай" },
+          { "id": "herbal tea", "emoji": "🌿", "label": "Травяной чай" }
         ]
       },
       "tasks": [
@@ -522,36 +354,21 @@
           "configByChoice": {
             "black tea": {
               "sourceText": "Я бы хотел чёрный чай, пожалуйста.",
-              "options": [
-                "I want black tea please.",
-                "I'd like black tea, please.",
-                "Give me black tea.",
-                "black tea for me."
-              ],
+              "options": ["I want black tea please.", "I'd like black tea, please.", "Give me black tea.", "black tea for me."],
               "correctIndex": 1,
-              "tip": "\"I'd like..., please.\" — самая вежливая форма."
+              "tip": "I'd like... — Я бы хотел... (более вежливо, чем I want). Black tea — чёрный чай (полностью ферментированный)."
             },
             "green tea": {
               "sourceText": "Я бы хотел зелёный чай, пожалуйста.",
-              "options": [
-                "I want green tea please.",
-                "I'd like green tea, please.",
-                "Give me green tea.",
-                "green tea for me."
-              ],
+              "options": ["I want green tea please.", "I'd like green tea, please.", "Give me green tea.", "green tea for me."],
               "correctIndex": 1,
-              "tip": "\"I'd like..., please.\" — самая вежливая форма."
+              "tip": "I'd like... — Я бы хотел... Green tea — зелёный чай (неферментированный)."
             },
             "herbal tea": {
               "sourceText": "Я бы хотел травяной чай, пожалуйста.",
-              "options": [
-                "I want herbal tea please.",
-                "I'd like herbal tea, please.",
-                "Give me herbal tea.",
-                "herbal tea for me."
-              ],
+              "options": ["I want herbal tea please.", "I'd like herbal tea, please.", "Give me herbal tea.", "herbal tea for me."],
               "correctIndex": 1,
-              "tip": "\"I'd like..., please.\" — самая вежливая форма."
+              "tip": "I'd like... — Я бы хотел... Herbal tea — травяной чай (не содержит чайного листа, только травы)."
             }
           }
         }
@@ -569,16 +386,8 @@
       "choices": {
         "label": "ВЫБЕРИТЕ ДОБАВКУ:",
         "options": [
-          {
-            "id": "marshmallows",
-            "emoji": "🍬",
-            "label": "Marshmallows"
-          },
-          {
-            "id": "whipped cream",
-            "emoji": "🍦",
-            "label": "Whipped cream"
-          }
+          { "id": "marshmallows", "emoji": "🍬", "label": "Маршмеллоу" },
+          { "id": "whipped cream", "emoji": "🍦", "label": "Взбитые сливки" }
         ]
       },
       "tasks": [
@@ -587,25 +396,15 @@
           "configByChoice": {
             "marshmallows": {
               "sentence": "With ___ , please.",
-              "options": [
-                "marshmallows",
-                "whipped cream",
-                "sugar",
-                "ice"
-              ],
+              "options": ["marshmallows", "whipped cream", "sugar", "ice"],
               "correctAnswer": "marshmallows",
-              "tip": "\"marshmallows\" — маршмеллоу, \"whipped cream\" — взбитые сливки."
+              "tip": "Marshmallows — мягкие сладкие зефирки. Whipped cream — взбитые сливки (cream — сливки, whipped — взбитые)."
             },
             "whipped cream": {
               "sentence": "With ___ , please.",
-              "options": [
-                "marshmallows",
-                "whipped cream",
-                "sugar",
-                "ice"
-              ],
+              "options": ["marshmallows", "whipped cream", "sugar", "ice"],
               "correctAnswer": "whipped cream",
-              "tip": "\"marshmallows\" — маршмеллоу, \"whipped cream\" — взбитые сливки."
+              "tip": "Whipped cream — взбитые сливки. Marshmallows — маршмеллоу (зефирки)."
             }
           }
         }
@@ -623,26 +422,10 @@
       "choices": {
         "label": "ВЫБЕРИТЕ РАЗМЕР:",
         "options": [
-          {
-            "id": "small",
-            "emoji": "📏",
-            "label": "Small"
-          },
-          {
-            "id": "medium",
-            "emoji": "📏",
-            "label": "Medium"
-          },
-          {
-            "id": "large",
-            "emoji": "📏",
-            "label": "Large"
-          },
-          {
-            "id": "offer",
-            "emoji": "🎁",
-            "label": "Tell me about offer"
-          }
+          { "id": "small", "emoji": "📏", "label": "Маленький" },
+          { "id": "medium", "emoji": "📏", "label": "Средний" },
+          { "id": "large", "emoji": "📏", "label": "Большой" },
+          { "id": "offer", "emoji": "🎁", "label": "Расскажите об акции" }
         ]
       },
       "tasks": [
@@ -650,48 +433,28 @@
           "type": "multiple-choice",
           "configByChoice": {
             "small": {
-              "question": "Вы выбрали small. Как правильно заказать?",
-              "options": [
-                "Big one.",
-                "Normal, please.",
-                "Small size, please.",
-                "I want drink."
-              ],
+              "question": "Вы выбрали маленький. Как правильно заказать?",
+              "options": ["Big one.", "Normal, please.", "Small size, please.", "I want drink."],
               "correctIndex": 2,
-              "tip": "В кофейнях используют: Small, Medium, Large."
+              "tip": "Small size — маленький размер. Medium — средний. Large — большой. Size — размер. В английском порядок слов: прилагательное + size + please."
             },
             "medium": {
-              "question": "Вы выбрали medium. Как правильно заказать?",
-              "options": [
-                "Big one.",
-                "Normal, please.",
-                "Medium size, please.",
-                "I want drink."
-              ],
+              "question": "Вы выбрали средний. Как правильно заказать?",
+              "options": ["Big one.", "Normal, please.", "Medium size, please.", "I want drink."],
               "correctIndex": 2,
-              "tip": "В кофейнях используют: Small, Medium, Large."
+              "tip": "Medium size — средний размер. Small — маленький. Large — большой. В английском размер указывается перед существительным size."
             },
             "large": {
-              "question": "Вы выбрали large. Как правильно заказать?",
-              "options": [
-                "Big one.",
-                "Normal, please.",
-                "Large size, please.",
-                "I want drink."
-              ],
+              "question": "Вы выбрали большой. Как правильно заказать?",
+              "options": ["Big one.", "Normal, please.", "Large size, please.", "I want drink."],
               "correctIndex": 2,
-              "tip": "В кофейнях используют: Small, Medium, Large."
+              "tip": "Large size — большой размер. Заказывая large, можно получить бесплатное печенье (cookie)."
             },
             "offer": {
               "question": "Как спросить про акцию?",
-              "options": [
-                "What offer?",
-                "Could you tell me more about the offer?",
-                "Offer me.",
-                "Free cookie?"
-              ],
+              "options": ["What offer?", "Could you tell me more about the offer?", "Offer me.", "Free cookie?"],
               "correctIndex": 1,
-              "tip": "\"Could you tell me more about...?\" — вежливый вопрос."
+              "tip": "Could you tell me more about...? — Не могли бы вы рассказать подробнее о...? Конструкция с could делает вопрос более вежливым."
             }
           }
         }
@@ -714,21 +477,9 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "large-choc",
-            "emoji": "🍪",
-            "label": "Large + Chocolate cookie"
-          },
-          {
-            "id": "large-oat",
-            "emoji": "🍪",
-            "label": "Large + Oatmeal cookie"
-          },
-          {
-            "id": "no-thanks",
-            "emoji": "❌",
-            "label": "No thanks, medium"
-          }
+          { "id": "large-choc", "emoji": "🍪", "label": "Большой + Шоколадное печенье" },
+          { "id": "large-oat", "emoji": "🍪", "label": "Большой + Овсяное печенье" },
+          { "id": "no-thanks", "emoji": "❌", "label": "Нет спасибо, средний" }
         ]
       },
       "tasks": [
@@ -737,33 +488,21 @@
           "configByChoice": {
             "large-choc": {
               "sentence": "I'll take ___ with the cookie, please.",
-              "options": [
-                "small",
-                "medium",
-                "large"
-              ],
+              "options": ["small", "medium", "large"],
               "correctAnswer": "large",
-              "tip": "Акция действует только для large!"
+              "tip": "Акция действует только при заказе large (большого размера). Chocolate chip cookie — печенье с кусочками шоколада. Oatmeal cookie — овсяное печенье."
             },
             "large-oat": {
               "sentence": "I'll take ___ with the cookie, please.",
-              "options": [
-                "small",
-                "medium",
-                "large"
-              ],
+              "options": ["small", "medium", "large"],
               "correctAnswer": "large",
-              "tip": "Акция действует только для large!"
+              "tip": "Акция действует только при заказе large (большого размера). Oatmeal cookie — овсяное печенье. Chocolate chip — с шоколадной крошкой."
             },
             "no-thanks": {
               "sentence": "I'll take a ___ size, please.",
-              "options": [
-                "small",
-                "medium",
-                "large"
-              ],
+              "options": ["small", "medium", "large"],
               "correctAnswer": "medium",
-              "tip": "Вы отказались от акции и выбрали medium."
+              "tip": "No, thanks — вежливый отказ. I'll take a medium size — я возьму средний размер."
             }
           }
         }
@@ -781,16 +520,8 @@
       "choices": {
         "label": "ТЕМПЕРАТУРА:",
         "options": [
-          {
-            "id": "hot",
-            "emoji": "🔥",
-            "label": "Hot"
-          },
-          {
-            "id": "iced",
-            "emoji": "🧊",
-            "label": "Iced"
-          }
+          { "id": "hot", "emoji": "🔥", "label": "Горячий" },
+          { "id": "iced", "emoji": "🧊", "label": "Со льдом" }
         ]
       },
       "tasks": [
@@ -799,25 +530,15 @@
           "configByChoice": {
             "hot": {
               "sentence": "I'd like it ___ , please.",
-              "options": [
-                "hot",
-                "iced",
-                "cold",
-                "warm"
-              ],
+              "options": ["hot", "iced", "cold", "warm"],
               "correctAnswer": "hot",
-              "tip": "\"Hot\" — горячий."
+              "tip": "В кофейнях для обозначения температуры напитка используют hot (горячий) и iced (со льдом). Iced — специальный термин, не путайте с cold (просто холодный)."
             },
             "iced": {
               "sentence": "I'd like it ___ , please.",
-              "options": [
-                "hot",
-                "iced",
-                "cold",
-                "warm"
-              ],
+              "options": ["hot", "iced", "cold", "warm"],
               "correctAnswer": "iced",
-              "tip": "\"Iced\" — со льдом (не \"cold\")."
+              "tip": "В кофейнях для обозначения холодных напитков используют iced (со льдом), а не cold. Например: iced coffee, iced latte."
             }
           }
         }
@@ -835,21 +556,9 @@
       "choices": {
         "label": "САХАР:",
         "options": [
-          {
-            "id": "no",
-            "emoji": "🚫",
-            "label": "No sugar"
-          },
-          {
-            "id": "one",
-            "emoji": "1️⃣",
-            "label": "One sugar"
-          },
-          {
-            "id": "two",
-            "emoji": "2️⃣",
-            "label": "Two sugars"
-          }
+          { "id": "no", "emoji": "🚫", "label": "Без сахара" },
+          { "id": "one", "emoji": "1️⃣", "label": "Один сахар" },
+          { "id": "two", "emoji": "2️⃣", "label": "Два сахара" }
         ]
       },
       "tasks": [
@@ -857,31 +566,19 @@
           "type": "word-order",
           "configByChoice": {
             "no": {
-              "hint": "Составьте фразу для \"no sugar\"",
-              "correctOrder": [
-                "no",
-                "sugar",
-                "thanks"
-              ],
-              "tip": "\"No sugar\" — без артикля. \"Two sugars\" — множественное число."
+              "hint": "Составьте фразу для \"без сахара\"",
+              "correctOrder": ["no", "sugar", "thanks"],
+              "tip": "Sugar — неисчисляемое существительное, но в контексте кофеен можно сказать one sugar (один кусочек/ложка). No sugar — без сахара, two sugars — два сахара (множественное число)."
             },
             "one": {
-              "hint": "Составьте фразу для \"one sugar\"",
-              "correctOrder": [
-                "one",
-                "sugar",
-                "please"
-              ],
-              "tip": "\"No sugar\" — без артикля. \"Two sugars\" — множественное число."
+              "hint": "Составьте фразу для \"один сахар\"",
+              "correctOrder": ["one", "sugar", "please"],
+              "tip": "Sugar — неисчисляемое существительное, но в контексте кофеен можно сказать one sugar (один кусочек/ложка). No sugar — без сахара, two sugars — два сахара (множественное число)."
             },
             "two": {
-              "hint": "Составьте фразу для \"two sugar\"",
-              "correctOrder": [
-                "two",
-                "sugars",
-                "please"
-              ],
-              "tip": "\"No sugar\" — без артикля. \"Two sugars\" — множественное число."
+              "hint": "Составьте фразу для \"два сахара\"",
+              "correctOrder": ["two", "sugars", "please"],
+              "tip": "Sugar — неисчисляемое существительное, но в контексте кофеен можно сказать one sugar (один кусочек/ложка). No sugar — без сахара, two sugars — два сахара (множественное число)."
             }
           }
         }
@@ -899,31 +596,11 @@
       "choices": {
         "label": "ВЫБЕРИТЕ МОЛОКО:",
         "options": [
-          {
-            "id": "whole",
-            "emoji": "🥛",
-            "label": "Whole milk"
-          },
-          {
-            "id": "skim",
-            "emoji": "🥛",
-            "label": "Skim milk"
-          },
-          {
-            "id": "oat",
-            "emoji": "🌾",
-            "label": "Oat milk"
-          },
-          {
-            "id": "almond",
-            "emoji": "🥜",
-            "label": "Almond milk"
-          },
-          {
-            "id": "no",
-            "emoji": "🚫",
-            "label": "No milk"
-          }
+          { "id": "whole", "emoji": "🥛", "label": "Цельное" },
+          { "id": "skim", "emoji": "🥛", "label": "Обезжиренное" },
+          { "id": "oat", "emoji": "🌾", "label": "Овсяное" },
+          { "id": "almond", "emoji": "🥜", "label": "Миндальное" },
+          { "id": "no", "emoji": "🚫", "label": "Без молока" }
         ]
       },
       "tasks": [
@@ -932,58 +609,33 @@
           "configByChoice": {
             "whole": {
               "sourceText": "Цельное молоко, пожалуйста.",
-              "options": [
-                "Whole milk.",
-                "Whole milk, please.",
-                "I like whole.",
-                "With whole milk me."
-              ],
+              "options": ["Whole milk.", "Whole milk, please.", "I like whole.", "With whole milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Виды молока: whole milk — цельное (3.25% жирности), skim milk — обезжиренное (0%), oat milk — овсяное, almond milk — миндальное."
             },
             "skim": {
               "sourceText": "Обезжиренное молоко, пожалуйста.",
-              "options": [
-                "Skim milk.",
-                "Skim milk, please.",
-                "I like skim.",
-                "With skim milk me."
-              ],
+              "options": ["Skim milk.", "Skim milk, please.", "I like skim.", "With skim milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Виды молока: whole milk — цельное, skim milk — обезжиренное (также non-fat milk), oat milk — овсяное, almond milk — миндальное."
             },
             "oat": {
               "sourceText": "Овсяное молоко, пожалуйста.",
-              "options": [
-                "Oat milk.",
-                "Oat milk, please.",
-                "I like oat.",
-                "With oat milk me."
-              ],
+              "options": ["Oat milk.", "Oat milk, please.", "I like oat.", "With oat milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Виды молока: oat milk — овсяное (растительная альтернатива), almond milk — миндальное, whole milk — цельное, skim milk — обезжиренное."
             },
             "almond": {
               "sourceText": "Миндальное молоко, пожалуйста.",
-              "options": [
-                "Almond milk.",
-                "Almond milk, please.",
-                "I like almond.",
-                "With almond milk me."
-              ],
+              "options": ["Almond milk.", "Almond milk, please.", "I like almond.", "With almond milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "Виды молока: almond milk — миндальное, oat milk — овсяное, whole milk — цельное, skim milk — обезжиренное."
             },
             "no": {
               "sourceText": "Без молока, пожалуйста.",
-              "options": [
-                "No milk.",
-                "No milk, please.",
-                "I like no.",
-                "With no milk me."
-              ],
+              "options": ["No milk.", "No milk, please.", "I like no.", "With no milk me."],
               "correctIndex": 1,
-              "tip": "\"oat milk\" — овсяное, \"almond milk\" — миндальное."
+              "tip": "No milk — без молока. Например, чёрный кофе (black coffee) или чёрный чай."
             }
           }
         }
@@ -999,39 +651,16 @@
           "config": {
             "title": "Соедините пары:",
             "pairs": [
-              {
-                "en": "strong",
-                "ru": "крепкий"
-              },
-              {
-                "en": "mild",
-                "ru": "мягкий"
-              },
-              {
-                "en": "sweet",
-                "ru": "сладкий"
-              },
-              {
-                "en": "bitter",
-                "ru": "горький"
-              },
-              {
-                "en": "espresso",
-                "ru": "эспрессо"
-              },
-              {
-                "en": "cappuccino",
-                "ru": "капучино"
-              },
-              {
-                "en": "latte",
-                "ru": "латте"
-              },
-              {
-                "en": "iced",
-                "ru": "со льдом"
-              }
-            ]
+              { "en": "strong", "ru": "крепкий" },
+              { "en": "mild", "ru": "мягкий" },
+              { "en": "sweet", "ru": "сладкий" },
+              { "en": "bitter", "ru": "горький" },
+              { "en": "espresso", "ru": "эспрессо" },
+              { "en": "cappuccino", "ru": "капучино" },
+              { "en": "latte", "ru": "латте" },
+              { "en": "iced", "ru": "со льдом" }
+            ],
+            "tip": "Основные вкусовые характеристики кофе: strong (крепкий), mild (мягкий), sweet (сладкий), bitter (горький). Популярные кофейные напитки: espresso (эспрессо), cappuccino (капучино), latte (латте). Iced — со льдом."
           }
         }
       ],
@@ -1048,21 +677,9 @@
       "choices": {
         "label": "СПОСОБ ОПЛАТЫ:",
         "options": [
-          {
-            "id": "card",
-            "emoji": "💳",
-            "label": "Card"
-          },
-          {
-            "id": "cash",
-            "emoji": "💵",
-            "label": "Cash"
-          },
-          {
-            "id": "problem",
-            "emoji": "⚠️",
-            "label": "Problem with card"
-          }
+          { "id": "card", "emoji": "💳", "label": "Картой" },
+          { "id": "cash", "emoji": "💵", "label": "Наличными" },
+          { "id": "problem", "emoji": "⚠️", "label": "Проблема с картой" }
         ]
       },
       "tasks": [
@@ -1071,36 +688,21 @@
           "configByChoice": {
             "card": {
               "question": "Как правильно сказать «картой»?",
-              "options": [
-                "I pay with card.",
-                "By card, please.",
-                "Card me.",
-                "Yes, card."
-              ],
+              "options": ["I pay with card.", "By card, please.", "Card me.", "Yes, card."],
               "correctIndex": 1,
-              "tip": "\"By card, please.\" — стандартная конструкция."
+              "tip": "By card, please — картой, пожалуйста. By указывает на способ оплаты. Карта — credit card или debit card."
             },
             "cash": {
               "question": "Как сказать «наличными»?",
-              "options": [
-                "Money please.",
-                "Cash, please.",
-                "I pay money.",
-                "With money."
-              ],
+              "options": ["Money please.", "Cash, please.", "I pay money.", "With money."],
               "correctIndex": 1,
-              "tip": "\"Cash, please.\" — кратко и вежливо."
+              "tip": "Cash, please — наличными, пожалуйста. Cash — наличные деньги. That'll be... — с вас... (стандартная фраза кассира при объявлении суммы)."
             },
             "problem": {
               "question": "Как сказать о проблеме с картой?",
-              "options": [
-                "Card broken.",
-                "I'm having trouble with my card.",
-                "Card no work.",
-                "Problem card."
-              ],
+              "options": ["Card broken.", "I'm having trouble with my card.", "Card no work.", "Problem card."],
               "correctIndex": 1,
-              "tip": "\"I'm having trouble with...\" — у меня проблема с..."
+              "tip": "I'm having trouble with my card — у меня проблемы с картой. Конструкция have trouble with something используется для описания проблем."
             }
           }
         }
@@ -1122,26 +724,10 @@
       "choices": {
         "label": "ВЫБЕРИТЕ:",
         "options": [
-          {
-            "id": "apple",
-            "emoji": "🍎",
-            "label": "Apple Pay"
-          },
-          {
-            "id": "google",
-            "emoji": "📱",
-            "label": "Google Pay"
-          },
-          {
-            "id": "cash",
-            "emoji": "💵",
-            "label": "Cash"
-          },
-          {
-            "id": "atm",
-            "emoji": "🏧",
-            "label": "ATM nearby?"
-          }
+          { "id": "apple", "emoji": "🍎", "label": "Apple Pay" },
+          { "id": "google", "emoji": "📱", "label": "Google Pay" },
+          { "id": "cash", "emoji": "💵", "label": "Наличные" },
+          { "id": "atm", "emoji": "🏧", "label": "Банкомат рядом?" }
         ]
       },
       "tasks": [
@@ -1149,46 +735,24 @@
           "type": "word-order",
           "configByChoice": {
             "apple": {
-              "hint": "Составьте: \"I'll pay with Apple Pay\"",
-              "correctOrder": [
-                "I'll",
-                "pay",
-                "with",
-                "Apple Pay"
-              ],
-              "tip": "\"I'll pay with...\" — я оплачу через..."
+              "hint": "Составьте: \"Я оплачу Apple Pay\"",
+              "correctOrder": ["I'll", "pay", "with", "Apple Pay"],
+              "tip": "Конструкция I'll pay with... + способ оплаты — я оплачу с помощью... Apple Pay — платёжная система от Apple."
             },
             "google": {
-              "hint": "Составьте: \"I'll pay with Google Pay\"",
-              "correctOrder": [
-                "I'll",
-                "pay",
-                "with",
-                "Google Pay"
-              ],
-              "tip": "\"I'll pay with...\" — я оплачу через..."
+              "hint": "Составьте: \"Я оплачу Google Pay\"",
+              "correctOrder": ["I'll", "pay", "with", "Google Pay"],
+              "tip": "Конструкция I'll pay with... + способ оплаты — я оплачу с помощью... Google Pay — платёжная система от Google."
             },
             "cash": {
-              "hint": "Составьте: \"I'll pay with cash\"",
-              "correctOrder": [
-                "I'll",
-                "pay",
-                "with",
-                "cash"
-              ],
-              "tip": "\"I'll pay with...\" — я оплачу через..."
+              "hint": "Составьте: \"Я оплачу наличными\"",
+              "correctOrder": ["I'll", "pay", "with", "cash"],
+              "tip": "Конструкция I'll pay with... + способ оплаты — я оплачу с помощью... Cash — наличные деньги."
             },
             "atm": {
-              "hint": "Составьте: \"Is there an ATM nearby?\"",
-              "correctOrder": [
-                "Is",
-                "there",
-                "an",
-                "ATM",
-                "nearby",
-                "?"
-              ],
-              "tip": "\"nearby\" — поблизости."
+              "hint": "Составьте: \"Здесь есть банкомат поблизости?\"",
+              "correctOrder": ["Is", "there", "an", "ATM", "nearby", "?"],
+              "tip": "Оборот there is/are используется для указания на существование предмета. ATM — банкомат (Automatic Teller Machine). Nearby — поблизости, рядом."
             }
           }
         }
@@ -1213,27 +777,13 @@
           "config": {
             "title": "Финансовая лексика:",
             "pairs": [
-              {
-                "en": "card",
-                "ru": "карта"
-              },
-              {
-                "en": "cash",
-                "ru": "наличные"
-              },
-              {
-                "en": "ATM",
-                "ru": "банкомат"
-              },
-              {
-                "en": "pay",
-                "ru": "платить"
-              },
-              {
-                "en": "accept",
-                "ru": "принимать"
-              }
-            ]
+              { "en": "card", "ru": "карта" },
+              { "en": "cash", "ru": "наличные" },
+              { "en": "ATM", "ru": "банкомат" },
+              { "en": "pay", "ru": "платить" },
+              { "en": "accept", "ru": "принимать" }
+            ],
+            "tip": "Финансовые термины: card — карта, cash — наличные, ATM — банкомат. Pay — платить, accept — принимать (какой способ оплаты)."
           }
         }
       ],
@@ -1253,31 +803,14 @@
           "config": {
             "title": "Финальные пары:",
             "pairs": [
-              {
-                "en": "please",
-                "ru": "пожалуйста"
-              },
-              {
-                "en": "thank you",
-                "ru": "спасибо"
-              },
-              {
-                "en": "you too",
-                "ru": "и тебе тоже"
-              },
-              {
-                "en": "have a great day",
-                "ru": "хорошего дня"
-              },
-              {
-                "en": "order",
-                "ru": "заказ"
-              },
-              {
-                "en": "ready",
-                "ru": "готов"
-              }
-            ]
+              { "en": "please", "ru": "пожалуйста" },
+              { "en": "thank you", "ru": "спасибо" },
+              { "en": "you too", "ru": "и тебе тоже" },
+              { "en": "have a great day", "ru": "хорошего дня" },
+              { "en": "order", "ru": "заказ" },
+              { "en": "ready", "ru": "готов" }
+            ],
+            "tip": "Thank you — спасибо. You too — и вам тоже (вежливый ответ на пожелание). Have a great day — хорошего дня. Order — заказ, ready — готов."
           }
         }
       ],

@@ -1,8 +1,8 @@
 {
   "id": "pharmacy",
-  "title": "PHARMACY",
+  "title": "Аптека",
   "emoji": "💊",
-  "description": "Зайди в аптеку и попроси нужное лекарство — практикуй медицинскую лексику.",
+  "description": "Зайдите в аптеку и попросите нужное лекарство — практикуйте медицинскую лексику.",
   "free": false,
   "startStepId": "step-1",
   "completionMessage": "Вы успешно купили всё необходимое в аптеке!",
@@ -26,9 +26,9 @@
       "choices": {
         "label": "ЧТО ВАМ НУЖНО:",
         "options": [
-          { "id": "medicine", "emoji": "💊", "label": "Medicine" },
-          { "id": "prescription", "emoji": "📋", "label": "Fill a prescription" },
-          { "id": "advice", "emoji": "❓", "label": "Need advice" }
+          { "id": "medicine", "emoji": "💊", "label": "Лекарство" },
+          { "id": "prescription", "emoji": "📋", "label": "По рецепту" },
+          { "id": "advice", "emoji": "❓", "label": "Нужен совет" }
         ]
       },
       "tasks": [
@@ -39,19 +39,19 @@
               "sentence": "I need something for a ___ .",
               "options": ["headache", "medicine", "pharmacy", "tablet"],
               "correctAnswer": "headache",
-              "tip": "\"something for...\" — что-нибудь от..."
+              "tip": "I need something for a headache — мне нужно что-то от головной боли. Конструкция something for + проблема."
             },
             "prescription": {
               "sentence": "I'd like to ___ this prescription.",
               "options": ["fill", "take", "have", "get"],
               "correctAnswer": "fill",
-              "tip": "\"fill a prescription\" — выполнить рецепт."
+              "tip": "Fill a prescription — выполнить рецепт (приготовить лекарство по рецепту). I'd like to fill this prescription — я хотел бы получить лекарство по этому рецепту."
             },
             "advice": {
               "sentence": "Could you ___ me what to take?",
               "options": ["tell", "give", "help", "show"],
               "correctAnswer": "tell",
-              "tip": "\"Could you tell me...?\" — вежливая просьба."
+              "tip": "Could you tell me what to take? — Не могли бы вы сказать мне, что принять? Конструкция what to take — что принимать (инфинитив)."
             }
           }
         }
@@ -73,9 +73,9 @@
       "choices": {
         "label": "СИМПТОМЫ:",
         "options": [
-          { "id": "cold", "emoji": "🤧", "label": "Cold & runny nose" },
-          { "id": "fever", "emoji": "🌡️", "label": "Fever" },
-          { "id": "pain", "emoji": "😣", "label": "Pain" }
+          { "id": "cold", "emoji": "🤧", "label": "Насморк" },
+          { "id": "fever", "emoji": "🌡️", "label": "Температура" },
+          { "id": "pain", "emoji": "😣", "label": "Боль" }
         ]
       },
       "tasks": [
@@ -86,19 +86,19 @@
               "question": "Как сказать «у меня насморк»?",
               "options": ["I have a runny nose.", "My nose runs.", "I have nose.", "Nose problem."],
               "correctIndex": 0,
-              "tip": "\"runny nose\" — насморк. \"sore throat\" — боль в горле."
+              "tip": "I have a runny nose — у меня насморк. Runny nose — буквально «текущий нос». Sore throat — боль в горле."
             },
             "fever": {
               "question": "Как сказать «у меня температура»?",
               "options": ["I have temperature.", "I have a fever.", "I am hot.", "Temperature me."],
               "correctIndex": 1,
-              "tip": "\"fever\" — жар, температура."
+              "tip": "I have a fever — у меня температура (жар). Fever — повышенная температура тела."
             },
             "pain": {
               "question": "Как сказать «у меня болит голова»?",
               "options": ["My head pain.", "I have a headache.", "Head hurts me.", "I headache."],
               "correctIndex": 1,
-              "tip": "\"headache\" — головная боль."
+              "tip": "I have a headache — у меня болит голова. Headache — головная боль (head + ache)."
             }
           }
         }
@@ -117,14 +117,9 @@
           "type": "translation",
           "config": {
             "sourceText": "Вот мой рецепт. Сколько это стоит?",
-            "options": [
-              "Here prescription. Cost?",
-              "Here is my prescription. How much will that be?",
-              "Give prescription. Price?",
-              "My prescription. How cost?"
-            ],
+            "options": ["Here prescription. Cost?", "Here is my prescription. How much will that be?", "Give prescription. Price?", "My prescription. How cost?"],
             "correctIndex": 1,
-            "tip": "\"How much will that be?\" — сколько это будет стоить?"
+            "tip": "Here is my prescription — вот мой рецепт. How much will that be? — Сколько это будет стоить?"
           }
         }
       ],
@@ -141,8 +136,8 @@
       "choices": {
         "label": "ПРОБЛЕМА:",
         "options": [
-          { "id": "sleep", "emoji": "😴", "label": "Can't sleep" },
-          { "id": "stress", "emoji": "😰", "label": "Stress" }
+          { "id": "sleep", "emoji": "😴", "label": "Проблемы со сном" },
+          { "id": "stress", "emoji": "😰", "label": "Стресс" }
         ]
       },
       "tasks": [
@@ -153,13 +148,13 @@
               "sentence": "I've been having trouble ___ lately.",
               "options": ["sleeping", "eating", "walking", "talking"],
               "correctAnswer": "sleeping",
-              "tip": "\"have trouble sleeping\" — испытывать трудности со сном."
+              "tip": "Have trouble sleeping — испытывать трудности со сном. Конструкция have trouble + глагол с -ing."
             },
             "stress": {
               "sentence": "I've been feeling very ___ at work.",
               "options": ["stressed", "happy", "sleepy", "tired"],
               "correctAnswer": "stressed",
-              "tip": "\"stressed\" — в стрессе."
+              "tip": "Stressed — в стрессе. I've been feeling very stressed — я чувствую себя очень напряжённым (Present Perfect Continuous)."
             }
           }
         }
@@ -177,9 +172,9 @@
       "choices": {
         "label": "ФОРМА:",
         "options": [
-          { "id": "tablets", "emoji": "💊", "label": "Tablets" },
-          { "id": "liquid", "emoji": "🧴", "label": "Liquid" },
-          { "id": "spray", "emoji": "💨", "label": "Spray" }
+          { "id": "tablets", "emoji": "💊", "label": "Таблетки" },
+          { "id": "liquid", "emoji": "🧴", "label": "Жидкая форма" },
+          { "id": "spray", "emoji": "💨", "label": "Спрей" }
         ]
       },
       "tasks": [
@@ -187,19 +182,19 @@
           "type": "word-order",
           "configByChoice": {
             "tablets": {
-              "hint": "Составьте: \"I prefer tablets, please\"",
+              "hint": "Составьте: \"Я предпочитаю таблетки, пожалуйста\"",
               "correctOrder": ["I", "prefer", "tablets", "please"],
-              "tip": "\"prefer\" — предпочитать."
+              "tip": "I prefer tablets — я предпочитаю таблетки. Prefer — предпочитать."
             },
             "liquid": {
-              "hint": "Составьте: \"Do you have it in liquid form?\"",
+              "hint": "Составьте: \"У вас есть это в жидкой форме?\"",
               "correctOrder": ["Do", "you", "have", "it", "in", "liquid", "form", "?"],
-              "tip": "\"in liquid form\" — в жидкой форме."
+              "tip": "In liquid form — в жидкой форме. Конструкция Do you have it in...? — У вас есть это в...?"
             },
             "spray": {
-              "hint": "Составьте: \"I'll take the spray\"",
+              "hint": "Составьте: \"Я возьму спрей\"",
               "correctOrder": ["I'll", "take", "the", "spray"],
-              "tip": "\"I'll take...\" — я возьму..."
+              "tip": "I'll take the spray — я возьму спрей. I'll take — стандартная форма выбора."
             }
           }
         }
@@ -225,7 +220,8 @@
               { "en": "side effect", "ru": "побочный эффект" },
               { "en": "with food", "ru": "с едой" },
               { "en": "three times a day", "ru": "три раза в день" }
-            ]
+            ],
+            "tip": "Dosage — дозировка, prescription — рецепт, tablet — таблетка, side effect — побочный эффект, with food — с едой, three times a day — три раза в день."
           }
         }
       ],
@@ -242,8 +238,8 @@
       "choices": {
         "label": "ОПЛАТА:",
         "options": [
-          { "id": "card", "emoji": "💳", "label": "Card" },
-          { "id": "cash", "emoji": "💵", "label": "Cash" }
+          { "id": "card", "emoji": "💳", "label": "Картой" },
+          { "id": "cash", "emoji": "💵", "label": "Наличными" }
         ]
       },
       "tasks": [
@@ -252,25 +248,15 @@
           "configByChoice": {
             "card": {
               "sourceText": "Можно оплатить картой?",
-              "options": [
-                "Card pay?",
-                "Can I pay by card?",
-                "I use card.",
-                "Card payment?"
-              ],
+              "options": ["Card pay?", "Can I pay by card?", "I use card.", "Card payment?"],
               "correctIndex": 1,
-              "tip": "\"Can I pay by...?\" — можно оплатить...?"
+              "tip": "Can I pay by card? — Могу ли я оплатить картой? Конструкция Can I + глагол (pay) + by + способ оплаты."
             },
             "cash": {
-              "sourceText": "Вот наличные. Сдача, пожалуйста.",
-              "options": [
-                "Money here. Change.",
-                "Here's the cash. Change please.",
-                "Cash. Give change.",
-                "I pay cash change."
-              ],
+              "sourceText": "Вот наличные. Сдачу, пожалуйста.",
+              "options": ["Money here. Change.", "Here's the cash. Change please.", "Cash. Give change.", "I pay cash change."],
               "correctIndex": 1,
-              "tip": "\"change\" — сдача."
+              "tip": "Here's the cash — вот наличные. Change — сдача. Change please — сдачу, пожалуйста."
             }
           }
         }
@@ -296,7 +282,8 @@
               { "en": "pharmacy", "ru": "аптека" },
               { "en": "pharmacist", "ru": "фармацевт" },
               { "en": "over-the-counter", "ru": "без рецепта" }
-            ]
+            ],
+            "tip": "Feel better — поправляйся. Medication — лекарство. Pharmacy — аптека. Pharmacist — фармацевт. Over-the-counter — без рецепта."
           }
         }
       ],

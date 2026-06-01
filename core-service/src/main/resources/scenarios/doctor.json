@@ -1,8 +1,8 @@
 {
   "id": "doctor",
-  "title": "DOCTOR'S OFFICE",
+  "title": "Визит к врачу",
   "emoji": "🩺",
-  "description": "Визит к врачу — объясни симптомы, пойми диагноз и обсуди лечение на английском.",
+  "description": "Объясните симптомы, получите диагноз и обсудите лечение на английском.",
   "free": false,
   "startStepId": "step-1",
   "completionMessage": "Вы успешно прошли приём у врача и получили рецепт!",
@@ -26,9 +26,9 @@
       "choices": {
         "label": "ВАШ ОТВЕТ:",
         "options": [
-          { "id": "yes", "emoji": "✅", "label": "Yes, I have one" },
-          { "id": "no", "emoji": "❌", "label": "No, walk-in" },
-          { "id": "urgent", "emoji": "🚨", "label": "It's urgent" }
+          { "id": "yes", "emoji": "✅", "label": "Да, у меня есть запись" },
+          { "id": "no", "emoji": "❌", "label": "Нет, без записи" },
+          { "id": "urgent", "emoji": "🚨", "label": "Это срочно" }
         ]
       },
       "tasks": [
@@ -37,36 +37,21 @@
           "configByChoice": {
             "yes": {
               "question": "Как сказать «у меня запись»?",
-              "options": [
-                "I have appointment.",
-                "I have an appointment at 10 AM.",
-                "My appointment.",
-                "Booked 10."
-              ],
+              "options": ["I have appointment.", "I have an appointment at 10 AM.", "My appointment.", "Booked 10."],
               "correctIndex": 1,
-              "tip": "\"I have an appointment\" — у меня запись."
+              "tip": "I have an appointment — у меня запись. An — неопределённый артикль. At + время."
             },
             "no": {
               "question": "Как попросить принять без записи?",
-              "options": [
-                "No appointment, see doctor.",
-                "Could I see a doctor without an appointment?",
-                "I come without book.",
-                "Take me doctor."
-              ],
+              "options": ["No appointment, see doctor.", "Could I see a doctor without an appointment?", "I come without book.", "Take me doctor."],
               "correctIndex": 1,
-              "tip": "\"walk-in\" — визит без записи."
+              "tip": "Could I see a doctor...? — Могу ли я попасть к врачу...? Without an appointment — без записи."
             },
             "urgent": {
-              "question": "Как сказать что это срочно?",
-              "options": [
-                "Very urgent!",
-                "It's an emergency. I need to see a doctor immediately.",
-                "Quick doctor!",
-                "Help me now!"
-              ],
+              "question": "Как сказать, что это срочно?",
+              "options": ["Very urgent!", "It's an emergency. I need to see a doctor immediately.", "Quick doctor!", "Help me now!"],
               "correctIndex": 1,
-              "tip": "\"emergency\" — экстренный случай."
+              "tip": "Emergency — экстренный случай. Immediately — немедленно. It's an emergency — это срочный случай."
             }
           }
         }
@@ -84,9 +69,9 @@
         {
           "type": "word-order",
           "config": {
-            "hint": "Составьте: \"My name is Anna and my date of birth is March 5th\"",
+            "hint": "Составьте: \"Меня зовут Анна, и моя дата рождения — 5 марта\"",
             "correctOrder": ["My", "name", "is", "Anna", "and", "my", "date", "of", "birth", "is", "March", "5th"],
-            "tip": "\"date of birth\" — дата рождения."
+            "tip": "Date of birth — дата рождения. Конструкция My name is... and my date of birth is..."
           }
         }
       ],
@@ -103,10 +88,10 @@
       "choices": {
         "label": "СИМПТОМЫ:",
         "options": [
-          { "id": "throat", "emoji": "😷", "label": "Sore throat" },
-          { "id": "stomach", "emoji": "🤢", "label": "Stomach pain" },
-          { "id": "back", "emoji": "😖", "label": "Back pain" },
-          { "id": "general", "emoji": "😞", "label": "Feeling unwell" }
+          { "id": "throat", "emoji": "😷", "label": "Боль в горле" },
+          { "id": "stomach", "emoji": "🤢", "label": "Боль в животе" },
+          { "id": "back", "emoji": "😖", "label": "Боль в спине" },
+          { "id": "general", "emoji": "😞", "label": "Плохое самочувствие" }
         ]
       },
       "tasks": [
@@ -117,25 +102,25 @@
               "sentence": "I've had a ___ throat for three days.",
               "options": ["sore", "hurt", "pain", "bad"],
               "correctAnswer": "sore",
-              "tip": "\"sore throat\" — боль в горле."
+              "tip": "Sore throat — боль в горле. I've had — у меня было (Present Perfect). For three days — в течение трёх дней."
             },
             "stomach": {
               "sentence": "I have a ___ pain in my stomach.",
               "options": ["sharp", "big", "hard", "fast"],
               "correctAnswer": "sharp",
-              "tip": "\"sharp pain\" — острая боль."
+              "tip": "Sharp pain — острая боль. Stomach pain — боль в животе. Sharp — острый."
             },
             "back": {
               "sentence": "My ___ has been hurting since yesterday.",
               "options": ["back", "body", "side", "neck"],
               "correctAnswer": "back",
-              "tip": "\"back pain\" — боль в спине."
+              "tip": "Back pain — боль в спине. Has been hurting — болит уже с (Present Perfect Continuous). Since yesterday — со вчерашнего дня."
             },
             "general": {
               "sentence": "I've been feeling ___ and tired lately.",
               "options": ["unwell", "bad", "sick", "poor"],
               "correctAnswer": "unwell",
-              "tip": "\"feeling unwell\" — чувствовать себя плохо."
+              "tip": "Feeling unwell — плохое самочувствие. Lately — в последнее время. Tired — уставший."
             }
           }
         }
@@ -153,9 +138,9 @@
       "choices": {
         "label": "ОТВЕТ:",
         "options": [
-          { "id": "few-days", "emoji": "📅", "label": "A few days" },
-          { "id": "week", "emoji": "🗓️", "label": "About a week" },
-          { "id": "longer", "emoji": "📆", "label": "More than a week" }
+          { "id": "few-days", "emoji": "📅", "label": "Несколько дней" },
+          { "id": "week", "emoji": "🗓️", "label": "Около недели" },
+          { "id": "longer", "emoji": "📆", "label": "Больше недели" }
         ]
       },
       "tasks": [
@@ -164,36 +149,21 @@
           "configByChoice": {
             "few-days": {
               "sourceText": "Симптомы появились несколько дней назад. Аллергии нет.",
-              "options": [
-                "Few days ago. No allergy.",
-                "I've had these symptoms for a few days. I have no allergies.",
-                "Days symptoms. No allergic.",
-                "Symptoms since days. No allergy."
-              ],
+              "options": ["Few days ago. No allergy.", "I've had these symptoms for a few days. I have no allergies.", "Days symptoms. No allergic.", "Symptoms since days. No allergy."],
               "correctIndex": 1,
-              "tip": "\"I've had... for...\" — у меня было... в течение..."
+              "tip": "I've had these symptoms for a few days — у меня эти симптомы уже несколько дней. Present Perfect + for. I have no allergies — у меня нет аллергии."
             },
             "week": {
               "sourceText": "Примерно неделю. У меня аллергия на пенициллин.",
-              "options": [
-                "One week. Allergy penicillin.",
-                "About a week. I'm allergic to penicillin.",
-                "Week ago. I allergic.",
-                "For week. Penicillin bad."
-              ],
+              "options": ["One week. Allergy penicillin.", "About a week. I'm allergic to penicillin.", "Week ago. I allergic.", "For week. Penicillin bad."],
               "correctIndex": 1,
-              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+              "tip": "I'm allergic to penicillin — у меня аллергия на пенициллин. Конструкция I'm allergic to + аллерген."
             },
             "longer": {
               "sourceText": "Больше недели. Становится хуже.",
-              "options": [
-                "More week. Getting bad.",
-                "More than a week. It's getting worse.",
-                "Long time. Worse now.",
-                "Over week. More bad."
-              ],
+              "options": ["More week. Getting bad.", "More than a week. It's getting worse.", "Long time. Worse now.", "Over week. More bad."],
               "correctIndex": 1,
-              "tip": "\"getting worse\" — становится хуже."
+              "tip": "It's getting worse — становится хуже. Present Continuous (getting) для описания ухудшения состояния."
             }
           }
         }
@@ -211,9 +181,9 @@
       "choices": {
         "label": "ВОПРОС:",
         "options": [
-          { "id": "side-effects", "emoji": "💊", "label": "Side effects?" },
-          { "id": "duration", "emoji": "⏰", "label": "How long to take?" },
-          { "id": "rest", "emoji": "🛌", "label": "Should I rest?" }
+          { "id": "side-effects", "emoji": "💊", "label": "Побочные эффекты?" },
+          { "id": "duration", "emoji": "⏰", "label": "Как долго принимать?" },
+          { "id": "rest", "emoji": "🛌", "label": "Нужно ли отдыхать?" }
         ]
       },
       "tasks": [
@@ -222,36 +192,21 @@
           "configByChoice": {
             "side-effects": {
               "question": "Как спросить о побочных эффектах?",
-              "options": [
-                "Bad effects?",
-                "Are there any side effects I should know about?",
-                "What side?",
-                "Medicine effects?"
-              ],
+              "options": ["Bad effects?", "Are there any side effects I should know about?", "What side?", "Medicine effects?"],
               "correctIndex": 1,
-              "tip": "\"side effects\" — побочные эффекты."
+              "tip": "Side effects — побочные эффекты. Are there any...? — есть ли какие-либо...? Should know — следует знать."
             },
             "duration": {
-              "question": "Как спросить как долго принимать лекарство?",
-              "options": [
-                "How long medicine?",
-                "How long should I take the medication?",
-                "Duration take?",
-                "Medicine long?"
-              ],
+              "question": "Как спросить, как долго принимать лекарство?",
+              "options": ["How long medicine?", "How long should I take the medication?", "Duration take?", "Medicine long?"],
               "correctIndex": 1,
-              "tip": "\"How long should I...?\" — как долго мне...?"
+              "tip": "How long should I take...? — Как долго мне принимать...? Medication — лекарство, синоним medicine."
             },
             "rest": {
-              "question": "Как спросить нужно ли отдыхать?",
-              "options": [
-                "Need rest?",
-                "Should I rest at home?",
-                "Stay home yes?",
-                "I rest?"
-              ],
+              "question": "Как спросить, нужно ли отдыхать?",
+              "options": ["Need rest?", "Should I rest at home?", "Stay home yes?", "I rest?"],
               "correctIndex": 1,
-              "tip": "\"Should I...?\" — мне следует...?"
+              "tip": "Should I rest at home? — Должен ли я отдыхать дома? Should — модальный глагол для совета/рекомендации."
             }
           }
         }
@@ -270,7 +225,7 @@
         {
           "type": "matching",
           "config": {
-            "title": "Медицинская лексика врача:",
+            "title": "Медицинская лексика:",
             "pairs": [
               { "en": "diagnosis", "ru": "диагноз" },
               { "en": "antibiotic", "ru": "антибиотик" },
@@ -279,7 +234,8 @@
               { "en": "symptoms", "ru": "симптомы" },
               { "en": "recovery", "ru": "выздоровление" },
               { "en": "follow-up", "ru": "повторный приём" }
-            ]
+            ],
+            "tip": "Diagnosis — диагноз, antibiotic — антибиотик, infection — инфекция, prescription — рецепт, symptoms — симптомы, recovery — выздоровление, follow-up — повторный приём."
           }
         }
       ],
