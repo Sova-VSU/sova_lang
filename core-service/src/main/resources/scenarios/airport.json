@@ -1,6 +1,6 @@
 {
   "id": "airport",
-  "title": "AIRPORT",
+  "title": "Аэропорт",
   "emoji": "✈️",
   "startStepId": "step-1",
   "completionMessage": "Вы прошли все этапы аэропорта и успешно сели в самолёт!",
@@ -680,6 +680,6 @@
       "next": null
     }
   },
-  "description": "Пройди через все этапы аэропорта: от регистрации до посадки в самолёт.",
+  "description": "Пройдите и посадку на самолет",
   "free": false
 }

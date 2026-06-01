@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { expireSession } from '../stores/session'
 
-// В dev Vite проксирует запросы на api-gateway (см. vite.config.js).
-// Для production: VITE_API_URL=http://localhost:8080
 const API_BASE_URL = import.meta.env.VITE_API_URL || ''
 
 const api = axios.create({
@@ -17,6 +15,7 @@ let sessionExpiredHandler = null
 export function setOnSessionExpired(handler) {
   sessionExpiredHandler = handler
 }
+
 
 function shouldExpireSession(url = '') {
   // Ошибки подписки не должны разлогинивать пользователя
@@ -104,7 +103,8 @@ export const scenariosAPI = {
     return api.get('/scenarios', { params })
   },
   getScenarioById: (id) => api.get(`/scenarios/${id}`),
-  getScenarioProgress: (scenarioId) => api.get(`/scenarios/${scenarioId}/progress`)
+  getScenarioProgress: (scenarioId) => api.get(`/scenarios/${scenarioId}/progress`),
+  completeScenario: (scenarioId) => api.post(`/scenarios/${scenarioId}/complete`)
 }
 
 // Subscriptions API

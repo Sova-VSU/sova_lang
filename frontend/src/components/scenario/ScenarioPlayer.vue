@@ -96,7 +96,7 @@
           <button
             v-if="canGoNext && currentStep.isFinal"
             class="btn-finish"
-            @click="showResults = true"
+            @click="handleComplete"
           >
             🎉 Завершить сценарий
           </button>
@@ -120,6 +120,8 @@ import ChoiceCards from './ChoiceCards.vue'
 import FeedbackBlock from './FeedbackBlock.vue'
 import ScenarioResults from './ScenarioResults.vue'
 import { getTaskComponent } from './tasks/index.js'
+import { useUserStore } from '../../stores/userStore' 
+
 
 const props = defineProps({
   scenario: { type: Object, required: true }
@@ -168,6 +170,8 @@ const currentTaskRaw = computed(() => {
   if (!currentStep.value.tasks) return null
   return currentStep.value.tasks[currentTaskIndex.value] || null
 })
+
+
 
 function resolveTaskConfig(task, choice) {
   if (!task) return null
@@ -335,6 +339,12 @@ function restartScenario() {
   showResults.value = false
   resetStepState()
 }
+const userStore = useUserStore()
+async function handleComplete() {
+    await userStore.completeScenario(props.scenario.id)
+    showResults.value = true
+  }
+
 </script>
 
 <style scoped>

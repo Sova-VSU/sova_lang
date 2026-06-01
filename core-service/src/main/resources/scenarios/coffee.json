@@ -1,6 +1,6 @@
 {
   "id": "coffee",
-  "title": "COFFEE SHOP",
+  "title": "Кофейня",
   "emoji": "☕",
   "startStepId": "step-1",
   "completionMessage": "Вы успешно сделали заказ в кофейне и оплатили его!",
@@ -1284,6 +1284,6 @@
       "next": null
     }
   },
-  "description": "Закажи напиток в кофейне — отрабатывай вежливые фразы заказа и оплаты.",
+  "description": "Сделайте заказ в кофейне",
   "free": true
 }

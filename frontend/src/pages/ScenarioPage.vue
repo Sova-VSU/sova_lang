@@ -1,6 +1,7 @@
 <template>
+  <div v-if="loading" class="loading">Загрузка сценария...</div>
   <ScenarioPlayer
-    v-if="scenario"
+    v-else-if="scenario"
     :scenario="scenario"
     @back="$router.push('/scenarios')"
   />
@@ -11,28 +12,43 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import ScenarioPlayer from '../components/scenario/ScenarioPlayer.vue'
-import coffeeScenario from '../data/scenarios/coffee.json'
-import hotelScenario from '../data/scenarios/hotel.json'
-import airportScenario from '../data/scenarios/airport.json'
-import restaurantScenario from '../data/scenarios/restaurant.json'
-
-const scenarios = {
-  coffee: coffeeScenario,
-  hotel: hotelScenario,
-  airport: airportScenario,
-  restaurant: restaurantScenario
-}
+import { scenariosAPI } from '../api'
+import { useUserStore } from '../stores/userStore'
 
 const route = useRoute()
-const scenario = computed(() => scenarios[route.params.id] || null)
+const router = useRouter()
+const userStore = useUserStore()
+const scenario = ref(null)
+const loading = ref(true)
+
+onMounted(async () => {
+  loading.value = true
+  try {
+    const response = await scenariosAPI.getScenarioById(route.params.id)
+    scenario.value = response.data
+  } catch (error) {
+    console.error('Failed to load scenario:', error)
+    if (error.response?.status === 403) {
+      alert('Этот сценарий требует подписки. Оформите подписку в профиле.')
+      router.push('/scenarios')
+    }
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 <style scoped>
-.not-found {
+.loading, .not-found {
   text-align: center;
   padding: 80px 24px;
+}
+
+.not-found a {
+  color: #2398ab;
+  text-decoration: none;
 }
 </style>
