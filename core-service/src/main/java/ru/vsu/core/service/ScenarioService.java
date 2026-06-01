@@ -13,12 +13,15 @@ import ru.vsu.core.model.dto.scenario.ScenarioDto;
 import ru.vsu.core.model.dto.scenario.ScenarioListItem;
 import ru.vsu.core.model.dto.scenario.ScenarioProgressDto;
 import ru.vsu.core.model.entity.Scenario;
+import ru.vsu.core.model.entity.User;
 import ru.vsu.core.model.entity.UserProgress;
 import ru.vsu.core.repository.ScenarioRepository;
 import ru.vsu.core.repository.UserProgressRepository;
+import ru.vsu.core.repository.UserRepository;
 import ru.vsu.core.service.client.SubscriptionClient;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +31,10 @@ public class ScenarioService {
 
     private final ScenarioRepository scenarioRepository;
     private final UserProgressRepository progressRepository;
+    private final UserRepository userRepository;
     private final SubscriptionClient subscriptionClient;
+
+    private static final int XP_PER_SCENARIO = 50;
 
     public PaginatedScenarioList list(int page, int pageSize, Boolean free) {
         PageRequest pageable = PageRequest.of(page - 1, pageSize);
@@ -100,6 +106,55 @@ public class ScenarioService {
                         .startedAt(Instant.now())
                         .lastAccessedAt(Instant.now())
                         .build());
+
+        return ScenarioProgressDto.builder()
+                .scenarioId(progress.getScenarioId())
+                .currentStepId(progress.getCurrentStepId())
+                .completedSteps(progress.getCompletedSteps())
+                .completed(progress.isCompleted())
+                .xpEarned(progress.getXpEarned())
+                .startedAt(progress.getStartedAt())
+                .lastAccessedAt(progress.getLastAccessedAt())
+                .build();
+    }
+
+    public ScenarioProgressDto complete(String scenarioId, String userId) {
+        if (!scenarioRepository.existsById(scenarioId)) {
+            throw new NotFoundException("Scenario not found");
+        }
+
+        UserProgress progress = progressRepository
+                .findByUserIdAndScenarioId(userId, scenarioId)
+                .orElse(UserProgress.builder()
+                        .userId(userId)
+                        .scenarioId(scenarioId)
+                        .completedSteps(new ArrayList<>())
+                        .xpEarned(0)
+                        .startedAt(Instant.now())
+                        .build());
+
+        progress.setCompleted(true);
+        progress.setXpEarned(XP_PER_SCENARIO);
+        progress.setLastAccessedAt(Instant.now());
+        progressRepository.save(progress);
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        if (!user.getCompletedScenarios().contains(scenarioId)) {
+            user.getCompletedScenarios().add(scenarioId);
+            user.setTotalXp(user.getTotalXp() + XP_PER_SCENARIO);
+        }
+
+        LocalDate today = LocalDate.now();
+        LocalDate lastActive = user.getLastActiveDate();
+        if (lastActive == null || lastActive.isBefore(today.minusDays(1))) {
+            user.setStreak(1);
+        } else if (lastActive.isBefore(today)) {
+            user.setStreak(user.getStreak() + 1);
+        }
+        user.setLastActiveDate(today);
+        userRepository.save(user);
 
         return ScenarioProgressDto.builder()
                 .scenarioId(progress.getScenarioId())
