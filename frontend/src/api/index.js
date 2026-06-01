@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { expireSession } from '../stores/session'
 
-// В dev Vite проксирует запросы на api-gateway (см. vite.config.js).
-// Для production: VITE_API_URL=http://localhost:8080
 const API_BASE_URL = import.meta.env.VITE_API_URL || ''
 
 const api = axios.create({
@@ -18,7 +16,14 @@ export function setOnSessionExpired(handler) {
   sessionExpiredHandler = handler
 }
 
-function handleSessionExpired() {
+
+function shouldExpireSession(url = '') {
+  // Ошибки подписки не должны разлогинивать пользователя
+  return url.includes('/users/') || url.includes('/auth/')
+}
+
+function handleSessionExpired(url) {
+  if (!shouldExpireSession(url)) return
   expireSession()
   sessionExpiredHandler?.()
 }
@@ -52,7 +57,7 @@ api.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken')
       const requestUrl = originalRequest.url || ''
       if (!refreshToken) {
-        handleSessionExpired()
+        handleSessionExpired(requestUrl)
         return Promise.reject(error)
       }
 
@@ -64,7 +69,7 @@ api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
         return api(originalRequest)
       } catch {
-        handleSessionExpired()
+        handleSessionExpired(requestUrl)
         return Promise.reject(error)
       }
     }
@@ -98,7 +103,8 @@ export const scenariosAPI = {
     return api.get('/scenarios', { params })
   },
   getScenarioById: (id) => api.get(`/scenarios/${id}`),
-  getScenarioProgress: (scenarioId) => api.get(`/scenarios/${scenarioId}/progress`)
+  getScenarioProgress: (scenarioId) => api.get(`/scenarios/${scenarioId}/progress`),
+  completeScenario: (scenarioId) => api.post(`/scenarios/${scenarioId}/complete`)
 }
 
 // Subscriptions API

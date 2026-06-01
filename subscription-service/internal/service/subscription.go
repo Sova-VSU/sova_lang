@@ -16,18 +16,27 @@ func NewSubscriptionService(repo domain.SubscriptionRepository) domain.Subscript
 
 func (s *subscriptionService) Create(userID string, durationInDays int) (*domain.Subscription, error) {
 	existing, err := s.repo.FindByUserID(userID)
-	if err == nil && existing.Status == domain.StatusActive {
-		return nil, errors.New("active subscription already exists")
+	now := time.Now().UTC()
+
+	if err == nil {
+		if existing.Status == domain.StatusActive {
+			return nil, errors.New("active subscription already exists")
+		}
+		existing.Status = domain.StatusActive
+		existing.StartedAt = now
+		existing.EndsAt = now.AddDate(0, 0, durationInDays)
+		if err := s.repo.Update(existing); err != nil {
+			return nil, err
+		}
+		return existing, nil
 	}
 
-	now := time.Now().UTC()
 	sub := &domain.Subscription{
 		UserID:    userID,
 		Status:    domain.StatusActive,
 		StartedAt: now,
 		EndsAt:    now.AddDate(0, 0, durationInDays),
 	}
-
 	if err := s.repo.Save(sub); err != nil {
 		return nil, err
 	}

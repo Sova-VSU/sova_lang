@@ -72,8 +72,9 @@ func (r *mongoSubscriptionRepository) Update(sub *domain.Subscription) error {
 
 	filter := bson.M{"user_id": sub.UserID}
 	update := bson.M{"$set": bson.M{
-		"status":  sub.Status,
-		"ends_at": sub.EndsAt,
+		"status":     sub.Status,
+		"started_at": sub.StartedAt,
+		"ends_at":    sub.EndsAt,
 	}}
 
 	res, err := r.col.UpdateOne(ctx, filter, update)

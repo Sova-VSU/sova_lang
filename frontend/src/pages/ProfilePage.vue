@@ -64,10 +64,15 @@
                 <div>Действует до: {{ formatDate(subscription.endsAt) }}</div>
               </div>
               <button v-if="subscription.status === 'ACTIVE'" 
-                      class="btn-cancel" 
-                      @click="cancelSubscription">
-                Отменить подписку
-              </button>
+                  class="btn-cancel" 
+                  @click="cancelSubscription">
+            Отменить подписку
+          </button>
+          <button v-if="subscription.status === 'CANCELLED' || subscription.status === 'ENDED'"
+                  class="btn-subscribe"
+                  @click="showSubscribeModal = true">
+            Оформить новую подписку
+          </button>
             </div>
             <div v-else class="subscription-offer">
               <p>У вас нет активной подписки.</p>

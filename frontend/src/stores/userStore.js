@@ -1,4 +1,4 @@
-import { authAPI, usersAPI, subscriptionsAPI } from '../api'
+import { authAPI, usersAPI, subscriptionsAPI, scenariosAPI } from '../api'
 import { userState, restoreSession, clearSession } from './session'
 
 export { userState, restoreSession, clearSession } from './session'
@@ -69,7 +69,6 @@ export const useUserStore = () => {
       return true
     } catch (error) {
       if (error.response?.status === 401) {
-        // Сессия сбрасывается интерсептором api; здесь только сообщение
         userState.error = error.response?.data?.message || 'Сессия истекла'
         if (!localStorage.getItem('accessToken')) {
           userState.isAuthenticated = false
@@ -87,7 +86,6 @@ export const useUserStore = () => {
       const response = await usersAPI.getUserStats()
       userState.stats = response.data
     } catch (error) {
-      // Не сбрасываем сессию — профиль должен оставаться доступным
       console.error('Failed to fetch stats:', error)
     }
   }
@@ -148,6 +146,15 @@ export const useUserStore = () => {
     }
   }
 
+  const completeScenario = async (scenarioId) => {
+    try {
+      await scenariosAPI.completeScenario(scenarioId)
+      await fetchUserStats()
+    } catch (error) {
+      console.error('completeScenario error:', error)
+    }
+  }
+
   const deleteAccount = async () => {
     try {
       await usersAPI.deleteUser()
@@ -171,6 +178,7 @@ export const useUserStore = () => {
     updateUserPassword,
     createSubscription,
     cancelSubscription,
+    completeScenario,
     deleteAccount
   }
 }

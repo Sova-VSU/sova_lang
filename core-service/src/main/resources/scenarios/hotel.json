@@ -1,6 +1,6 @@
 {
   "id": "hotel",
-  "title": "HOTEL CHECK-IN",
+  "title": "Отель",
   "emoji": "🏨",
   "startStepId": "step-1",
   "completionMessage": "Вы успешно заселились в отель и получили ключи от номера!",
@@ -921,6 +921,6 @@
       "next": null
     }
   },
-  "description": "Заселись в отель — бронирование, детали номера и общение с персоналом.",
+  "description": "Забронируйте и заселитесь в отель",
   "free": false
 }

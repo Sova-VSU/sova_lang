@@ -1,6 +1,6 @@
 {
   "id": "restaurant",
-  "title": "RESTAURANT",
+  "title": "Ресторан",
   "emoji": "🍽️",
   "startStepId": "step-1",
   "completionMessage": "Вы отлично поужинали в ресторане и корректно оплатили счёт!",
@@ -1083,6 +1083,6 @@
       "next": null
     }
   },
-  "description": "Пройди весь путь в ресторане: от выбора столика до разделения счёта.",
+  "description": "Забронируйте столик и сделайте заказ",
   "free": true
 }
