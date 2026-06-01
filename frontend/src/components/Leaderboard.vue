@@ -1,7 +1,7 @@
 <template>
   <div class="leaderboard">
     <div class="leaderboard-header">
-      <h2>🏆 Таблица лидеров</h2>
+      <h1>🏆 Таблица лидеров</h1>
       <p class="leaderboard-subtitle">Топ пользователей по количеству пройденных сценариев</p>
     </div>
 
@@ -16,10 +16,9 @@
 
     <div v-else class="leaderboard-table">
       <div class="leaderboard-row leaderboard-row--header">
-        <div class="rank">#</div>
+        <div class="rank">Позиция</div>
         <div class="name">Пользователь</div>
         <div class="completed">Пройдено</div>
-
       </div>
 
       <div
@@ -35,7 +34,6 @@
           <span v-else class="rank-number">{{ entry.rank }}</span>
         </div>
         <div class="name">
-          <span class="user-avatar">{{ entry.name?.charAt(0) || '?' }}</span>
           <span class="user-name">{{ entry.name  }}</span>
           <span v-if="entry.id === currentUserId" class="current-badge">Вы</span>
         </div>
@@ -43,7 +41,7 @@
       </div>
 
       <div v-if="leaderboard.length === 0" class="leaderboard-empty">
-        <span>📭 Пока нет участников</span>
+        <span> Пока нет участников</span>
       </div>
     </div>
   </div>
@@ -102,7 +100,7 @@ onMounted(() => {
 }
 
 .leaderboard-subtitle {
-  font-size: 14px;
+  font-size: 18px;
   color: #64748b;
   font-family: 'TildaSans', 'Arial', sans-serif;
 }
@@ -166,7 +164,7 @@ onMounted(() => {
 }
 
 .rank {
-  width: 60px;
+  width: 80px;
   text-align: center;
   font-weight: 700;
 }
@@ -186,18 +184,6 @@ onMounted(() => {
   gap: 12px;
 }
 
-.user-avatar {
-  width: 32px;
-  height: 32px;
-  background: #2398ab;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-}
 
 .user-name {
   font-weight: 600;
@@ -249,10 +235,5 @@ onMounted(() => {
     font-size: 14px;
   }
   
-  .user-avatar {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
 }
 </style>

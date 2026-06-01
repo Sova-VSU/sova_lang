@@ -205,15 +205,16 @@ onMounted(async () => {
 }
 
 .scenario-card__btn--play {
-  background: #2398ab;
-  color: white;
+  background: #e0f2f5;
+  color: #2398ab;
   cursor: pointer;
+  border: none;
 }
 
 .scenario-card:has(.scenario-card__btn--play):hover .scenario-card__btn--play {
-  background: #1a7a8a;
+  background: #c8e8ec;
+  color: #1a7a8a;
 }
-
 .scenario-card__btn--premium {
   background: #f1f5f9;
   color: #94a3b8;
