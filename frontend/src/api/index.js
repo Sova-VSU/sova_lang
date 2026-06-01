@@ -18,7 +18,6 @@ export function setOnSessionExpired(handler) {
 
 
 function shouldExpireSession(url = '') {
-  // Ошибки подписки не должны разлогинивать пользователя
   return url.includes('/users/') || url.includes('/auth/')
 }
 
@@ -28,7 +27,7 @@ function handleSessionExpired(url) {
   sessionExpiredHandler?.()
 }
 
-// Интерсептор для добавления токена авторизации
+// для добавления токена авторизации
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken')
@@ -40,7 +39,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
-// Интерсептор для обработки ошибок и обновления токена
+// для обработки ошибок и обновления токена
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -78,14 +77,12 @@ api.interceptors.response.use(
   }
 )
 
-// Auth API
 export const authAPI = {
   login: (email, password) => api.post('/auth/login', { email, password }),
   register: (name, email, password) => api.post('/auth/register', { name, email, password }),
   refresh: (refreshToken) => api.post('/auth/refresh', { refreshToken })
 }
 
-// Users API
 export const usersAPI = {
   getCurrentUser: () => api.get('/users/me'),
   updateName: (name) => api.patch('/users/me/name', { name }),
@@ -95,7 +92,6 @@ export const usersAPI = {
   deleteUser: () => api.delete('/users/me')
 }
 
-// Scenarios API
 export const scenariosAPI = {
   getScenarios: (page = 1, pageSize = 20, free = null) => {
     const params = { page, pageSize }
@@ -107,11 +103,14 @@ export const scenariosAPI = {
   completeScenario: (scenarioId) => api.post(`/scenarios/${scenarioId}/complete`)
 }
 
-// Subscriptions API
 export const subscriptionsAPI = {
   createSubscription: (durationInDays) => api.post('/subscriptions', { durationInDays }),
   getCurrentSubscription: () => api.get('/subscriptions/current'),
   cancelSubscription: () => api.delete('/subscriptions/current')
+}
+
+export const leaderboardAPI = {
+  getLeaderboard: () => api.get('/leaderboard')
 }
 
 export default api

@@ -6,6 +6,7 @@
       <nav class="header__nav">
         <router-link to="/" class="nav-link">Главная</router-link>
         <router-link to="/scenarios" class="nav-link">Сценарии</router-link>
+        <router-link to="/leaderboard" class="nav-link">Лидеры</router-link>
       </nav>
 
       <div class="header__actions">
