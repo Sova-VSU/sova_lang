@@ -21,7 +21,14 @@ export default defineConfig({
       '/users': 'http://localhost:8080',
       '/scenarios': 'http://localhost:8080',
       '/subscriptions': 'http://localhost:8080',
-      '/leaderboard': 'http://localhost:8080',
+      '/leaderboard': {
+        target: 'http://localhost:8080',
+        bypass(req) {
+          if (req.headers.accept?.includes('text/html')) {
+            return '/index.html'
+          }
+        }
+      },
     },
   },
 })
