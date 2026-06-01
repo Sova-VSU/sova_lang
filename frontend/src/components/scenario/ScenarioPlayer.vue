@@ -29,7 +29,7 @@
         <!-- Заголовок шага -->
         <div class="scenario-card__header">
           <span class="scenario-card__emoji">{{ currentStep.emoji || scenario.emoji }}</span>
-          <h2>{{ scenario.title }}</h2>
+          <h2>{{ currentStep.title || scenario.title }}</h2>
         </div>
 
         <!--  NPC -->

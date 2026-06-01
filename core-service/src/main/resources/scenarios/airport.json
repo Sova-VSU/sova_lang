@@ -37,19 +37,19 @@
               "sentence": "I've already checked in ___ .",
               "options": ["online", "home", "phone", "web"],
               "correctAnswer": "online",
-              "tip": "Конструкция Present Perfect: I've already checked in — я уже зарегистрировался. Online check-in — онлайн-регистрация."
+              "tip": "I've already checked in online — я уже прошёл онлайн-регистрацию."
             },
             "no-checkin": {
               "sentence": "Here is my ___ and booking confirmation.",
               "options": ["passport", "ticket", "phone", "bag"],
               "correctAnswer": "passport",
-              "tip": "Here is my passport and booking confirmation — вот мой паспорт и подтверждение бронирования. При регистрации нужен паспорт (passport)."
+              "tip": "Here is my passport — вот мой паспорт."
             },
             "help": {
               "sentence": "Could you ___ me with the check-in?",
               "options": ["help", "give", "tell", "show"],
               "correctAnswer": "help",
-              "tip": "Could you help me with...? — Не могли бы вы помочь мне с...? Вежливая просьба о помощи."
+              "tip": "Could you help me with...? — Не могли бы вы помочь мне с...?"
             }
           }
         }
@@ -61,7 +61,7 @@
       }
     },
     "step-1-seat": {
-      "title": "Выбор места",
+      "title": "Стойка регистрации",
       "emoji": "💺",
       "requireChoice": true,
       "npc": {
@@ -83,13 +83,13 @@
               "sourceText": "Место у окна, пожалуйста.",
               "options": ["Window place please.", "A window seat, please.", "Near window.", "I sit window."],
               "correctIndex": 1,
-              "tip": "Window seat — место у окна, aisle seat — место у прохода. A window seat, please — вежливая форма запроса."
+              "tip": "A window seat, please — место у окна, пожалуйста."
             },
             "aisle": {
               "sourceText": "Место у прохода, пожалуйста.",
               "options": ["Aisle place please.", "An aisle seat, please.", "Near aisle.", "I sit aisle."],
               "correctIndex": 1,
-              "tip": "Aisle seat — место у прохода, window seat — место у окна. An aisle seat, please — вежливая форма запроса."
+              "tip": "An aisle seat, please — место у прохода, пожалуйста."
             }
           }
         }
@@ -97,7 +97,7 @@
       "next": "step-2"
     },
     "step-2": {
-      "title": "Багаж",
+      "title": "Стойка регистрации",
       "emoji": "🧳",
       "requireChoice": true,
       "npc": {
@@ -119,17 +119,17 @@
             "carry-on": {
               "hint": "Составьте: \"Только ручная кладь, спасибо\"",
               "correctOrder": ["Just", "carry-on", "thanks"],
-              "tip": "Carry-on (bag) — ручная кладь. Just carry-on — только ручная кладь. Thanks — спасибо."
+              "tip": "Just carry-on, thanks — только ручная кладь, спасибо."
             },
             "check-in": {
               "hint": "Составьте: \"У меня одна сумка для сдачи в багаж\"",
               "correctOrder": ["I", "have", "one", "bag", "to", "check", "in"],
-              "tip": "Check in (baggage) — сдавать багаж. Конструкция have + one bag + to check in. Check in — фразовый глагол."
+              "tip": "I have one bag to check in — у меня одна сумка для сдачи в багаж."
             },
             "overweight": {
               "hint": "Составьте: \"Моя сумка превышает лимит\"",
               "correctOrder": ["My", "bag", "is", "over", "the", "limit"],
-              "tip": "Over the limit — превышает лимит. Over — сверх, limit — ограничение. My bag is over the limit — моя сумка превышает норму."
+              "tip": "My bag is over the limit — моя сумка превышает лимит."
             }
           }
         }
@@ -141,7 +141,7 @@
       }
     },
     "step-2-overweight": {
-      "title": "Перевес",
+      "title": "Стойка регистрации",
       "emoji": "⚖️",
       "requireChoice": true,
       "npc": {
@@ -163,13 +163,13 @@
               "sentence": "I'll ___ the excess baggage fee.",
               "options": ["pay", "give", "take", "have"],
               "correctAnswer": "pay",
-              "tip": "Excess baggage fee — сбор за превышение веса багажа. I'll pay — я заплачу (I will pay)."
+              "tip": "I'll pay the excess baggage fee — я заплачу сбор за перевес."
             },
             "repack": {
               "sentence": "Can I ___ some items to my carry-on?",
               "options": ["move", "put", "take", "bring"],
               "correctAnswer": "move",
-              "tip": "Move items — переложить вещи. Can I move some items to my carry-on? — Можно мне переложить некоторые вещи в ручную кладь?"
+              "tip": "Can I move some items to my carry-on? — Можно мне переложить вещи в ручную кладь?"
             }
           }
         }
@@ -177,7 +177,7 @@
       "next": "step-3"
     },
     "step-3": {
-      "title": "Контроль безопасности",
+      "title": "Стойка регистрации",
       "emoji": "🔒",
       "npc": {
         "text": "Here's your boarding pass. Gate B7. Please proceed to security.",
@@ -195,7 +195,7 @@
               { "en": "liquids", "ru": "жидкости" },
               { "en": "carry-on", "ru": "ручная кладь" }
             ],
-            "tip": "Boarding pass — посадочный талон, gate — выход на посадку, security — досмотр, liquids — жидкости, carry-on — ручная кладь."
+            "tip": "Boarding pass — посадочный талон, gate — выход, security — контроль безопасности."
           }
         }
       ],
@@ -225,19 +225,19 @@
               "question": "Как сказать «я здесь туристом»?",
               "options": ["I am tourism.", "I'm here on vacation.", "tourism visit.", "I visit tourism."],
               "correctIndex": 1,
-              "tip": "I'm here on vacation — я здесь в отпуске/туристом. Конструкция to be here on + цель поездки (vacation, business, transit)."
+              "tip": "I'm here on vacation — я здесь в отпуске."
             },
             "business": {
               "question": "Как сказать «я здесь по работе»?",
               "options": ["I am business.", "I'm here on business.", "business visit.", "I visit business."],
               "correctIndex": 1,
-              "tip": "I'm here on business — я здесь по работе. Конструкция to be here on + цель поездки (vacation, business, transit)."
+              "tip": "I'm here on business — я здесь по работе."
             },
             "transit": {
               "question": "Как сказать «я здесь транзитом»?",
               "options": ["I am transit.", "I'm in transit.", "transit visit.", "I visit transit."],
               "correctIndex": 1,
-              "tip": "I'm in transit — я транзитом. Layover — пересадка, stopover — остановка в пути."
+              "tip": "I'm in transit — я транзитом."
             }
           }
         }
@@ -249,7 +249,7 @@
       }
     },
     "step-4-transit": {
-      "title": "Пересадка",
+      "title": "Паспортный контроль",
       "emoji": "🔄",
       "requireChoice": true,
       "npc": {
@@ -272,19 +272,19 @@
               "sentence": "My final destination is ___ .",
               "options": ["London", "Paris", "Tokyo", "New York"],
               "correctAnswer": "London",
-              "tip": "Final destination — конечный пункт назначения. My final destination is London — мой конечный пункт назначения Лондон."
+              "tip": "My final destination is London — мой конечный пункт назначения Лондон."
             },
             "paris": {
               "sentence": "My final destination is ___ .",
               "options": ["London", "Paris", "Tokyo", "New York"],
               "correctAnswer": "Paris",
-              "tip": "Final destination — конечный пункт назначения. Layover — пересадка. My final destination is Paris — мой конечный пункт назначения Париж."
+              "tip": "My final destination is Paris — мой конечный пункт назначения Париж."
             },
             "tokyo": {
               "sentence": "My final destination is ___ .",
               "options": ["London", "Paris", "Tokyo", "New York"],
               "correctAnswer": "Tokyo",
-              "tip": "Final destination — конечный пункт назначения. My final destination is Tokyo — мой конечный пункт назначения Токио."
+              "tip": "My final destination is Tokyo — мой конечный пункт назначения Токио."
             }
           }
         }
@@ -292,7 +292,7 @@
       "next": "step-5"
     },
     "step-5": {
-      "title": "Поиск гейта",
+      "title": "Зона вылета",
       "emoji": "🔍",
       "npc": {
         "text": "You need to find gate B7. Ask someone for directions.",
@@ -305,14 +305,14 @@
             "sourceText": "Подскажите, где гейт B7?",
             "options": ["Where is gate B7?", "Excuse me, could you tell me where gate B7 is?", "Gate B7 where?", "I need gate B7."],
             "correctIndex": 1,
-            "tip": "Excuse me, could you tell me where...? — Извините, не могли бы вы подсказать, где...? Самая вежливая форма вопроса о местонахождении."
+            "tip": "Excuse me, could you tell me where gate B7 is? — Извините, не могли бы вы сказать, где гейт B7?"
           }
         }
       ],
       "next": "step-6"
     },
     "step-6": {
-      "title": "Задержка рейса",
+      "title": "Зона вылета",
       "emoji": "⏰",
       "requireChoice": true,
       "npc": {
@@ -335,31 +335,97 @@
               "question": "Как сказать «я подожду»?",
               "options": ["I wait.", "I'll wait, thank you.", "Waiting.", "OK wait."],
               "correctIndex": 1,
-              "tip": "I'll wait — я подожду (I will wait). Will + глагол — будущее время. Вежливое выражение терпения."
+              "tip": "I'll wait, thank you — я подожду, спасибо."
             },
             "ask": {
-              "question": "Как спросить новое время?",
+              "question": "Как спросить новое время вылета?",
               "options": ["When plane go?", "Could you tell me the new departure time?", "When fly?", "Tell time."],
               "correctIndex": 1,
-              "tip": "Could you tell me the new departure time? — Не могли бы вы сказать новое время вылета? Departure time — время вылета."
+              "tip": "Could you tell me the new departure time? — Не могли бы вы сказать новое время вылета?"
             },
             "voucher": {
               "question": "Как попросить талон на еду?",
               "options": ["Free food?", "Could I get a meal voucher, please?", "Food please.", "Voucher me."],
               "correctIndex": 1,
-              "tip": "Could I get a meal voucher, please? — Могу ли я получить талон на питание? Meal voucher — талон на еду."
+              "tip": "Could I get a meal voucher, please? — Могу ли я получить талон на питание?"
             }
           }
         }
       ],
       "nextByChoice": {
         "wait": "step-7",
-        "ask": "step-7",
+        "ask": "step-6-info-desk",
         "voucher": "step-6-voucher"
       }
     },
+    "step-6-info-desk": {
+      "title": "Стойка информации (сотрудник аэропорта)",
+      "emoji": "ℹ️",
+      "requireChoice": true,
+      "npc": {
+        "text": "Hello! I'm the information officer. The flight is delayed due to weather conditions. Would you like me to help you rebook?",
+        "avatar": "👩‍💼"
+      },
+      "choices": {
+        "label": "ВАШ ОТВЕТ:",
+        "options": [
+          { "id": "rebook", "emoji": "🔄", "label": "Перебронировать" },
+          { "id": "wait-answer", "emoji": "⏳", "label": "Просто подожду" },
+          { "id": "connect", "emoji": "🤝", "label": "Поблагодарить за помощь" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "rebook": {
+              "question": "Как попросить перебронировать билет?",
+              "options": ["Change my ticket.", "Could you help me rebook my flight?", "New ticket.", "Rebook me."],
+              "correctIndex": 1,
+              "tip": "Could you help me rebook my flight? — Не могли бы вы помочь мне перебронировать рейс?"
+            },
+            "wait-answer": {
+              "question": "Как сказать, что вы подождёте?",
+              "options": ["Wait.", "I think I'll just wait, thank you.", "I wait.", "OK wait."],
+              "correctIndex": 1,
+              "tip": "I think I'll just wait — я думаю, я просто подожду."
+            },
+            "connect": {
+              "question": "Как поблагодарить за помощь?",
+              "options": ["Thanks.", "Thank you for your help! You're very kind.", "Good help.", "Nice."],
+              "correctIndex": 1,
+              "tip": "Thank you for your help! — Спасибо за вашу помощь!"
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "rebook": "step-6-rebooked",
+        "wait-answer": "step-7",
+        "connect": "step-7"
+      }
+    },
+    "step-6-rebooked": {
+      "title": "Стойка информации (сотрудник аэропорта)",
+      "emoji": "✅",
+      "npc": {
+        "text": "You're all set! Your new flight is at 8 PM. Here's your new boarding pass. Have a nice day!",
+        "avatar": "👩‍💼"
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "config": {
+            "hint": "Составьте: \"Спасибо вам большое за помощь!\"",
+            "correctOrder": ["Thank", "you", "so", "much", "for", "your", "help", "!"],
+            "tip": "Thank you so much for your help! — Спасибо вам большое за помощь!"
+          }
+        }
+      ],
+      "next": "step-8"
+    },
     "step-6-voucher": {
-      "title": "Получение талона",
+      "title": "Зона вылета",
       "emoji": "🎟️",
       "npc": {
         "text": "Here's your meal voucher. You can use it at any restaurant in the terminal.",
@@ -371,14 +437,14 @@
           "config": {
             "hint": "Составьте: \"Спасибо за талон\"",
             "correctOrder": ["Thank", "you", "for", "the", "voucher"],
-            "tip": "Thank you for + существительное — спасибо за... Voucher — талон, ваучер."
+            "tip": "Thank you for the voucher — спасибо за талон."
           }
         }
       ],
       "next": "step-7"
     },
     "step-7": {
-      "title": "Посадка",
+      "title": "Зона посадки",
       "emoji": "🚪",
       "requireChoice": true,
       "npc": {
@@ -400,13 +466,13 @@
               "sentence": "I'm in boarding group ___ .",
               "options": ["one", "two", "three", "four"],
               "correctAnswer": "one",
-              "tip": "Boarding group — группа посадки. I'm in boarding group one — я в группе посадки один (one — числительное)."
+              "tip": "I'm in boarding group one — я в группе посадки один."
             },
             "group2": {
               "sentence": "I'm in boarding group ___ .",
               "options": ["one", "two", "three", "four"],
               "correctAnswer": "two",
-              "tip": "Boarding group — группа посадки. I'm in boarding group two — я в группе посадки два (two — числительное)."
+              "tip": "I'm in boarding group two — я в группе посадки два."
             }
           }
         }
@@ -414,7 +480,7 @@
       "next": "step-8"
     },
     "step-8": {
-      "title": "В самолёте",
+      "title": "Самолёт",
       "emoji": "🎉",
       "npc": {
         "text": "Welcome aboard! Would you like anything to drink?",
@@ -434,7 +500,7 @@
               { "en": "boarding pass", "ru": "посадочный талон" },
               { "en": "departure", "ru": "вылет" }
             ],
-            "tip": "Takeoff — взлёт, landing — посадка, seatbelt — ремень безопасности, cabin crew — бортпроводники, departure — вылет."
+            "tip": "Takeoff — взлёт, landing — посадка, seatbelt — ремень безопасности, cabin crew — экипаж."
           }
         }
       ],

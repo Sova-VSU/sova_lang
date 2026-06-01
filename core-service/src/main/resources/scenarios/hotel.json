@@ -14,7 +14,7 @@
   },
   "steps": {
     "step-1": {
-      "title": "Приветствие",
+      "title": "Стойка регистрации",
       "emoji": "🏨",
       "requireChoice": true,
       "npc": {
@@ -37,19 +37,19 @@
               "question": "Как правильно сказать «у меня есть бронь»?",
               "options": ["I have booking.", "I have a reservation.", "I reserved.", "Reservation me."],
               "correctIndex": 1,
-              "tip": "I have a reservation — у меня есть бронь. Reservation — бронирование, синоним booking."
+              "tip": "I have a reservation — у меня есть бронь."
             },
             "no": {
               "question": "Как спросить, есть ли свободные комнаты?",
               "options": ["Free room?", "Do you have any rooms available?", "I need room.", "Room me please."],
               "correctIndex": 1,
-              "tip": "Do you have any rooms available? — У вас есть свободные номера? Available — доступный, свободный."
+              "tip": "Do you have any rooms available? — У вас есть свободные номера?"
             },
             "not-sure": {
               "question": "Как сказать «я не уверен»?",
               "options": ["I no know.", "I'm not sure, could you check?", "Maybe yes.", "Unknown."],
               "correctIndex": 1,
-              "tip": "I'm not sure — я не уверен. Could you check? — Не могли бы вы проверить?"
+              "tip": "I'm not sure, could you check? — Я не уверен, не могли бы вы проверить?"
             }
           }
         }
@@ -61,7 +61,7 @@
       }
     },
     "step-2": {
-      "title": "Подтверждение брони",
+      "title": "Стойка регистрации",
       "emoji": "📋",
       "requireChoice": true,
       "npc": {
@@ -84,19 +84,19 @@
               "sentence": "My last name is ___ .",
               "options": ["Smith", "Johnson", "Williams", "Brown"],
               "correctAnswer": "Smith",
-              "tip": "Last name — фамилия. First name — имя. My last name is Smith — моя фамилия Смит."
+              "tip": "My last name is Smith — моя фамилия Смит."
             },
             "Johnson": {
               "sentence": "My last name is ___ .",
               "options": ["Smith", "Johnson", "Williams", "Brown"],
               "correctAnswer": "Johnson",
-              "tip": "Last name — фамилия. My last name is Johnson — моя фамилия Джонсон."
+              "tip": "My last name is Johnson — моя фамилия Джонсон."
             },
             "Williams": {
               "sentence": "My last name is ___ .",
               "options": ["Smith", "Johnson", "Williams", "Brown"],
               "correctAnswer": "Williams",
-              "tip": "Last name — фамилия. My last name is Williams — моя фамилия Уильямс."
+              "tip": "My last name is Williams — моя фамилия Уильямс."
             }
           }
         }
@@ -104,7 +104,7 @@
       "next": "step-2-confirm"
     },
     "step-2-confirm": {
-      "title": "Детали брони",
+      "title": "Стойка регистрации",
       "emoji": "📋",
       "requireChoice": true,
       "npc": {
@@ -126,13 +126,13 @@
               "sourceText": "Да, всё верно, спасибо.",
               "options": ["Yes correct thanks.", "Yes, that's correct, thank you.", "Good, right.", "It is yes."],
               "correctIndex": 1,
-              "tip": "That's correct — это правильно. Thank you — спасибо. Yes, that's correct, thank you — да, всё верно, спасибо."
+              "tip": "Yes, that's correct, thank you — да, всё верно, спасибо."
             },
             "change": {
               "sourceText": "Мне нужно изменить даты.",
               "options": ["Change dates.", "I need to change the dates, please.", "Dates wrong.", "Fix my booking."],
               "correctIndex": 1,
-              "tip": "I need to change the dates — мне нужно изменить даты. Конструкция need + to + глагол."
+              "tip": "I need to change the dates, please — мне нужно изменить даты, пожалуйста."
             }
           }
         }
@@ -143,7 +143,7 @@
       }
     },
     "step-2-change": {
-      "title": "Изменение брони",
+      "title": "Стойка регистрации",
       "emoji": "🔄",
       "npc": {
         "text": "No problem! How many nights would you like to stay instead?",
@@ -155,14 +155,14 @@
           "config": {
             "hint": "Составьте: \"Я хотел бы остаться ещё на две ночи\"",
             "correctOrder": ["I", "would", "like", "to", "stay", "two", "more", "nights"],
-            "tip": "I would like to stay — я хотел бы остаться. Two more nights — ещё на две ночи."
+            "tip": "I would like to stay two more nights — я хотел бы остаться ещё на две ночи."
           }
         }
       ],
       "next": "step-4"
     },
     "step-walkin-1": {
-      "title": "Без брони",
+      "title": "Стойка регистрации",
       "emoji": "🚶",
       "npc": {
         "text": "No problem! Let me check what rooms we have available.",
@@ -174,14 +174,14 @@
           "config": {
             "hint": "Составьте: \"У вас есть свободные номера?\"",
             "correctOrder": ["Do", "you", "have", "any", "available", "rooms", "?"],
-            "tip": "Do you have any available rooms? — У вас есть свободные номера? Available — свободный."
+            "tip": "Do you have any available rooms? — У вас есть свободные номера?"
           }
         }
       ],
       "next": "step-walkin-2"
     },
     "step-walkin-2": {
-      "title": "Доступные комнаты",
+      "title": "Стойка регистрации",
       "emoji": "🛏️",
       "requireChoice": true,
       "npc": {
@@ -203,13 +203,13 @@
               "sentence": "I'd like the ___ room, please.",
               "options": ["single", "double", "triple", "big"],
               "correctAnswer": "single",
-              "tip": "Single room — одноместный номер, double room — двухместный. I'd like the single room — я бы хотел одноместный номер."
+              "tip": "I'd like the single room — я хотел бы одноместный номер."
             },
             "double": {
               "sentence": "I'd like the ___ room, please.",
               "options": ["single", "double", "triple", "big"],
               "correctAnswer": "double",
-              "tip": "Double room — двухместный номер, single room — одноместный. I'd like the double room — я бы хотел двухместный номер."
+              "tip": "I'd like the double room — я хотел бы двухместный номер."
             }
           }
         }
@@ -217,7 +217,7 @@
       "next": "step-4"
     },
     "step-help-1": {
-      "title": "Поиск брони",
+      "title": "Стойка регистрации",
       "emoji": "🔍",
       "npc": {
         "text": "That's okay! Could you tell me your last name? I can check our system.",
@@ -230,14 +230,14 @@
             "question": "Как вежливо попросить проверить бронь?",
             "options": ["Check my booking.", "Could you check if I have a reservation?", "Find my room.", "Look reservation."],
             "correctIndex": 1,
-            "tip": "Could you check if I have a reservation? — Не могли бы вы проверить, есть ли у меня бронь? Вежливая просьба."
+            "tip": "Could you check if I have a reservation? — Не могли бы вы проверить, есть ли у меня бронь?"
           }
         }
       ],
       "next": "step-2-confirm"
     },
     "step-4": {
-      "title": "Этаж и вид",
+      "title": "Стойка регистрации",
       "emoji": "🏢",
       "requireChoice": true,
       "npc": {
@@ -260,19 +260,19 @@
               "sentence": "I'd prefer a room with a ___ view.",
               "options": ["city", "garden", "sea", "parking"],
               "correctAnswer": "city",
-              "tip": "City view — вид на город, garden view — вид на сад, sea view — вид на море."
+              "tip": "I'd prefer a room with a city view — я предпочёл бы номер с видом на город."
             },
             "garden": {
               "sentence": "I'd prefer a room with a ___ view.",
               "options": ["city", "garden", "sea", "parking"],
               "correctAnswer": "garden",
-              "tip": "Garden view — вид на сад, city view — вид на город, sea view — вид на море."
+              "tip": "I'd prefer a room with a garden view — я предпочёл бы номер с видом на сад."
             },
             "sea": {
               "sentence": "I'd prefer a room with a ___ view.",
               "options": ["city", "garden", "sea", "parking"],
               "correctAnswer": "sea",
-              "tip": "Sea view — вид на море. Extra charge — дополнительная плата."
+              "tip": "I'd prefer a room with a sea view — я предпочёл бы номер с видом на море."
             }
           }
         }
@@ -284,7 +284,7 @@
       }
     },
     "step-4-upgrade": {
-      "title": "Предложение апгрейда",
+      "title": "Стойка регистрации",
       "emoji": "⬆️",
       "requireChoice": true,
       "npc": {
@@ -306,13 +306,13 @@
               "question": "Как согласиться на апгрейд?",
               "options": ["Yes upgrade.", "Yes, I'd love to upgrade!", "OK suite.", "Take suite."],
               "correctIndex": 1,
-              "tip": "I'd love to upgrade — я бы с удовольствием сделал апгрейд. Конструкция I'd love to + глагол."
+              "tip": "Yes, I'd love to upgrade! — Да, я бы с удовольствием сделал апгрейд!"
             },
             "no": {
               "question": "Как вежливо отказаться?",
               "options": ["No.", "No, thank you. The standard room is fine.", "Not want.", "Standard OK."],
               "correctIndex": 1,
-              "tip": "No, thank you — нет, спасибо (вежливый отказ). Standard room — стандартный номер."
+              "tip": "No, thank you. The standard room is fine — нет, спасибо. Стандартный номер подойдёт."
             }
           }
         }
@@ -320,7 +320,7 @@
       "next": "step-5"
     },
     "step-5": {
-      "title": "Завтрак",
+      "title": "Стойка регистрации",
       "emoji": "🍳",
       "requireChoice": true,
       "npc": {
@@ -343,19 +343,19 @@
               "sourceText": "Я буду завтракать в ресторане.",
               "options": ["Breakfast restaurant.", "I'll have breakfast in the restaurant.", "Food in room.", "Bring food."],
               "correctIndex": 1,
-              "tip": "I'll have breakfast in the restaurant — я позавтракаю в ресторане. Complimentary — бесплатно (включено в стоимость)."
+              "tip": "I'll have breakfast in the restaurant — я буду завтракать в ресторане."
             },
             "room-service": {
               "sourceText": "Я бы хотел завтрак в номер.",
               "options": ["Breakfast restaurant.", "I'd like room service, please.", "Food in room.", "Bring food."],
               "correctIndex": 1,
-              "tip": "I'd like room service — я бы хотел обслуживание в номер. Room service — доставка еды в номер."
+              "tip": "I'd like room service, please — я бы хотел обслуживание в номер, пожалуйста."
             },
             "skip": {
               "sourceText": "Я пропущу завтрак, спасибо.",
               "options": ["Breakfast restaurant.", "I'll skip breakfast, thank you.", "Food in room.", "Bring food."],
               "correctIndex": 1,
-              "tip": "I'll skip breakfast — я пропущу завтрак. Skip — пропускать."
+              "tip": "I'll skip breakfast, thank you — я пропущу завтрак, спасибо."
             }
           }
         }
@@ -367,7 +367,7 @@
       }
     },
     "step-5-roomservice": {
-      "title": "Время доставки",
+      "title": "Стойка регистрации",
       "emoji": "🛎️",
       "requireChoice": true,
       "npc": {
@@ -390,19 +390,19 @@
               "sentence": "Please deliver breakfast at ___ AM.",
               "options": ["seven", "eight", "nine", "ten"],
               "correctAnswer": "seven",
-              "tip": "Deliver — доставить. At seven AM — в 7 утра. Prepositions of time: at + точное время."
+              "tip": "Please deliver breakfast at seven AM — пожалуйста, доставьте завтрак в 7 утра."
             },
             "8am": {
               "sentence": "Please deliver breakfast at ___ AM.",
               "options": ["seven", "eight", "nine", "ten"],
               "correctAnswer": "eight",
-              "tip": "Deliver — доставить. At eight AM — в 8 утра. AM — до полудня."
+              "tip": "Please deliver breakfast at eight AM — пожалуйста, доставьте завтрак в 8 утра."
             },
             "9am": {
               "sentence": "Please deliver breakfast at ___ AM.",
               "options": ["seven", "eight", "nine", "ten"],
               "correctAnswer": "nine",
-              "tip": "Deliver — доставить. At nine AM — в 9 утра."
+              "tip": "Please deliver breakfast at nine AM — пожалуйста, доставьте завтрак в 9 утра."
             }
           }
         }
@@ -410,7 +410,7 @@
       "next": "step-6"
     },
     "step-6": {
-      "title": "WiFi и услуги",
+      "title": "Стойка регистрации",
       "emoji": "📶",
       "npc": {
         "text": "Our Wi-Fi is complimentary. We also have a gym, pool, and spa.",
@@ -422,14 +422,14 @@
           "config": {
             "hint": "Составьте: \"Какой пароль от Wi-Fi?\"",
             "correctOrder": ["What", "is", "the", "Wi-Fi", "password", "?"],
-            "tip": "Wi-Fi password — пароль от Wi-Fi. Complimentary Wi-Fi — бесплатный Wi-Fi."
+            "tip": "What is the Wi-Fi password? — Какой пароль от Wi-Fi?"
           }
         }
       ],
       "next": "step-7"
     },
     "step-7": {
-      "title": "Оплата",
+      "title": "Стойка регистрации",
       "emoji": "💳",
       "requireChoice": true,
       "npc": {
@@ -452,19 +452,19 @@
               "question": "Как сказать «оплачу картой»?",
               "options": ["Card pay.", "Can I pay by credit card?", "I use card.", "Pay with card me."],
               "correctIndex": 1,
-              "tip": "Can I pay by credit card? — Могу ли я оплатить кредитной картой? Pay by card — оплата картой."
+              "tip": "Can I pay by credit card? — Могу ли я оплатить кредитной картой?"
             },
             "cash": {
               "question": "Как сказать «наличными»?",
               "options": ["Money please.", "I'll pay in cash, please.", "I use money.", "Cash me."],
               "correctIndex": 1,
-              "tip": "I'll pay in cash — я заплачу наличными. In cash — наличными (предлог in + cash)."
+              "tip": "I'll pay in cash, please — я заплачу наличными, пожалуйста."
             },
             "problem": {
               "question": "Как сказать о проблеме с картой?",
               "options": ["Card broken.", "I'm having trouble with my card.", "Card no work.", "Problem card."],
               "correctIndex": 1,
-              "tip": "I'm having trouble with my card — у меня проблемы с картой. Trouble — проблема."
+              "tip": "I'm having trouble with my card — у меня проблемы с картой."
             }
           }
         }
@@ -476,7 +476,7 @@
       }
     },
     "step-7-problem": {
-      "title": "Альтернативная оплата",
+      "title": "Стойка регистрации",
       "emoji": "🏧",
       "requireChoice": true,
       "npc": {
@@ -499,19 +499,19 @@
               "sentence": "I'll pay with my ___ , please.",
               "options": ["debit card", "cash", "credit card", "check"],
               "correctAnswer": "debit card",
-              "tip": "Debit card — дебетовая карта. Credit card — кредитная карта."
+              "tip": "I'll pay with my debit card — я заплачу своей дебетовой картой."
             },
             "cash": {
               "sentence": "I'll pay with my ___ , please.",
               "options": ["debit card", "cash", "credit card", "check"],
               "correctAnswer": "cash",
-              "tip": "I'll pay with cash — я заплачу наличными. Pay with — оплатить с помощью."
+              "tip": "I'll pay with cash — я заплачу наличными."
             },
             "atm": {
               "sentence": "Is there an ___ in the lobby?",
               "options": ["ATM", "elevator", "restaurant", "exit"],
               "correctAnswer": "ATM",
-              "tip": "ATM — банкомат (Automatic Teller Machine). Lobby — холл, вестибюль отеля."
+              "tip": "Is there an ATM in the lobby? — В холле есть банкомат?"
             }
           }
         }
@@ -519,7 +519,7 @@
       "next": "step-8"
     },
     "step-8": {
-      "title": "Ключ-карта",
+      "title": "Стойка регистрации",
       "emoji": "🔑",
       "requireChoice": true,
       "npc": {
@@ -541,13 +541,13 @@
               "question": "Как принять помощь?",
               "options": ["Yes give.", "Yes, that would be very helpful, thank you.", "Help me.", "OK help."],
               "correctIndex": 1,
-              "tip": "That would be very helpful — это было бы очень полезно. Thank you — спасибо."
+              "tip": "Yes, that would be very helpful, thank you — да, это было бы очень полезно, спасибо."
             },
             "no": {
               "question": "Как вежливо отказаться?",
               "options": ["No.", "No, thank you. I can manage.", "I do.", "Not need."],
               "correctIndex": 1,
-              "tip": "I can manage — я справлюсь сам. No, thank you — нет, спасибо (вежливый отказ)."
+              "tip": "No, thank you. I can manage — нет, спасибо. Я справлюсь сам."
             }
           }
         }
@@ -555,7 +555,7 @@
       "next": "step-9"
     },
     "step-9": {
-      "title": "Закрепление лексики",
+      "title": "Отель",
       "emoji": "🧩",
       "tasks": [
         {
@@ -572,14 +572,14 @@
               { "en": "reservation", "ru": "бронь" },
               { "en": "breakfast", "ru": "завтрак" }
             ],
-            "tip": "Key card — ключ-карта, elevator — лифт, luggage — багаж, lobby — холл, floor — этаж, check-in — заселение, reservation — бронь, breakfast — завтрак."
+            "tip": "Key card — ключ-карта, elevator — лифт, luggage — багаж, lobby — холл, floor — этаж."
           }
         }
       ],
       "next": "step-10"
     },
     "step-10": {
-      "title": "Приятного отдыха",
+      "title": "Отель",
       "emoji": "🎉",
       "npc": {
         "text": "You're all set! Enjoy your stay!",
@@ -593,7 +593,7 @@
             "sourceText": "Спасибо большое! Хорошего вечера!",
             "options": ["Thanks! Good night!", "Thank you so much! Have a great evening!", "Thanks big! Evening good!", "Many thanks! Night!"],
             "correctIndex": 1,
-            "tip": "Thank you so much — спасибо большое! Have a great evening — хорошего вечера! (пожелание)."
+            "tip": "Thank you so much! Have a great evening! — Спасибо большое! Хорошего вечера!"
           }
         }
       ],
