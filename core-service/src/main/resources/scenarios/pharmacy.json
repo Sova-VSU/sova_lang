@@ -3,7 +3,7 @@
   "title": "PHARMACY",
   "emoji": "💊",
   "description": "Зайди в аптеку и попроси нужное лекарство — практикуй медицинскую лексику.",
-  "free": true,
+  "free": false,
   "startStepId": "step-1",
   "completionMessage": "Вы успешно купили всё необходимое в аптеке!",
   "theme": {

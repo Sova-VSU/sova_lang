@@ -681,5 +681,5 @@
     }
   },
   "description": "Пройдите и посадку на самолет",
-  "free": false
+  "free": true
 }
