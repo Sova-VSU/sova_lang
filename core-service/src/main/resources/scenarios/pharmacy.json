@@ -1,0 +1,306 @@
+{
+  "id": "pharmacy",
+  "title": "PHARMACY",
+  "emoji": "💊",
+  "description": "Зайди в аптеку и попроси нужное лекарство — практикуй медицинскую лексику.",
+  "free": true,
+  "startStepId": "step-1",
+  "completionMessage": "Вы успешно купили всё необходимое в аптеке!",
+  "theme": {
+    "background": "linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%)",
+    "cardBackground": "#f0f9ff",
+    "accentColor": "#0284c7",
+    "primaryButton": "#0369a1",
+    "npcBubbleColor": "#e0f2fe",
+    "decorations": ["💊", "🏥", "🌡️"]
+  },
+  "steps": {
+    "step-1": {
+      "title": "Вход в аптеку",
+      "emoji": "💊",
+      "requireChoice": true,
+      "npc": {
+        "text": "Good afternoon! How can I help you today?",
+        "avatar": "👩‍⚕️"
+      },
+      "choices": {
+        "label": "ЧТО ВАМ НУЖНО:",
+        "options": [
+          { "id": "medicine", "emoji": "💊", "label": "Medicine" },
+          { "id": "prescription", "emoji": "📋", "label": "Fill a prescription" },
+          { "id": "advice", "emoji": "❓", "label": "Need advice" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "medicine": {
+              "sentence": "I need something for a ___ .",
+              "options": ["headache", "medicine", "pharmacy", "tablet"],
+              "correctAnswer": "headache",
+              "tip": "\"something for...\" — что-нибудь от..."
+            },
+            "prescription": {
+              "sentence": "I'd like to ___ this prescription.",
+              "options": ["fill", "take", "have", "get"],
+              "correctAnswer": "fill",
+              "tip": "\"fill a prescription\" — выполнить рецепт."
+            },
+            "advice": {
+              "sentence": "Could you ___ me what to take?",
+              "options": ["tell", "give", "help", "show"],
+              "correctAnswer": "tell",
+              "tip": "\"Could you tell me...?\" — вежливая просьба."
+            }
+          }
+        }
+      ],
+      "nextByChoice": {
+        "medicine": "step-2",
+        "prescription": "step-2-prescription",
+        "advice": "step-2-advice"
+      }
+    },
+    "step-2": {
+      "title": "Описание симптомов",
+      "emoji": "🤒",
+      "requireChoice": true,
+      "npc": {
+        "text": "What are your symptoms?",
+        "avatar": "👩‍⚕️"
+      },
+      "choices": {
+        "label": "СИМПТОМЫ:",
+        "options": [
+          { "id": "cold", "emoji": "🤧", "label": "Cold & runny nose" },
+          { "id": "fever", "emoji": "🌡️", "label": "Fever" },
+          { "id": "pain", "emoji": "😣", "label": "Pain" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "cold": {
+              "question": "Как сказать «у меня насморк»?",
+              "options": ["I have a runny nose.", "My nose runs.", "I have nose.", "Nose problem."],
+              "correctIndex": 0,
+              "tip": "\"runny nose\" — насморк. \"sore throat\" — боль в горле."
+            },
+            "fever": {
+              "question": "Как сказать «у меня температура»?",
+              "options": ["I have temperature.", "I have a fever.", "I am hot.", "Temperature me."],
+              "correctIndex": 1,
+              "tip": "\"fever\" — жар, температура."
+            },
+            "pain": {
+              "question": "Как сказать «у меня болит голова»?",
+              "options": ["My head pain.", "I have a headache.", "Head hurts me.", "I headache."],
+              "correctIndex": 1,
+              "tip": "\"headache\" — головная боль."
+            }
+          }
+        }
+      ],
+      "next": "step-3"
+    },
+    "step-2-prescription": {
+      "title": "Рецепт",
+      "emoji": "📋",
+      "npc": {
+        "text": "Please hand me the prescription. One moment while I check our stock.",
+        "avatar": "👩‍⚕️"
+      },
+      "tasks": [
+        {
+          "type": "translation",
+          "config": {
+            "sourceText": "Вот мой рецепт. Сколько это стоит?",
+            "options": [
+              "Here prescription. Cost?",
+              "Here is my prescription. How much will that be?",
+              "Give prescription. Price?",
+              "My prescription. How cost?"
+            ],
+            "correctIndex": 1,
+            "tip": "\"How much will that be?\" — сколько это будет стоить?"
+          }
+        }
+      ],
+      "next": "step-4"
+    },
+    "step-2-advice": {
+      "title": "Совет фармацевта",
+      "emoji": "❓",
+      "requireChoice": true,
+      "npc": {
+        "text": "Of course! What's bothering you?",
+        "avatar": "👩‍⚕️"
+      },
+      "choices": {
+        "label": "ПРОБЛЕМА:",
+        "options": [
+          { "id": "sleep", "emoji": "😴", "label": "Can't sleep" },
+          { "id": "stress", "emoji": "😰", "label": "Stress" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "sleep": {
+              "sentence": "I've been having trouble ___ lately.",
+              "options": ["sleeping", "eating", "walking", "talking"],
+              "correctAnswer": "sleeping",
+              "tip": "\"have trouble sleeping\" — испытывать трудности со сном."
+            },
+            "stress": {
+              "sentence": "I've been feeling very ___ at work.",
+              "options": ["stressed", "happy", "sleepy", "tired"],
+              "correctAnswer": "stressed",
+              "tip": "\"stressed\" — в стрессе."
+            }
+          }
+        }
+      ],
+      "next": "step-3"
+    },
+    "step-3": {
+      "title": "Выбор лекарства",
+      "emoji": "💊",
+      "requireChoice": true,
+      "npc": {
+        "text": "I recommend this. Would you prefer tablets or a liquid form?",
+        "avatar": "👩‍⚕️"
+      },
+      "choices": {
+        "label": "ФОРМА:",
+        "options": [
+          { "id": "tablets", "emoji": "💊", "label": "Tablets" },
+          { "id": "liquid", "emoji": "🧴", "label": "Liquid" },
+          { "id": "spray", "emoji": "💨", "label": "Spray" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "configByChoice": {
+            "tablets": {
+              "hint": "Составьте: \"I prefer tablets, please\"",
+              "correctOrder": ["I", "prefer", "tablets", "please"],
+              "tip": "\"prefer\" — предпочитать."
+            },
+            "liquid": {
+              "hint": "Составьте: \"Do you have it in liquid form?\"",
+              "correctOrder": ["Do", "you", "have", "it", "in", "liquid", "form", "?"],
+              "tip": "\"in liquid form\" — в жидкой форме."
+            },
+            "spray": {
+              "hint": "Составьте: \"I'll take the spray\"",
+              "correctOrder": ["I'll", "take", "the", "spray"],
+              "tip": "\"I'll take...\" — я возьму..."
+            }
+          }
+        }
+      ],
+      "next": "step-4"
+    },
+    "step-4": {
+      "title": "Инструкция",
+      "emoji": "📝",
+      "npc": {
+        "text": "Take one tablet three times a day with food. Don't take more than 3 per day.",
+        "avatar": "👩‍⚕️"
+      },
+      "tasks": [
+        {
+          "type": "matching",
+          "config": {
+            "title": "Медицинская лексика:",
+            "pairs": [
+              { "en": "dosage", "ru": "дозировка" },
+              { "en": "prescription", "ru": "рецепт" },
+              { "en": "tablet", "ru": "таблетка" },
+              { "en": "side effect", "ru": "побочный эффект" },
+              { "en": "with food", "ru": "с едой" },
+              { "en": "three times a day", "ru": "три раза в день" }
+            ]
+          }
+        }
+      ],
+      "next": "step-5"
+    },
+    "step-5": {
+      "title": "Оплата",
+      "emoji": "💳",
+      "requireChoice": true,
+      "npc": {
+        "text": "That will be $12.50. How would you like to pay?",
+        "avatar": "👩‍⚕️"
+      },
+      "choices": {
+        "label": "ОПЛАТА:",
+        "options": [
+          { "id": "card", "emoji": "💳", "label": "Card" },
+          { "id": "cash", "emoji": "💵", "label": "Cash" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "translation",
+          "configByChoice": {
+            "card": {
+              "sourceText": "Можно оплатить картой?",
+              "options": [
+                "Card pay?",
+                "Can I pay by card?",
+                "I use card.",
+                "Card payment?"
+              ],
+              "correctIndex": 1,
+              "tip": "\"Can I pay by...?\" — можно оплатить...?"
+            },
+            "cash": {
+              "sourceText": "Вот наличные. Сдача, пожалуйста.",
+              "options": [
+                "Money here. Change.",
+                "Here's the cash. Change please.",
+                "Cash. Give change.",
+                "I pay cash change."
+              ],
+              "correctIndex": 1,
+              "tip": "\"change\" — сдача."
+            }
+          }
+        }
+      ],
+      "next": "step-6"
+    },
+    "step-6": {
+      "title": "Прощание",
+      "emoji": "🎉",
+      "isFinal": true,
+      "npc": {
+        "text": "Feel better soon! Come back if you have any questions about the medication.",
+        "avatar": "👩‍⚕️"
+      },
+      "tasks": [
+        {
+          "type": "matching",
+          "config": {
+            "title": "Финальная лексика:",
+            "pairs": [
+              { "en": "feel better", "ru": "поправляться" },
+              { "en": "medication", "ru": "лекарство" },
+              { "en": "pharmacy", "ru": "аптека" },
+              { "en": "pharmacist", "ru": "фармацевт" },
+              { "en": "over-the-counter", "ru": "без рецепта" }
+            ]
+          }
+        }
+      ],
+      "next": null
+    }
+  }
+}

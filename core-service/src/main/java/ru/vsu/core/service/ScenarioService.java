@@ -26,11 +26,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ScenarioService {
 
+    private static final int MAX_PAGE_SIZE = 100;
+
     private final ScenarioRepository scenarioRepository;
     private final UserProgressRepository progressRepository;
     private final SubscriptionClient subscriptionClient;
 
     public PaginatedScenarioList list(int page, int pageSize, Boolean free) {
+        if (page < 1) page = 1;
+        if (pageSize < 1) pageSize = 20;
+        if (pageSize > MAX_PAGE_SIZE) pageSize = MAX_PAGE_SIZE;
         PageRequest pageable = PageRequest.of(page - 1, pageSize);
         Page<Scenario> result = (free != null)
                 ? scenarioRepository.findByFree(free, pageable)
@@ -62,9 +67,7 @@ public class ScenarioService {
                 .orElseThrow(() -> new NotFoundException("Scenario not found"));
 
         if (!scenario.isFree()) {
-            if (userId == null) {
-                throw new ForbiddenException("Authentication required");
-            }
+            if (userId == null) throw new ForbiddenException("Authentication required");
             SubscriptionDto sub = subscriptionClient.getSubscription(userId);
             if (sub == null || !"ACTIVE".equals(sub.getStatus())) {
                 throw new ForbiddenException("Active subscription required");
