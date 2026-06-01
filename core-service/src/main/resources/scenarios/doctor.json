@@ -1,0 +1,289 @@
+{
+  "id": "doctor",
+  "title": "DOCTOR'S OFFICE",
+  "emoji": "🩺",
+  "description": "Визит к врачу — объясни симптомы, пойми диагноз и обсуди лечение на английском.",
+  "free": false,
+  "startStepId": "step-1",
+  "completionMessage": "Вы успешно прошли приём у врача и получили рецепт!",
+  "theme": {
+    "background": "linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)",
+    "cardBackground": "#f0fdf4",
+    "accentColor": "#16a34a",
+    "primaryButton": "#15803d",
+    "npcBubbleColor": "#dcfce7",
+    "decorations": ["🩺", "🏥", "💉"]
+  },
+  "steps": {
+    "step-1": {
+      "title": "Регистратура",
+      "emoji": "🏥",
+      "requireChoice": true,
+      "npc": {
+        "text": "Good morning! Do you have an appointment?",
+        "avatar": "👩‍💼"
+      },
+      "choices": {
+        "label": "ВАШ ОТВЕТ:",
+        "options": [
+          { "id": "yes", "emoji": "✅", "label": "Yes, I have one" },
+          { "id": "no", "emoji": "❌", "label": "No, walk-in" },
+          { "id": "urgent", "emoji": "🚨", "label": "It's urgent" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "yes": {
+              "question": "Как сказать «у меня запись»?",
+              "options": [
+                "I have appointment.",
+                "I have an appointment at 10 AM.",
+                "My appointment.",
+                "Booked 10."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I have an appointment\" — у меня запись."
+            },
+            "no": {
+              "question": "Как попросить принять без записи?",
+              "options": [
+                "No appointment, see doctor.",
+                "Could I see a doctor without an appointment?",
+                "I come without book.",
+                "Take me doctor."
+              ],
+              "correctIndex": 1,
+              "tip": "\"walk-in\" — визит без записи."
+            },
+            "urgent": {
+              "question": "Как сказать что это срочно?",
+              "options": [
+                "Very urgent!",
+                "It's an emergency. I need to see a doctor immediately.",
+                "Quick doctor!",
+                "Help me now!"
+              ],
+              "correctIndex": 1,
+              "tip": "\"emergency\" — экстренный случай."
+            }
+          }
+        }
+      ],
+      "next": "step-2"
+    },
+    "step-2": {
+      "title": "Ожидание",
+      "emoji": "⏳",
+      "npc": {
+        "text": "Please have a seat. Dr. Johnson will see you shortly. Can I take your name and date of birth?",
+        "avatar": "👩‍💼"
+      },
+      "tasks": [
+        {
+          "type": "word-order",
+          "config": {
+            "hint": "Составьте: \"My name is Anna and my date of birth is March 5th\"",
+            "correctOrder": ["My", "name", "is", "Anna", "and", "my", "date", "of", "birth", "is", "March", "5th"],
+            "tip": "\"date of birth\" — дата рождения."
+          }
+        }
+      ],
+      "next": "step-3"
+    },
+    "step-3": {
+      "title": "Жалобы",
+      "emoji": "🤒",
+      "requireChoice": true,
+      "npc": {
+        "text": "What brings you in today?",
+        "avatar": "👨‍⚕️"
+      },
+      "choices": {
+        "label": "СИМПТОМЫ:",
+        "options": [
+          { "id": "throat", "emoji": "😷", "label": "Sore throat" },
+          { "id": "stomach", "emoji": "🤢", "label": "Stomach pain" },
+          { "id": "back", "emoji": "😖", "label": "Back pain" },
+          { "id": "general", "emoji": "😞", "label": "Feeling unwell" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "fill-blank",
+          "configByChoice": {
+            "throat": {
+              "sentence": "I've had a ___ throat for three days.",
+              "options": ["sore", "hurt", "pain", "bad"],
+              "correctAnswer": "sore",
+              "tip": "\"sore throat\" — боль в горле."
+            },
+            "stomach": {
+              "sentence": "I have a ___ pain in my stomach.",
+              "options": ["sharp", "big", "hard", "fast"],
+              "correctAnswer": "sharp",
+              "tip": "\"sharp pain\" — острая боль."
+            },
+            "back": {
+              "sentence": "My ___ has been hurting since yesterday.",
+              "options": ["back", "body", "side", "neck"],
+              "correctAnswer": "back",
+              "tip": "\"back pain\" — боль в спине."
+            },
+            "general": {
+              "sentence": "I've been feeling ___ and tired lately.",
+              "options": ["unwell", "bad", "sick", "poor"],
+              "correctAnswer": "unwell",
+              "tip": "\"feeling unwell\" — чувствовать себя плохо."
+            }
+          }
+        }
+      ],
+      "next": "step-4"
+    },
+    "step-4": {
+      "title": "Вопросы врача",
+      "emoji": "❓",
+      "requireChoice": true,
+      "npc": {
+        "text": "How long have you had these symptoms? Do you have any allergies?",
+        "avatar": "👨‍⚕️"
+      },
+      "choices": {
+        "label": "ОТВЕТ:",
+        "options": [
+          { "id": "few-days", "emoji": "📅", "label": "A few days" },
+          { "id": "week", "emoji": "🗓️", "label": "About a week" },
+          { "id": "longer", "emoji": "📆", "label": "More than a week" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "translation",
+          "configByChoice": {
+            "few-days": {
+              "sourceText": "Симптомы появились несколько дней назад. Аллергии нет.",
+              "options": [
+                "Few days ago. No allergy.",
+                "I've had these symptoms for a few days. I have no allergies.",
+                "Days symptoms. No allergic.",
+                "Symptoms since days. No allergy."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I've had... for...\" — у меня было... в течение..."
+            },
+            "week": {
+              "sourceText": "Примерно неделю. У меня аллергия на пенициллин.",
+              "options": [
+                "One week. Allergy penicillin.",
+                "About a week. I'm allergic to penicillin.",
+                "Week ago. I allergic.",
+                "For week. Penicillin bad."
+              ],
+              "correctIndex": 1,
+              "tip": "\"I'm allergic to...\" — у меня аллергия на..."
+            },
+            "longer": {
+              "sourceText": "Больше недели. Становится хуже.",
+              "options": [
+                "More week. Getting bad.",
+                "More than a week. It's getting worse.",
+                "Long time. Worse now.",
+                "Over week. More bad."
+              ],
+              "correctIndex": 1,
+              "tip": "\"getting worse\" — становится хуже."
+            }
+          }
+        }
+      ],
+      "next": "step-5"
+    },
+    "step-5": {
+      "title": "Диагноз",
+      "emoji": "📋",
+      "requireChoice": true,
+      "npc": {
+        "text": "Based on your symptoms, I think you have a mild infection. I'll prescribe antibiotics. Do you have any questions?",
+        "avatar": "👨‍⚕️"
+      },
+      "choices": {
+        "label": "ВОПРОС:",
+        "options": [
+          { "id": "side-effects", "emoji": "💊", "label": "Side effects?" },
+          { "id": "duration", "emoji": "⏰", "label": "How long to take?" },
+          { "id": "rest", "emoji": "🛌", "label": "Should I rest?" }
+        ]
+      },
+      "tasks": [
+        {
+          "type": "multiple-choice",
+          "configByChoice": {
+            "side-effects": {
+              "question": "Как спросить о побочных эффектах?",
+              "options": [
+                "Bad effects?",
+                "Are there any side effects I should know about?",
+                "What side?",
+                "Medicine effects?"
+              ],
+              "correctIndex": 1,
+              "tip": "\"side effects\" — побочные эффекты."
+            },
+            "duration": {
+              "question": "Как спросить как долго принимать лекарство?",
+              "options": [
+                "How long medicine?",
+                "How long should I take the medication?",
+                "Duration take?",
+                "Medicine long?"
+              ],
+              "correctIndex": 1,
+              "tip": "\"How long should I...?\" — как долго мне...?"
+            },
+            "rest": {
+              "question": "Как спросить нужно ли отдыхать?",
+              "options": [
+                "Need rest?",
+                "Should I rest at home?",
+                "Stay home yes?",
+                "I rest?"
+              ],
+              "correctIndex": 1,
+              "tip": "\"Should I...?\" — мне следует...?"
+            }
+          }
+        }
+      ],
+      "next": "step-6"
+    },
+    "step-6": {
+      "title": "Рецепт и уход",
+      "emoji": "🎉",
+      "isFinal": true,
+      "npc": {
+        "text": "Here's your prescription. Take the antibiotics for 7 days. Rest as much as possible. Come back if you don't feel better in 5 days.",
+        "avatar": "👨‍⚕️"
+      },
+      "tasks": [
+        {
+          "type": "matching",
+          "config": {
+            "title": "Медицинская лексика врача:",
+            "pairs": [
+              { "en": "diagnosis", "ru": "диагноз" },
+              { "en": "antibiotic", "ru": "антибиотик" },
+              { "en": "infection", "ru": "инфекция" },
+              { "en": "prescription", "ru": "рецепт" },
+              { "en": "symptoms", "ru": "симптомы" },
+              { "en": "recovery", "ru": "выздоровление" },
+              { "en": "follow-up", "ru": "повторный приём" }
+            ]
+          }
+        }
+      ],
+      "next": null
+    }
+  }
+}

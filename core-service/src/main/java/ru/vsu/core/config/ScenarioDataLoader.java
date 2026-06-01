@@ -1,5 +1,6 @@
 package ru.vsu.core.config;
 
+import com.mongodb.client.model.ReplaceOptions;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
@@ -18,15 +19,13 @@ public class ScenarioDataLoader implements ApplicationRunner {
 
     private final MongoTemplate mongoTemplate;
 
-    private static final String[] SCENARIOS = {"coffee", "restaurant", "airport", "hotel"};
+    private static final String[] SCENARIOS = {
+            "coffee", "restaurant", "airport", "hotel", "pharmacy", "doctor"
+    };
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         var collection = mongoTemplate.getCollection("scenarios");
-        if (collection.countDocuments() > 0) {
-            log.info("Scenarios already seeded, skipping");
-            return;
-        }
 
         for (String name : SCENARIOS) {
             var resource = new ClassPathResource("scenarios/" + name + ".json");
@@ -40,8 +39,12 @@ public class ScenarioDataLoader implements ApplicationRunner {
                 doc.remove("title");
             }
 
-            collection.insertOne(doc);
-            log.info("Seeded scenario: {}", name);
+            collection.replaceOne(
+                    new Document("_id", doc.get("_id")),
+                    doc,
+                    new ReplaceOptions().upsert(true)
+            );
+            log.info("Upserted scenario: {}", name);
         }
     }
 }

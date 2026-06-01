@@ -32,15 +32,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class ScenarioServiceTest {
 
-    @Mock
-    private ScenarioRepository scenarioRepository;
-    @Mock
-    private UserProgressRepository progressRepository;
-    @Mock
-    private SubscriptionClient subscriptionClient;
+    @Mock private ScenarioRepository scenarioRepository;
+    @Mock private UserProgressRepository progressRepository;
+    @Mock private SubscriptionClient subscriptionClient;
 
-    @InjectMocks
-    private ScenarioService scenarioService;
+    @InjectMocks private ScenarioService scenarioService;
+
+    // ──────────────────────── list ────────────────────────
 
     @Test
     void list_noFilter_returnsAll() {
@@ -66,6 +64,28 @@ class ScenarioServiceTest {
     }
 
     @Test
+    void list_pageZero_normalizedToOne() {
+        when(scenarioRepository.findAll(any(PageRequest.class)))
+                .thenReturn(new PageImpl<>(List.of()));
+
+        PaginatedScenarioList result = scenarioService.list(0, 20, null);
+
+        assertThat(result.getMeta().getPage()).isEqualTo(1);
+    }
+
+    @Test
+    void list_pageSizeExceedsMax_cappedAt100() {
+        when(scenarioRepository.findAll(any(PageRequest.class)))
+                .thenReturn(new PageImpl<>(List.of()));
+
+        PaginatedScenarioList result = scenarioService.list(1, 999, null);
+
+        assertThat(result.getMeta().getPageSize()).isEqualTo(100);
+    }
+
+    // ──────────────────────── getById ────────────────────────
+
+    @Test
     void getById_freeScenario_noAuthRequired() {
         Scenario scenario = Scenario.builder().id("coffee").name("Кофейня").free(true).build();
         when(scenarioRepository.findById("coffee")).thenReturn(Optional.of(scenario));
@@ -79,7 +99,6 @@ class ScenarioServiceTest {
     void getById_paidScenario_withActiveSubscription_returnsScenario() {
         Scenario scenario = Scenario.builder().id("hotel").name("Отель").free(false).build();
         SubscriptionDto sub = SubscriptionDto.builder().status("ACTIVE").build();
-
         when(scenarioRepository.findById("hotel")).thenReturn(Optional.of(scenario));
         when(subscriptionClient.getSubscription("user-1")).thenReturn(sub);
 
@@ -101,9 +120,18 @@ class ScenarioServiceTest {
     void getById_paidScenario_noActiveSubscription_throwsForbidden() {
         Scenario scenario = Scenario.builder().id("hotel").name("Отель").free(false).build();
         SubscriptionDto sub = SubscriptionDto.builder().status("EXPIRED").build();
-
         when(scenarioRepository.findById("hotel")).thenReturn(Optional.of(scenario));
         when(subscriptionClient.getSubscription("user-1")).thenReturn(sub);
+
+        assertThatThrownBy(() -> scenarioService.getById("hotel", "user-1"))
+                .isInstanceOf(ForbiddenException.class);
+    }
+
+    @Test
+    void getById_paidScenario_nullSubscription_throwsForbidden() {
+        Scenario scenario = Scenario.builder().id("hotel").name("Отель").free(false).build();
+        when(scenarioRepository.findById("hotel")).thenReturn(Optional.of(scenario));
+        when(subscriptionClient.getSubscription("user-1")).thenReturn(null);
 
         assertThatThrownBy(() -> scenarioService.getById("hotel", "user-1"))
                 .isInstanceOf(ForbiddenException.class);
@@ -117,17 +145,15 @@ class ScenarioServiceTest {
                 .isInstanceOf(NotFoundException.class);
     }
 
+    // ──────────────────────── getProgress ────────────────────────
+
     @Test
     void getProgress_existingProgress_returnsIt() {
         UserProgress progress = UserProgress.builder()
-                .scenarioId("coffee")
-                .userId("user-1")
-                .completed(true)
-                .xpEarned(50)
-                .startedAt(Instant.now())
-                .lastAccessedAt(Instant.now())
+                .scenarioId("coffee").userId("user-1")
+                .completed(true).xpEarned(50)
+                .startedAt(Instant.now()).lastAccessedAt(Instant.now())
                 .build();
-
         when(scenarioRepository.existsById("coffee")).thenReturn(true);
         when(progressRepository.findByUserIdAndScenarioId("user-1", "coffee"))
                 .thenReturn(Optional.of(progress));
