@@ -29,6 +29,7 @@ var publicRoutes = map[string]bool{
 	"POST /auth/login":    true,
 	"POST /auth/register": true,
 	"POST /auth/refresh":  true,
+	"GET /scenarios":      true,
 }
 
 func New(cfg Config) (*Gateway, error) {

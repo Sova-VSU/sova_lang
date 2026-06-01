@@ -18,13 +18,7 @@ export function setOnSessionExpired(handler) {
   sessionExpiredHandler = handler
 }
 
-function shouldExpireSession(url = '') {
-  // Ошибки подписки не должны разлогинивать пользователя
-  return url.includes('/users/') || url.includes('/auth/')
-}
-
-function handleSessionExpired(url) {
-  if (!shouldExpireSession(url)) return
+function handleSessionExpired() {
   expireSession()
   sessionExpiredHandler?.()
 }
@@ -58,7 +52,7 @@ api.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken')
       const requestUrl = originalRequest.url || ''
       if (!refreshToken) {
-        handleSessionExpired(requestUrl)
+        handleSessionExpired()
         return Promise.reject(error)
       }
 
@@ -70,7 +64,7 @@ api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
         return api(originalRequest)
       } catch {
-        handleSessionExpired(requestUrl)
+        handleSessionExpired()
         return Promise.reject(error)
       }
     }
