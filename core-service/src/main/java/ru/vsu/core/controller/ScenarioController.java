@@ -1,11 +1,14 @@
 package ru.vsu.core.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.vsu.core.model.dto.scenario.PaginatedScenarioList;
 import ru.vsu.core.model.dto.scenario.ScenarioDto;
@@ -42,5 +45,14 @@ public class ScenarioController {
             @RequestHeader("X-User-ID") String userId
     ) {
         return scenarioService.getProgress(scenarioId, userId);
+    }
+
+    @PostMapping("/{scenarioId}/complete")
+    @ResponseStatus(HttpStatus.OK)
+    public ScenarioProgressDto complete(
+            @PathVariable String scenarioId,
+            @RequestHeader("X-User-ID") String userId
+    ) {
+        return scenarioService.complete(scenarioId, userId);
     }
 }
