@@ -12,6 +12,10 @@
         v-for="scenario in scenarios"
         :key="scenario.id"
         class="scenario-card"
+        :class="{ 
+          'scenario-card--completed': completedScenarios.includes(scenario.id),
+          'scenario-card--premium': !scenario.free && !hasActiveSubscription && !completedScenarios.includes(scenario.id)
+        }"
         @click="handleScenarioClick(scenario)"
       >
         <span class="scenario-card__emoji">{{ scenario.emoji }}</span>
@@ -48,10 +52,28 @@ const userStore = useUserStore()
 
 const scenarios = ref([])
 const loading = ref(true)
+const completedScenarios = ref([])
 
 const isAuthenticated = computed(() => userStore.state.isAuthenticated)
 const subscription = computed(() => userStore.state.subscription)
 const hasActiveSubscription = computed(() => subscription.value?.status === 'ACTIVE')
+
+async function loadCompletedScenarios() {
+  if (!isAuthenticated.value) return
+  
+  try {
+    const progressPromises = scenarios.value.map(s => 
+      scenariosAPI.getScenarioProgress(s.id).catch(() => null)
+    )
+    const progresses = await Promise.all(progressPromises)
+    
+    completedScenarios.value = progresses
+      .filter(p => p && p.data && p.data.completed)
+      .map(p => p.data.scenarioId)
+  } catch (error) {
+    console.error('Failed to load progress:', error)
+  }
+}
 
 function handleScenarioClick(scenario) {
   if (!scenario.free && !hasActiveSubscription.value) return
@@ -63,11 +85,13 @@ onMounted(async () => {
   
   if (isAuthenticated.value) {
     await userStore.fetchCurrentSubscription()
+    await userStore.fetchUserStats()
   }
   
   try {
     const response = await scenariosAPI.getScenarios(1, 100)
     scenarios.value = response.data.items
+    await loadCompletedScenarios()
   } catch (error) {
     console.error('Failed to load scenarios:', error)
   } finally {
@@ -122,14 +146,16 @@ onMounted(async () => {
   padding: 32px 24px;
   transition: all 0.25s ease;
   text-align: center;
-  border: 1px solid #e2e8f0;
+  border: 2px solid #e2e8f0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
-.scenario-card:has(.scenario-card__btn--play) {
-  cursor: pointer;
+.scenario-card--completed {
+  border: 2px solid #22c55e;
+  background: #f8fffa;
 }
 
 .scenario-card:has(.scenario-card__btn--play):hover {

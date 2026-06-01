@@ -30,28 +30,15 @@
           </div>
 
           <!-- Статистика -->
-          <div class="profile-section">
-            <h2>Статистика</h2>
-            <div class="stats-grid">
-              <div class="stat-card">
-                <div class="stat-value">{{ stats?.totalXp || 0 }}</div>
-                <div class="stat-label">Всего XP</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">{{ stats?.level || 1 }}</div>
-                <div class="stat-label">Уровень</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">{{ stats?.streak || 0 }}</div>
-                <div class="stat-label">Дней подряд</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">{{ stats?.completedScenariosCount || 0 }}</div>
-                <div class="stat-label">Пройдено сценариев</div>
-              </div>
+        <div class="profile-section">
+          <h2>Статистика</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">{{ stats?.completedScenariosCount || 0 }}</div>
+              <div class="stat-label">Пройдено сценариев</div>
             </div>
           </div>
-
+        </div>
           <!-- Подписка -->
           <div class="profile-section">
             <h2>Подписка</h2>
