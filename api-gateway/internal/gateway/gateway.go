@@ -130,6 +130,8 @@ func (g *Gateway) route(path string) *httputil.ReverseProxy {
 		return g.coreProxy
 	case strings.HasPrefix(path, "/subscriptions"):
 		return g.subscriptionProxy
+	case strings.HasPrefix(path, "/leaderboard"):
+		return g.coreProxy
 	default:
 		return nil
 	}
