@@ -359,7 +359,7 @@
       }
     },
     "step-6-info-desk": {
-      "title": "Стойка информации (сотрудник аэропорта)",
+      "title": "Стойка информации",
       "emoji": "ℹ️",
       "requireChoice": true,
       "npc": {
@@ -406,7 +406,7 @@
       }
     },
     "step-6-rebooked": {
-      "title": "Стойка информации (сотрудник аэропорта)",
+      "title": "Стойка информации",
       "emoji": "✅",
       "npc": {
         "text": "You're all set! Your new flight is at 8 PM. Here's your new boarding pass. Have a nice day!",
